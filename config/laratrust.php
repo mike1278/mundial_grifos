@@ -1,5 +1,9 @@
 <?php
 
+use App\Models\Permission;
+use App\Models\Role;
+use App\Models\User;
+
 return [
     /*
     |--------------------------------------------------------------------------
@@ -73,7 +77,7 @@ return [
     |
     */
     'user_models' => [
-        'users' => \App\Models\User::class,
+        'users' => User::class,
     ],
 
     /*
@@ -88,9 +92,9 @@ return [
     */
     'models' => [
 
-        'role' => \App\Models\Role::class,
+        'role' => Role::class,
 
-        'permission' => \App\Models\Permission::class,
+        'permission' => Permission::class,
 
         /**
          * Will be used only if the teams functionality is enabled.
@@ -184,7 +188,7 @@ return [
              */
             'abort' => [
                 'code' => 403,
-                'message' => 'User does not have any of the necessary access rights.'
+                'message' => 'El usuario no tiene los requisitos para acceder.'
             ],
 
             /**
@@ -194,7 +198,7 @@ return [
              * If the message content is empty it won't be added to the redirection.
              */
             'redirect' => [
-                'url' => '/home',
+                'url' => '/',
                 'message' => [
                     'key' => 'error',
                     'content' => ''

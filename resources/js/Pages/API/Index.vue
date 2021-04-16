@@ -18,7 +18,7 @@
 
 <script>
     import ApiTokenManager from './ApiTokenManager'
-    import AppLayout from '@/Layouts/app'
+    import AppLayout from '@/Layouts/default'
 
     export default {
         props: [
