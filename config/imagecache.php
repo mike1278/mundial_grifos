@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'route' => null,
+    'route' => 'image',
 
     /*
     |--------------------------------------------------------------------------
@@ -31,8 +31,7 @@ return [
     */
 
     'paths' => [
-        public_path('upload'),
-        public_path('images')
+        storage_path('app/public')
     ],
 
     /*
@@ -52,9 +51,14 @@ return [
     */
 
     'templates' => [
-        'small' => 'Intervention\Image\Templates\Small',
+        'square-small'     => 'App\Intervention\Templates\Square\Small',
+        'square-medium'    => 'App\Intervention\Templates\Square\Medium',
+        'square-large'     => 'App\Intervention\Templates\Square\Large',
+        'square-original'  => 'App\Intervention\Templates\Square\Original',
+
+        'small'  => 'Intervention\Image\Templates\Small',
         'medium' => 'Intervention\Image\Templates\Medium',
-        'large' => 'Intervention\Image\Templates\Large',
+        'large'  => 'Intervention\Image\Templates\Large',
     ],
 
     /*

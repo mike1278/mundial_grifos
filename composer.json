@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.4 | ^8.0.3",
+        "ext-json": "*",
         "beyondcode/laravel-websockets": "^1.12",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
@@ -28,8 +29,7 @@
         "mll-lab/laravel-graphql-playground": "^2.5",
         "nuwave/lighthouse": "^5.3",
         "santigarcor/laratrust": "^6.3",
-        "tightenco/ziggy": "^1.0",
-        "ext-json": "*"
+        "tightenco/ziggy": "^1.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.9",

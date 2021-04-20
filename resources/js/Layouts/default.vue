@@ -11,6 +11,11 @@
                 to="products.index"
                 icon="boxes"
             ></nav-item>
+            <nav-item
+                text="Categorías"
+                to="categories.index"
+                icon="boxes"
+            ></nav-item>
         </c-sidebar>
         <div class="min-h-screen bg-gray-100 flex-grow">
             <nav class="bg-white border-b border-gray-100">
@@ -81,7 +86,7 @@ import JetDropdownLink from '@/Jetstream/DropdownLink'
 import JetNavLink from '@/Jetstream/NavLink'
 import JetResponsiveNavLink from '@/Jetstream/ResponsiveNavLink'
 import sidebar from '@/Components/sidebar/index'
-import navItem from '@/Components/sidebar/nav-item'
+import navItem from '@/Components/sidebar/NavItem'
 import hamburger from '@/Components/Hamburger'
 
 export default {

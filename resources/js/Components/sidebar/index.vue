@@ -15,7 +15,7 @@
 </template>
 <script>
 import dropdown from "@/Components/sidebar/dropdown"
-import navItem from "@/Components/sidebar/nav-item";
+import navItem from "@/Components/sidebar/NavItem";
 import { Inertia } from '@inertiajs/inertia'
 // import '@/directives/outsideclick'
 

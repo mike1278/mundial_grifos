@@ -2,6 +2,14 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
+use App\Models\File;
+use App\Models\Product;
+use App\Models\User;
+use App\Observers\CategoryObserver;
+use App\Observers\FileObserver;
+use App\Observers\ProductObserver;
+use App\Observers\UserObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -18,13 +26,16 @@ class AppServiceProvider extends ServiceProvider
         }
     }
 
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
     public function boot()
     {
-        //
+        $this->observers();
+    }
+
+    public function observers()
+    {
+        File::observe(FileObserver::class);
+        User::observe(UserObserver::class);
+        Product::observe(ProductObserver::class);
+        Category::observe(CategoryObserver::class);
     }
 }

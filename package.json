@@ -27,6 +27,7 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.15.3",
-        "vue-meta": "^2.4.0"
+        "compressorjs": "^1.0.7",
+        "fuse.js": "^6.4.6"
     }
 }

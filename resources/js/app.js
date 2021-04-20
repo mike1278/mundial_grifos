@@ -3,7 +3,7 @@ import { createApp, h } from 'vue';
 import { App as InertiaApp, plugin as InertiaPlugin } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
 import Layout from '@/Layouts/default'
-import buttonLink from '@/Components/button-link'
+import buttonLink from '@/Components/ButtonLink'
 
 const el = document.getElementById('app');
 
@@ -18,10 +18,18 @@ const app = createApp({
                 }
                 return page
             }),
+            resolveErrors: page => (page.props.errors || {}),
         })
 });
 app.component('button-link',buttonLink)
-app.mixin({ methods: { route } })
+app.mixin({
+    methods: {
+        route,
+        imageUrl(size='square-medium'){
+            return '/image/'+size+'/'
+        },
+    }
+})
 .use(InertiaPlugin)
 .mount(el);
 

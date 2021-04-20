@@ -5,14 +5,25 @@ scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
 scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
 
 type Query {
-    users: [User!]! @paginate(defaultCount: 10)
+    users: [User] @paginate
     user(id: ID @eq): User @find
+    category(id: ID @eq): Category @find
+    categories: [Category!]! @paginate
 }
 
 type User {
     id: ID!
     name: String!
     email: String!
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+type Category {
+    id: ID!
+    name: String!
+    category_id: Int
+    fromCategory: Category @belongsTo
     created_at: DateTime!
     updated_at: DateTime!
 }
