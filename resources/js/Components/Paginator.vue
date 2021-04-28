@@ -1,11 +1,10 @@
 <template>
     <nav
         v-if="paginator!==undefined"
-        class="flex items-center justify-between"
         role="navigation"
     >
-        <div class="flex-1 flex items-center justify-between">
-            <div class="hidden">
+        <div class="flex-1 flex items-center justify-center md:justify-between">
+            <div class="hidden md:block">
                 <p class="text-sm text-gray-700 leading-5">
                     Mostrando de
                     <span class="font-medium" v-text="firstItem"></span>

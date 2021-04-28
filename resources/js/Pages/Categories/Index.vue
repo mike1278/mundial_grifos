@@ -13,29 +13,29 @@
                 <td-head>Eliminar</td-head>
             </tr>
         </template>
-        <tr v-for="category in categories.data" :key="category.id">
-            <td-body>{{ category.id }}</td-body>
-            <td-body>{{ category.name }}</td-body>
+        <tr v-for="data in categories.data" :key="data.id">
+            <td-body>{{ data.id }}</td-body>
+            <td-body>{{ data.name }}</td-body>
             <td-body class="flex justify-center">
-                <img :src="imageUrl('square-small')+category.image.url" class="w-8 h-8" :alt="category.name">
+                <img :src="imageUrl('square-small')+data.image.url" class="w-8 h-8" :alt="data.name">
             </td-body>
             <td-body>
-                <link-button :href="route('categories.edit',category.id)">
+                <link-button :href="route('categories.edit',data.id)">
                     <i class="fas fa-edit"></i>
                 </link-button>
             </td-body>
             <td-body>
-                <jet-button @click="modalTrash(category)">
+                <jet-button @click="modalTrash(data)">
                     <i class="fas fa-trash"></i>
                 </jet-button>
             </td-body>
         </tr>
     </c-table>
     <paginator :paginator="categories"></paginator>
-    <modal :show="trash" v-if="categoryTrash">
+    <modal :show="trash" v-if="rowTrash">
         <div class="flex justify-between border-b border-gray-200 border-solid">
             <h3 class="text-gray-700 text-lg py-2 px-2">
-                Desea eliminar la categoria {{ categoryTrash.name }}
+                Desea eliminar la categoria {{ rowTrash.name }}
             </h3>
             <button
                 class="px-4 py-2 bg-gray-50 text-gray-700 hover:text-red-700 transition"
@@ -78,7 +78,7 @@ export default {
     props: ['categories'],
     data() {
         return {
-            categoryTrash: null,
+            rowTrash: null,
             modals: {
                 trash: false,
                 seeImage: false,
@@ -87,15 +87,15 @@ export default {
     },
     methods: {
         modalTrash(category){
-            this.categoryTrash = category;
+            this.rowTrash = category;
             this.modals.trash = true;
         },
         closeModal(modal){
             this.modals[modal] = false;
-            this.categoryTrash = null;
+            this.rowTrash = null;
         },
         trash(){
-            Inertia.delete(this.route('categories.destroy',this.categoryTrash.id), {
+            Inertia.delete(this.route('categories.destroy',this.rowTrash.id), {
                 preserveScroll: true,
                 onSuccess: () => {
                     this.closeModal('trash');

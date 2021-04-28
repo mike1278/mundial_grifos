@@ -68,7 +68,7 @@ export default {
             new Compressor(val, {
                 maxWidth: 1900,
                 maxHeight: 1900,
-                quality:1,
+                quality: 0.9,
                 success: function (result) {
                     self.form.image = result
                 },

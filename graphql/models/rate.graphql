@@ -1,0 +1,17 @@
+
+extend type Query {
+    rate(id: ID @eq): Rate @find
+    rates: [Rate!]! @paginate
+}
+
+type Rate {
+    id: ID!
+    name: String!
+    currency_id: String!
+    to_currency_id: String!
+    currency: Currency @belongsTo
+    toCurrency: Currency @belongsTo
+    rate: Float!
+    created_at: DateTime!
+    updated_at: DateTime!
+}

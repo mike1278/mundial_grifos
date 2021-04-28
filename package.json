@@ -28,6 +28,9 @@
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.15.3",
         "compressorjs": "^1.0.7",
-        "fuse.js": "^6.4.6"
+        "dropzone": "^5.9.2",
+        "fuse.js": "^6.4.6",
+        "sass": "^1.32.11",
+        "sass-loader": "^11.0.1"
     }
 }

@@ -1,6 +1,11 @@
 <?php
 
-use App\Actions\Product\Index as ProductIndex;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Actions\Auth\Logout;
 
-Route::get('/products', ProductIndex::class);
+
+Route::middleware(['auth:api'])->prefix('/auth')->group(function(){
+    Route::get('me', [UserController::class,'me']);
+    Route::post('logout', Logout::class);
+});

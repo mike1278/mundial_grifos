@@ -270,7 +270,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ['categories'],
   data: function data() {
     return {
-      categoryTrash: null,
+      rowTrash: null,
       modals: {
         trash: false,
         seeImage: false
@@ -279,17 +279,17 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     modalTrash: function modalTrash(category) {
-      this.categoryTrash = category;
+      this.rowTrash = category;
       this.modals.trash = true;
     },
     closeModal: function closeModal(modal) {
       this.modals[modal] = false;
-      this.categoryTrash = null;
+      this.rowTrash = null;
     },
     trash: function trash() {
       var _this = this;
 
-      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_8__.Inertia.delete(this.route('categories.destroy', this.categoryTrash.id), {
+      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_8__.Inertia.delete(this.route('categories.destroy', this.rowTrash.id), {
         preserveScroll: true,
         onSuccess: function onSuccess() {
           _this.closeModal('trash');
@@ -316,14 +316,13 @@ __webpack_require__.r(__webpack_exports__);
 
 var _hoisted_1 = {
   key: 0,
-  "class": "flex items-center justify-between",
   role: "navigation"
 };
 var _hoisted_2 = {
-  "class": "flex-1 flex items-center justify-between"
+  "class": "flex-1 flex items-center justify-center md:justify-between"
 };
 var _hoisted_3 = {
-  "class": "hidden"
+  "class": "hidden md:block"
 };
 var _hoisted_4 = {
   "class": "text-sm text-gray-700 leading-5"
@@ -888,12 +887,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       })])];
     }),
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.categories.data, function (category) {
+      return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.categories.data, function (data) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("tr", {
-          key: category.id
+          key: data.id
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_td_body, null, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(category.id), 1
+            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.id), 1
             /* TEXT */
             )];
           }),
@@ -904,7 +903,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         /* DYNAMIC_SLOTS */
         ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_td_body, null, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(category.name), 1
+            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.name), 1
             /* TEXT */
             )];
           }),
@@ -918,9 +917,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
             return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("img", {
-              src: _ctx.imageUrl('square-small') + category.image.url,
+              src: _ctx.imageUrl('square-small') + data.image.url,
               "class": "w-8 h-8",
-              alt: category.name
+              alt: data.name
             }, null, 8
             /* PROPS */
             , ["src", "alt"])];
@@ -933,7 +932,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_td_body, null, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
             return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_link_button, {
-              href: _ctx.route('categories.edit', category.id)
+              href: _ctx.route('categories.edit', data.id)
             }, {
               "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
                 return [_hoisted_9];
@@ -954,7 +953,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
             return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_jet_button, {
               onClick: function onClick($event) {
-                return $options.modalTrash(category);
+                return $options.modalTrash(data);
               }
             }, {
               "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -984,12 +983,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     paginator: $props.categories
   }, null, 8
   /* PROPS */
-  , ["paginator"]), $data.categoryTrash ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_modal, {
+  , ["paginator"]), $data.rowTrash ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_modal, {
     key: 0,
     show: $options.trash
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h3", _hoisted_12, " Desea eliminar la categoria " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.categoryTrash.name), 1
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h3", _hoisted_12, " Desea eliminar la categoria " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.rowTrash.name), 1
       /* TEXT */
       ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
         "class": "px-4 py-2 bg-gray-50 text-gray-700 hover:text-red-700 transition",

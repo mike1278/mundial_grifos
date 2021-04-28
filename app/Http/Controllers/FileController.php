@@ -20,7 +20,7 @@ class FileController extends Controller
 
     public function store(ImageRequest $request)
     {
-        return $request->file('image')->store('/temp','public');
+        return response()->json($request->file('file')->store('/temp','public'));
     }
 
     public function show(File $file)

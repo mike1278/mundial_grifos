@@ -20,8 +20,8 @@ class CreatePromotionsTable extends Migration
             $table->date('start_at');
             $table->date('end_at')->nullable();
             $table->string('serial_code',150);
-            $table->double('price');
-            $table->integer('quantity');
+            $table->double('price')->unsigned();
+            $table->integer('quantity')->unsigned();
             $table->foreignId('category_id')->constrained();
             $table->foreignId('currency_id')->constrained();
             $table->timestamps();

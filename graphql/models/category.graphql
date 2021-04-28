@@ -1,0 +1,15 @@
+
+extend type Query {
+    category(id: ID @eq): Category @find
+    categories: [Category!]! @paginate
+}
+
+type Category {
+    id: ID!
+    name: String!
+    category_id: Int
+    image: File @morphOne
+    fromCategory: Category @belongsTo
+    created_at: DateTime!
+    updated_at: DateTime!
+}

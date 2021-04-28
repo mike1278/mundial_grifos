@@ -1,0 +1,14 @@
+
+extend type Query {
+    currency(id: ID @eq): Currency @find
+    currencies: [Currency!]! @paginate
+}
+
+type Currency {
+    id: ID!
+    name: String!
+    symbol: String!
+    rate: Rate @hasOne
+    created_at: DateTime!
+    updated_at: DateTime!
+}

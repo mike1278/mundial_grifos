@@ -17,13 +17,13 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name',60);
             $table->text('description');
-            $table->double('discount');
+            $table->double('discount')->unsigned();
             $table->boolean('published')->default(false);
             $table->string('serial_code',150);
-            $table->json('options');
-            $table->double('base_price');
-            $table->integer('base_quantity');
+            $table->double('base_price')->unsigned();
+            $table->integer('base_quantity')->unsigned();
             $table->foreignId('category_id')->constrained();
+            $table->foreignId('brand_id')->constrained();
             $table->foreignId('currency_id')->constrained();
             $table->timestamps();
         });

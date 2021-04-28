@@ -1,0 +1,15 @@
+
+union Fileable = Product | Category | Promotion
+
+extend type Query {
+    file(id: ID @eq): File @find
+    files: [File!]! @paginate
+}
+
+type File {
+    id: ID!
+    url : String!
+    fileable: Fileable! @morphTo
+    created_at: DateTime!
+    updated_at: DateTime!
+}

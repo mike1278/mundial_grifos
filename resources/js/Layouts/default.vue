@@ -5,17 +5,27 @@
                 text="Inicio"
                 to="dashboard"
                 icon="home"
-            ></nav-item>
+            />
+            <nav-item
+                text="Clientes"
+                to="clients.index"
+                icon="users"
+            />
+            <nav-item
+                text="Categorías"
+                to="categories.index"
+                icon="bars"
+            />
             <nav-item
                 text="Productos"
                 to="products.index"
                 icon="boxes"
-            ></nav-item>
+            />
             <nav-item
-                text="Categorías"
-                to="categories.index"
-                icon="boxes"
-            ></nav-item>
+                text="Opciones Productos"
+                to="options.index"
+                icon="cog"
+            />
         </c-sidebar>
         <div class="min-h-screen bg-gray-100 flex-grow">
             <nav class="bg-white border-b border-gray-100">
@@ -46,10 +56,6 @@
                                     <template #content>
                                         <jet-dropdown-link :href="route('profile.show')">
                                             Perfil
-                                        </jet-dropdown-link>
-
-                                        <jet-dropdown-link :href="route('api-tokens.index')" v-if="$page.props.jetstream.hasApiFeatures">
-                                            API Tokens
                                         </jet-dropdown-link>
                                         <div class="border-t border-gray-100"></div>
                                         <form @submit.prevent="logout">

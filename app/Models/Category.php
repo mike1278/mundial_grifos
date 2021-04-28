@@ -14,6 +14,20 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
  * @method static \Illuminate\Database\Eloquent\Builder|Category newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Category query()
  * @mixin \Eloquent
+ * @property int $id
+ * @property string $name
+ * @property int|null $category_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read Category $fromCategory
+ * @property-read \App\Models\File|null $image
+ * @property-read \Illuminate\Database\Eloquent\Collection|Category[] $subCategories
+ * @property-read int|null $sub_categories_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereUpdatedAt($value)
  */
 class Category extends Model
 {

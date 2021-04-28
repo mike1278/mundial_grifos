@@ -1,0 +1,16 @@
+
+extend type Query {
+    product(id: ID @eq): Product @find
+    products: [Product!]! @paginate
+}
+
+type Product {
+    id: ID!
+    name: String!
+    category_id: Int
+    category: Category @belongsTo
+    image: File @morphMany
+    currency: Currency @hasOne
+    created_at: DateTime!
+    updated_at: DateTime!
+}

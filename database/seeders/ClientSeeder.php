@@ -14,13 +14,15 @@ class ClientSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
+        $user = User::create([
             'name' => 'Mariangel',
             'email' => 'mariangel@mail.com',
             'password' => '12345678',
-        ])->client()->create([
+        ]);
+        $user->attachRole('client');
+        $user->client()->create([
             'lastname' => 'Moya',
-            'ci' => '24089369',
+            'dni' => '24089369',
             'phone' => '04248307092',
         ]);
     }

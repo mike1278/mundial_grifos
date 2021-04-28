@@ -8,12 +8,18 @@ use App\Models\Category;
 use DB;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use Inertia\Response;
+use Inertia\Response as InertiaResponse;
 use Throwable;
 
 class CategoryController extends Controller
 {
-    public function create(): Response
+    public function index(): InertiaResponse
+    {
+        $categories = Category::with('image')->paginate();
+        return Inertia::render('Categories/Index', compact('categories'));
+    }
+
+    public function create(): InertiaResponse
     {
         $categories = Category::whereNull('category_id')->get();
         return Inertia::render('Categories/Create',[
@@ -42,7 +48,7 @@ class CategoryController extends Controller
         return new CategoryResource($category);
     }
 
-    public function edit(Category $category): Response
+    public function edit(Category $category): InertiaResponse
     {
         $category->load('image');
         $categories = Category::whereNull('category_id')->get();
