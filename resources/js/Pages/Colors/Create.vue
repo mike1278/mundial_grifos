@@ -1,0 +1,78 @@
+<template>
+    <form-section @submitted="submit()" title="Crear Color" class="py-2 px-2">
+        <template #form>
+            <div class="grid grid-cols-3 gap-4">
+                <div>
+                    <form-label for="name" class="h-6">Nombre</form-label>
+                    <form-input id="name" v-model="form.name" placeholder="Nombre"/>
+                    <form-field-error v-if="form.errors.name">{{ form.errors.name }}</form-field-error>
+                </div>
+                <div>
+                    <form-label for="image" class="h-6">Imagen</form-label>
+                    <input-file v-model="originalImage" placeholder="Seleccionar Imagen" label="Imagen"/>
+                    <form-field-error v-if="form.errors.image">{{ form.errors.image }}</form-field-error>
+                </div>
+            </div>
+        </template>
+        <template #actions>
+            <form-button type="submit" :disabled="form.processing">Guardar</form-button>
+        </template>
+    </form-section>
+</template>
+<script>
+import vueSelect from '@/Components/select/index'
+import inputFile from '@/Components/InputFile'
+import formLabel from '@/Jetstream/Label'
+import formSection from '@/Jetstream/FormSection'
+import formInput from '@/Jetstream/Input'
+import formButton from '@/Jetstream/Button'
+import formFieldError from '@/Components/FieldError'
+import Compressor from 'compressorjs'
+export default {
+    components: {
+        vueSelect,
+        formFieldError,
+        formButton,
+        formInput,
+        formLabel,
+        formSection,
+        inputFile,
+    },
+    data(){
+        return {
+            form: this.$inertia.form({
+                name: '',
+                image: null,
+                value: '',
+            }),
+            originalImage: null,
+        }
+    },
+    watch:{
+        originalImage(val){
+            const self = this;
+            new Compressor(val, {
+                maxWidth: 500,
+                maxHeight: 500,
+                quality:0.9,
+                success: function (result) {
+                    self.form.image = result
+                },
+                error: function (err) {},
+            })
+        }
+    },
+    methods: {
+        submit() {
+            this.form.post(this.route('colors.store'), {
+                preserveScroll: true,
+                onSuccess: () => {
+                    this.form.reset()
+                    this.form.clearErrors()
+                    this.originalImage = null
+                }
+            })
+        },
+    }
+}
+</script>

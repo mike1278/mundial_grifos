@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ProductOption;
+use App\Models\ProductColor;
 use Illuminate\Http\Request;
 
 class ProductOptionController extends Controller
@@ -41,10 +41,10 @@ class ProductOptionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\ProductOption  $productOption
+     * @param  \App\Models\ProductColor  $productOption
      * @return \Illuminate\Http\Response
      */
-    public function show(ProductOption $productOption)
+    public function show(ProductColor $productOption)
     {
         //
     }
@@ -52,10 +52,10 @@ class ProductOptionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\ProductOption  $productOption
+     * @param  \App\Models\ProductColor  $productOption
      * @return \Illuminate\Http\Response
      */
-    public function edit(ProductOption $productOption)
+    public function edit(ProductColor $productOption)
     {
         //
     }
@@ -64,10 +64,10 @@ class ProductOptionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ProductOption  $productOption
+     * @param  \App\Models\ProductColor  $productOption
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ProductOption $productOption)
+    public function update(Request $request, ProductColor $productOption)
     {
         //
     }
@@ -75,10 +75,10 @@ class ProductOptionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\ProductOption  $productOption
+     * @param  \App\Models\ProductColor  $productOption
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ProductOption $productOption)
+    public function destroy(ProductColor $productOption)
     {
         //
     }

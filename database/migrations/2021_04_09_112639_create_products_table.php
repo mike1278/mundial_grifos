@@ -20,9 +20,10 @@ class CreateProductsTable extends Migration
             $table->double('discount')->unsigned();
             $table->boolean('published')->default(false);
             $table->string('serial_code',150);
-            $table->double('base_price')->unsigned();
-            $table->integer('base_quantity')->unsigned();
+            $table->double('price')->unsigned();
+            $table->integer('quantity')->unsigned();
             $table->foreignId('category_id')->constrained();
+            $table->foreignId('model_id')->constrained();
             $table->foreignId('brand_id')->constrained();
             $table->foreignId('currency_id')->constrained();
             $table->timestamps();

@@ -729,7 +729,7 @@
           }
         }
 
-        this.$emit('input', value);
+        this.$emit('update:modelValue', value);
       },
 
       /**
@@ -1020,7 +1020,7 @@
        * @returns {HTMLInputElement}
        */
       searchEl () {
-        return !!this.$scopedSlots['search']
+        return !!this.$slots['search']
           ? this.$refs.selectedOptions.querySelector(this.searchInputQuerySelector)
           : this.$refs.search;
       },

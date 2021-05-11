@@ -3,61 +3,32 @@
 namespace App\Observers;
 
 use App\Models\Product;
+use Log;
+use Storage;
+use Throwable;
 
 class ProductObserver
 {
-    /**
-     * Handle the Product "created" event.
-     *
-     * @param  \App\Models\Product  $product
-     * @return void
-     */
     public function created(Product $product)
     {
         //
     }
 
-    /**
-     * Handle the Product "updated" event.
-     *
-     * @param  \App\Models\Product  $product
-     * @return void
-     */
     public function updated(Product $product)
     {
         //
     }
 
-    /**
-     * Handle the Product "deleted" event.
-     *
-     * @param  \App\Models\Product  $product
-     * @return void
-     */
     public function deleted(Product $product)
     {
-        //
-    }
-
-    /**
-     * Handle the Product "restored" event.
-     *
-     * @param  \App\Models\Product  $product
-     * @return void
-     */
-    public function restored(Product $product)
-    {
-        //
-    }
-
-    /**
-     * Handle the Product "force deleted" event.
-     *
-     * @param  \App\Models\Product  $product
-     * @return void
-     */
-    public function forceDeleted(Product $product)
-    {
-        //
+        $product->load('images');
+        foreach ($product->images as $image){
+            try{
+                Storage::delete($image->url);
+                $image->delete();
+            }catch (Throwable $e){
+                Log::error($e);
+            }
+        }
     }
 }

@@ -13,6 +13,18 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Rate newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Rate query()
  * @mixin \Eloquent
+ * @property int $id
+ * @property float $rate
+ * @property int $currency_id
+ * @property int $to_currency_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Rate whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Rate whereCurrencyId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Rate whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Rate whereRate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Rate whereToCurrencyId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Rate whereUpdatedAt($value)
  */
 class Rate extends Model
 {

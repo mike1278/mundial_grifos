@@ -1,5 +1,5 @@
 <template>
-    <li class="p-2 border-l-4 border-solid" v-if="show" :class="classes">
+    <li class="p-2 border-l-4 border-solid" :class="classes">
         <inertia-link class="text-gray-700" :href="route(to)">
             <i :class="prefixIcon+icon" class="mx-3"/>
             <span>{{ text }}</span>
@@ -26,10 +26,6 @@ export default {
             type: String,
             required: true,
         },
-        if: {
-            type: Function,
-            default: () => true,
-        },
     },
     mounted() {
         Inertia.on('finish', () => {
@@ -43,9 +39,6 @@ export default {
         }
     },
     computed: {
-        show() {
-            return this.if();
-        },
         classes() {
             return this.active ? 'border-blue-400' : ''
         },

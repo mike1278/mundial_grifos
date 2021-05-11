@@ -8,13 +8,12 @@
             placeholder="Imagen"
             @change="setImage"
         />
-        <label for="image" class="block border-gray-500 w-full hover:border-indigo-600 placeholder-gray-400 focus:border-indigo-600 outline-none border-b-2 p-2 shadow-sm">
+        <label for="image" class="block border-gray-400 w-full hover:border-indigo-600 placeholder-gray-400 focus:border-indigo-600 outline-none border-b-2 px-1 pb-1 shadow-sm">
             {{ isFile(modelValue) ? modelValue.name : placeholder }}
         </label>
     </div>
 </template>
 <script>
-import formLabel from '@/Jetstream/Label'
 export default {
     props: {
         modelValue: {
@@ -31,10 +30,7 @@ export default {
         placeholder: {
             type: String,
             default: 'Seleccionar Archivo',
-        }
-    },
-    components: {
-        formLabel,
+        },
     },
     methods: {
         isFile(file) {

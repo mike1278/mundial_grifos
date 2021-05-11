@@ -18,10 +18,17 @@ class CurrencySeeder extends Seeder
         $usd = Currency::create([
             'name' => 'Dólares',
             'symbol' => 'USD',
+            'acronym' => '$',
         ])->id;
         $bs = Currency::create([
             'name' => 'Bolivares',
             'symbol' => 'BS',
+            'acronym' => 'BS',
+        ])->id;
+        $euro = Currency::create([
+            'name' => 'Euros',
+            'symbol' => '€',
+            'acronym' => 'EUR',
         ])->id;
         Rate::create([
             'rate' => 1/2500000,
@@ -31,6 +38,16 @@ class CurrencySeeder extends Seeder
         Rate::create([
             'rate' => 2500000,
             'currency_id' => $bs,
+            'to_currency_id' => $usd,
+        ]);
+        Rate::create([
+            'rate' => 0.82,
+            'currency_id' => $usd,
+            'to_currency_id' => $euro,
+        ]);
+        Rate::create([
+            'rate' => 1.22,
+            'currency_id' => $euro,
             'to_currency_id' => $usd,
         ]);
     }

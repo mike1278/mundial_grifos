@@ -22,9 +22,24 @@
                 icon="boxes"
             />
             <nav-item
-                text="Opciones Productos"
-                to="options.index"
+                text="Colores"
+                to="colors.index"
+                icon="tint"
+            />
+            <nav-item
+                text="Brand"
+                to="brands.index"
+                icon="copyright"
+            />
+            <nav-item
+                text="Modelos"
+                to="models.index"
                 icon="cog"
+            />
+            <nav-item
+                text="Estadísticas"
+                to="models.index"
+                icon="chart-bar"
             />
         </c-sidebar>
         <div class="min-h-screen bg-gray-100 flex-grow">
@@ -103,7 +118,7 @@ export default {
         JetDropdownLink,
         JetNavLink,
         hamburger,
-        'nav-item': navItem,
+        navItem,
         JetResponsiveNavLink,
         'c-sidebar':sidebar,
     },

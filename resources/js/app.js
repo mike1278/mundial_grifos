@@ -28,7 +28,7 @@ app.mixin({
         imageUrl(size='square-medium'){
             return '/image/'+size+'/'
         },
-    }
+    },
 })
 .use(InertiaPlugin)
 .mount(el);

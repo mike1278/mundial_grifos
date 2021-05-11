@@ -14,7 +14,13 @@
                 </div>
                 <div>
                     <form-label for="category" class="h-6">Categoria Padre</form-label>
-                    <form-select id="category" v-model="form.category_id" :items="categories" :first-option-disable="false" placeholder="Seleccionar Categoria"/>
+                    <vue-select
+                        :options="categories"
+                        label="name"
+                        v-model="form.category_id"
+                        :reduce="(data) => data.id"
+                        placeholder="Seleccionar Categoria"
+                    />
                     <form-field-error v-if="form.errors.category_id">{{ form.errors.category_id }}</form-field-error>
                 </div>
             </div>
@@ -25,7 +31,7 @@
     </form-section>
 </template>
 <script>
-import formSelect from '@/Components/Select'
+import vueSelect from '@/Components/select/index'
 import inputFile from '@/Components/InputFile'
 import formLabel from '@/Jetstream/Label'
 import formSection from '@/Jetstream/FormSection'
@@ -35,7 +41,7 @@ import formFieldError from '@/Components/FieldError'
 import Compressor from 'compressorjs'
 export default {
     components: {
-        formSelect,
+        vueSelect,
         formFieldError,
         formButton,
         formInput,

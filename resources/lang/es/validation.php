@@ -31,6 +31,7 @@ return [
     'email'                => ':attribute no es un correo válido.',
     'ends_with'            => 'El campo :attribute debe finalizar con uno de los siguientes valores: :values',
     'exists'               => ':attribute es inválido.',
+    'exists_file'          => 'El :attribute no existe.',
     'file'                 => 'El campo :attribute debe ser un archivo.',
     'filled'               => 'El campo :attribute es obligatorio.',
     'gt'                   => [
@@ -111,6 +112,7 @@ return [
     'uploaded'             => 'Subir :attribute ha fallado.',
     'url'                  => 'El formato :attribute es inválido.',
     'uuid'                 => 'El campo :attribute debe ser un UUID válido.',
+
     'custom'               => [
         'email'    => [
             'unique' => 'El :attribute ya ha sido registrado.',
@@ -119,6 +121,7 @@ return [
             'min' => 'La :attribute debe contener más de :min caracteres',
         ],
     ],
+
     'attributes'           => [
         'address'               => 'dirección',
         'age'                   => 'edad',
@@ -154,5 +157,13 @@ return [
         'title'                 => 'título',
         'username'              => 'usuario',
         'year'                  => 'año',
+
+        'category_id'           => 'categoria',
+        'model_id'              => 'modelo',
+        'brand_id'              => 'marca',
+        'colors'                => 'colores',
+        'serial_code'           => 'código serial',
+        'images'                => 'imágenes',
+        'image'                 => 'imagen',
     ],
 ];

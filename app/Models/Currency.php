@@ -21,11 +21,13 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Currency whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Currency whereSymbol($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Currency whereUpdatedAt($value)
+ * @property string $acronym
+ * @method static \Illuminate\Database\Eloquent\Builder|Currency whereAcronym($value)
  */
 class Currency extends Model
 {
     protected $fillable = [
-        'name', 'symbol'
+        'name', 'symbol','acronym'
     ];
 
     public function rate(){

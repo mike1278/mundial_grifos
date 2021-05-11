@@ -2,7 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model as BaseModel;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
@@ -43,8 +44,22 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
  * @method static \Illuminate\Database\Eloquent\Builder|Product wherePublished($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereSerialCode($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereUpdatedAt($value)
+ * @property int $model_id
+ * @property int $brand_id
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereBrandId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereModelId($value)
+ * @property float $price
+ * @property int $quantity
+ * @property-read \App\Models\Brand|null $brand
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Color[] $colors
+ * @property-read int|null $colors_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\File[] $images
+ * @property-read int|null $images_count
+ * @property-read \App\Models\Model|null $model
+ * @method static \Illuminate\Database\Eloquent\Builder|Product wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereQuantity($value)
  */
-class Product extends Model
+class Product extends BaseModel
 {
     protected $fillable = [
         'name',
@@ -53,7 +68,10 @@ class Product extends Model
         'published',
         'serial_code',
         'options',
-        'base_price',
+        'price',
+        'quantity',
+        'brand_id',
+        'model_id',
         'category_id',
         'currency_id',
     ];
@@ -63,7 +81,7 @@ class Product extends Model
         return $this->attributes['name'] = ucwords($value);
     }
 
-    public function image(): MorphMany
+    public function images(): MorphMany
     {
         return $this->morphMany(File::class,'fileable');
     }
@@ -74,5 +92,17 @@ class Product extends Model
     public function currency(): HasOne
     {
         return $this->hasOne(Currency::class);
+    }
+    public function model(): HasOne
+    {
+        return $this->hasOne(Model::class);
+    }
+    public function brand(): HasOne
+    {
+        return $this->hasOne(Brand::class);
+    }
+    public function colors(): BelongsToMany
+    {
+        return $this->belongsToMany(Color::class,ProductColor::class);
     }
 }

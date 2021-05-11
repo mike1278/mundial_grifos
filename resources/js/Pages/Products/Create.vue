@@ -1,5 +1,5 @@
 <template>
-    <form-section @submitted="submit()" title="Crear Categoria" class="py-2 px-2">
+    <form-section @submitted="submit()" title="Crear Producto" class="py-2 px-2">
         <template #form>
             <div class="grid grid-cols-3 gap-4 mb-4">
                 <div>
@@ -9,12 +9,16 @@
                 </div>
                 <div>
                     <form-label for="price" class="h-6">Precio</form-label>
-                    <form-input id="price" v-model="form.price" placeholder="Precio"/>
+                    <form-input-group append="$">
+                        <form-input id="price" v-model="form.price" placeholder="Precio"/>
+                    </form-input-group>
                     <form-field-error v-if="form.errors.price">{{ form.errors.price }}</form-field-error>
                 </div>
                 <div>
                     <form-label for="discount" class="h-6">Descuento</form-label>
-                    <form-input id="discount" v-model="form.discount" placeholder="Descuento"/>
+                    <form-input-group append="%">
+                        <form-input id="discount" v-model="form.discount" placeholder="Descuento"/>
+                    </form-input-group>
                     <form-field-error v-if="form.errors.discount">{{ form.errors.discount }}</form-field-error>
                 </div>
                 <div>
@@ -23,7 +27,7 @@
                     <form-field-error v-if="form.errors.serial_code">{{ form.errors.serial_code }}</form-field-error>
                 </div>
                 <div>
-                    <form-label for="category" class="h-6">Categoria</form-label>
+                    <form-label class="h-6">Categoria</form-label>
                     <vue-select
                         :options="categories"
                         label="name"
@@ -32,6 +36,45 @@
                         placeholder="Seleccionar Categoria"
                     />
                     <form-field-error v-if="form.errors.category_id">{{ form.errors.category_id }}</form-field-error>
+                </div>
+                <div>
+                    <form-label class="h-6">Marca</form-label>
+                    <vue-select
+                        :options="brands"
+                        label="name"
+                        v-model="form.brand_id"
+                        :reduce="(data) => data.id"
+                        placeholder="Seleccionar Marca"
+                    />
+                    <form-field-error v-if="form.errors.brand_id">{{ form.errors.brand_id }}</form-field-error>
+                </div>
+                <div>
+                    <form-label class="h-6">Colores</form-label>
+                    <vue-select
+                        multiple
+                        :options="colors"
+                        label="name"
+                        v-model="form.colors"
+                        :reduce="(data) => data.id"
+                        placeholder="Seleccionar Colores"
+                    />
+                    <form-field-error v-if="form.errors.colors">{{ form.errors.colors }}</form-field-error>
+                </div>
+                <div>
+                    <form-label class="h-6">Modelo</form-label>
+                    <vue-select
+                        :options="models"
+                        label="name"
+                        v-model="form.model_id"
+                        :reduce="(data) => data.id"
+                        placeholder="Seleccionar Modelo"
+                    />
+                    <form-field-error v-if="form.errors.model_id">{{ form.errors.model_id }}</form-field-error>
+                </div>
+                <div>
+                    <form-label for="brand" class="h-6">Publicado</form-label>
+                    <form-switch v-model="form.published"/>
+                    <form-field-error v-if="form.errors.published">{{ form.errors.published }}</form-field-error>
                 </div>
             </div>
             <div class="w-full mb-4">
@@ -56,12 +99,13 @@
     </form-section>
 </template>
 <script>
-import formSelect from '@/Components/Select'
 import inputFile from '@/Components/InputFile'
 import dropzone from '@/Components/Dropzone'
 import formLabel from '@/Jetstream/Label'
 import formSection from '@/Jetstream/FormSection'
 import formInput from '@/Jetstream/Input'
+import formSwitch from '@/Components/switch'
+import formInputGroup from '@/Components/InputGroup'
 import formButton from '@/Jetstream/Button'
 import formFieldError from '@/Components/FieldError'
 import Compressor from 'compressorjs'
@@ -69,17 +113,18 @@ import vueSelect from '@/Components/select/index'
 
 export default {
     components: {
-        vueSelect,
-        formSelect,
-        formFieldError,
-        formButton,
-        dropzone,
+        formSwitch,
+        formInputGroup,
         formInput,
         formLabel,
+        formFieldError,
+        formButton,
+        vueSelect,
+        dropzone,
         formSection,
         inputFile,
     },
-    props:['categories','brands','options'],
+    props:['categories','brands','colors','models'],
     data(){
         return {
             form: this.$inertia.form({
@@ -91,13 +136,16 @@ export default {
                 price: 0,
                 quantity: 0,
                 images: [],
-                currency_id: null,
+                colors: [],
                 category_id: null,
+                brand_id: null,
+                model_id: null,
             }),
             optionsDropzone:{
                 acceptedFiles: 'image/*',
                 url: this.route('files.store'),
                 maxFilesize: 10,
+                dictDefaultMessage: 'Suelta aquí los archivos',
                 headers: {
                     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
                 },
@@ -107,7 +155,7 @@ export default {
                     new Compressor(file, {
                         maxWidth: 1900,
                         maxHeight: 1900,
-                        quality:0.9,
+                        quality: 0.9,
                         success: function (result) {
                             done(result)
                         },
@@ -124,13 +172,11 @@ export default {
                 onSuccess: () => {
                     this.form.reset()
                     this.form.clearErrors()
-                    this.originalImage = null
                 }
             })
         },
         pushFile(file){
-            console.log(file)
-            this.form.images.push(file);
+            this.form.images.push(file)
         },
     }
 }

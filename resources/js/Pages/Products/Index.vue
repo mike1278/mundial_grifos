@@ -18,10 +18,10 @@
         <tr v-for="data in products.data" :key="data.id">
             <td-body>{{ data.id }}</td-body>
             <td-body class="flex justify-center">
-                <img :src="imageUrl('square-small') + data.image.url" class="w-8 h-8" :alt="data.name">
+                <img :src="imageUrl('square-small') + data.images[0].url" class="w-8 h-8" :alt="data.name">
             </td-body>
             <td-body>{{ data.name }}</td-body>
-            <td-body>{{ data.base_price }}</td-body>
+            <td-body>{{ data.price }}</td-body>
             <td-body>
                 <link-button :href="route('products.show',data.id)">
                     <i class="fas fa-eye"></i>
