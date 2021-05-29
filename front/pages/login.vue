@@ -52,17 +52,16 @@
     </b-form>
   </b-container>
 </template>
-<script lang="ts">
-import Vue from 'vue'
+<script>
 import { validationMixin } from 'vuelidate'
 import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
-export default Vue.extend({
+export default {
   mixins: [validationMixin],
   middleware: 'guest',
   data() {
     return {
-      email: '' as string,
-      password: '' as string,
+      email: '',
+      password: '',
     }
   },
   head() {
@@ -97,5 +96,5 @@ export default Vue.extend({
         .catch((e) => this.processError(e))
     },
   },
-})
+}
 </script>

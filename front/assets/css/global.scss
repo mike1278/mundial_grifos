@@ -1,4 +1,25 @@
 @import './variables';
+@import "navigation";
+
+.grid{
+  display: grid;
+}
+
+.gap-{
+  @for $i from 1 through 10 {
+    &#{$i}{
+      width: #{$i}px;
+    }
+  }
+}
+
+.w-{
+  @for $i from 1 through 30 {
+    &#{$i}{
+      width: #{$i}rem;
+    }
+  }
+}
 
 .text-{
   &gray-{

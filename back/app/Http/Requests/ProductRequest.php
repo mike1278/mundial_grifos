@@ -20,7 +20,7 @@ class ProductRequest extends FormRequest
             'discount' => 'required|numeric|min:0',
             'published' => 'required|boolean',
             'serial_code' => 'required|string',
-            'quantity' => 'required|numeric',
+            'quantity' => 'required|numeric|min:0',
             'category_id' => 'required|numeric|exists:App\Models\Category,id',
             'model_id' => 'required|numeric|exists:App\Models\Model,id',
             'brand_id' => 'required|numeric|exists:App\Models\Brand,id',

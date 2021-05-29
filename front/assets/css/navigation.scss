@@ -1,0 +1,8 @@
+.b-sidebar{
+  .nav-link{
+    &.active{
+      border-left: 4px solid #5fafff;
+      background-color: rgba(108, 151, 255, 0.10);
+    }
+  }
+}

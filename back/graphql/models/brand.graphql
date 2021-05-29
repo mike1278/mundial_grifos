@@ -1,0 +1,10 @@
+extend type Query {
+    brand(id: ID @eq): Brand @find
+    brands: [Brand!]! @paginate
+    allBrands: [Brand!]! @all
+}
+
+type Brand {
+    id: ID!
+    name: String!
+}

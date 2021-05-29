@@ -2,26 +2,24 @@ import Vue from 'vue'
 
 Vue.mixin({
   methods: {
-    toast(title, body, variant = null) {
-      this.$bvToast.toast(body, {
-        title,
-        variant,
-        solid: true,
-      })
-    },
     imageUrl(size = 'square-small') {
-      return process.env.BACK_DOMAIN + 'image/' + size + '/'
+      return this.$config.backUrl + '/image/' + size + '/'
     },
     processError(error) {
       if (error.response) {
         if (error.response.data.errors) {
-          return this.toast(
-            'Error',
+          return this.$bvToast.toast(
             Object.values(error.response.data.errors)[0][0],
-            'danger'
+            {
+              title: 'Error',
+              variant: 'warning',
+            }
           )
         }
-        let toastMessage = {}
+        let toastMessage = {
+          title: '',
+          message: '',
+        }
         switch (error.response.status) {
           case 401:
             toastMessage = {
@@ -54,13 +52,15 @@ Vue.mixin({
             }
             break
         }
-        return this.toast(toastMessage.title, toastMessage.message, 'danger')
+        return this.$bvToast.toast(toastMessage.message, {
+          title: toastMessage.title,
+          variant: 'warning',
+        })
       }
-      this.toast(
-        'Error',
-        'Problemas de conexión, Reintente mas tarde',
-        'warning'
-      )
+      this.$bvToast.toast('Problemas de conexión, Reintente mas tarde', {
+        title: 'Error',
+        variant: 'warning',
+      })
     },
   },
 })

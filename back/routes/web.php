@@ -20,6 +20,7 @@ Route::middleware(['auth', 'verified', 'role:admin|superAdmin'])->group(function
     Route::resource('models', ModelController::class)->whereNumber('model');
     Route::resource('brands', BrandController::class)->whereNumber('brand');
     Route::resource('categories', CategoryController::class)->whereNumber('category');
+    Route::resource('orders', CategoryController::class)->whereNumber('order');
 });
 
 Route::fallback(FallBackController::class);

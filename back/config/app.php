@@ -167,6 +167,7 @@ return [
          * Package Service Providers...
          */
         Intervention\Image\ImageServiceProvider::class,
+        Nuwave\Lighthouse\WhereConditions\WhereConditionsServiceProvider::class,
         /*
          * Application Service Providers...
          */

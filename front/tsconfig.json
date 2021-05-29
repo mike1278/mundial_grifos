@@ -17,13 +17,19 @@
     "baseUrl": ".",
     "paths": {
       "~/*": ["./*"],
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "~~/*": ["./*"],
+      "@@/*": ["./*"]
     },
     "types": [
       "@nuxt/types",
       "@nuxtjs/axios",
       "@types/node",
+      "bootstrap-vue",
       "@nuxtjs/auth-next",
+      "vue-awesome-swiper/src/index.d.ts",
+      "types/index.d.ts",
+      "types/global.d.ts",
     ]
   },
   "exclude": [

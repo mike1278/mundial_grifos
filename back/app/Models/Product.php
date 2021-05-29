@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model as BaseModel;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Models\Product
@@ -61,6 +63,8 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
  */
 class Product extends BaseModel
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'name',
         'description',
@@ -85,21 +89,21 @@ class Product extends BaseModel
     {
         return $this->morphMany(File::class,'fileable');
     }
-    public function category(): HasOne
+    public function category(): BelongsTo
     {
-        return $this->hasOne(Category::class);
+        return $this->belongsTo(Category::class);
     }
-    public function currency(): HasOne
+    public function currency(): BelongsTo
     {
-        return $this->hasOne(Currency::class);
+        return $this->belongsTo(Currency::class);
     }
-    public function model(): HasOne
+    public function model(): BelongsTo
     {
-        return $this->hasOne(Model::class);
+        return $this->belongsTo(Model::class);
     }
-    public function brand(): HasOne
+    public function brand(): BelongsTo
     {
-        return $this->hasOne(Brand::class);
+        return $this->belongsTo(Brand::class);
     }
     public function colors(): BelongsToMany
     {

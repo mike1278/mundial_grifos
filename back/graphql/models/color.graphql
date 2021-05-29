@@ -1,0 +1,10 @@
+extend type Query {
+    color(id: ID @eq): Color @find
+    colors: [Color!]! @paginate
+}
+
+type Color {
+    id: ID!
+    name: String!
+    image: File @morphOne
+}

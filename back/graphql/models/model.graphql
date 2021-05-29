@@ -1,0 +1,10 @@
+extend type Query {
+    model(id: ID @eq): Model @find
+    models: [Model!]! @paginate
+    allModels: [Model!]! @all
+}
+
+type Model {
+    id: ID!
+    name: String!
+}

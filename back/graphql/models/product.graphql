@@ -1,16 +1,28 @@
 
 extend type Query {
     product(id: ID @eq): Product @find
-    products: [Product!]! @paginate
+    products(
+        where: _ @whereConditions(columns: ["category_id", "published", "brand_id", "model_id", "name"])
+    ): [Product!]! @paginate
 }
 
 type Product {
     id: ID!
     name: String!
-    category_id: Int
-    category: Category @belongsTo
-    image: File @morphMany
-    currency: Currency @hasOne
+    description: String!
+    discount: String!
+    serial_code: String!
+    published: Boolean!
+    price: Float!
+    quantity: Int!
+    category_id: Int!
+    brand_id: Int!
+    model_id: Int!
+    category: Category! @belongsTo
+    brand: Brand @belongsTo
+    model: Model @belongsTo
+    images: [File!]! @morphMany
+    colors: File @belongsToMany
+    currency: Currency @belongsTo
     created_at: DateTime!
-    updated_at: DateTime!
 }

@@ -26,6 +26,7 @@ class CreateProductsTable extends Migration
             $table->foreignId('model_id')->constrained();
             $table->foreignId('brand_id')->constrained();
             $table->foreignId('currency_id')->constrained();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

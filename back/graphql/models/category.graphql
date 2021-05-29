@@ -2,6 +2,7 @@
 extend type Query {
     category(id: ID @eq): Category @find
     categories: [Category!]! @paginate
+    allCategories: [Category!]! @all
 }
 
 type Category {

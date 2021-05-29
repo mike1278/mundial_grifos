@@ -1,4 +1,7 @@
 export default {
+  server: {
+    host: '0.0.0.0',
+  },
   head: {
     title: process.env.TITLE,
     htmlAttrs: {
@@ -9,19 +12,19 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'description', content: process.env.DESCRIPTION },
       // google
-      { content: process.env.DOMAIN, property: 'og:url' },
+      { content: process.env.FRONT_DOMAIN, property: 'og:url' },
       { content: 'website', property: 'og:type' },
       { content: process.env.TITLE, property: 'og:title' },
       { content: process.env.TITLE, property: 'og:site_name' },
       { content: process.env.DESCRIPTION, property: 'og:description' },
       {
-        content: process.env.DOMAIN + '/favicon.ico',
+        content: process.env.FRONT_DOMAIN + '/favicon.ico',
         property: 'og:image',
       },
       { content: process.env.TITLE, property: 'og:image:alt' },
       // twitter
       {
-        content: process.env.DOMAIN,
+        content: process.env.FRONT_DOMAIN,
         property: 'twitter:url',
       },
       { content: '@RedDeVenta', property: 'twitter:creator' },
@@ -29,20 +32,16 @@ export default {
       { content: process.env.TITLE, property: 'twitter:title' },
       { content: process.env.DESCRIPTION, property: 'twitter:description' },
       {
-        content: process.env.DOMAIN + '/favicon.ico',
+        content: process.env.FRONT_DOMAIN + '/favicon.ico',
         property: 'twitter:image',
       },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
   css: ['@/assets/css/global.scss'],
-  plugins: ['~/mixins/global.js'],
+  plugins: ['~/mixins/global.js', '@/plugins/libraries.js'],
   components: false,
-  buildModules: [
-    '@nuxt/typescript-build',
-    '@nuxtjs/stylelint-module',
-    '@nuxtjs/apollo',
-  ],
+  buildModules: ['@nuxtjs/apollo'],
   apollo: {
     clientConfigs: {
       default: {
@@ -99,6 +98,12 @@ export default {
       name: process.env.title,
       lang: 'es',
     },
+  },
+  env: {
+    BACK_URL: process.env.BACK_DOMAIN,
+  },
+  publicRuntimeConfig: {
+    backUrl: process.env.BACK_DOMAIN,
   },
   build: {
     extractCSS: true,
