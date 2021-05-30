@@ -1,58 +1,67 @@
 @import './variables';
 @import "navigation";
 
-.grid{
+.grid {
   display: grid;
 }
 
-.gap-{
+.gap- {
   @for $i from 1 through 10 {
-    &#{$i}{
+    &#{$i} {
       width: #{$i}px;
     }
   }
 }
 
-.w-{
+.w- {
   @for $i from 1 through 30 {
-    &#{$i}{
+    &#{$i} {
       width: #{$i}rem;
     }
   }
 }
 
-.text-{
-  &gray-{
-    &500{
+.text- {
+  &gray- {
+    &500 {
       color: $gray-500;
     }
-    &600{
+
+    &600 {
       color: $gray-600;
     }
-    &700{
+
+    &700 {
       color: $gray-700;
     }
   }
+
   // size
-  &xs{
+  &xs {
     font-size: 10px;
   }
-  &sm{
+
+  &sm {
     font-size: 12px;
   }
-  &md{
+
+  &md {
     font-size: 14px;
   }
-  &lg{
+
+  &lg {
     font-size: 16px;
   }
-  &xl{
+
+  &xl {
     font-size: 18px;
   }
-  &2xl{
+
+  &2xl {
     font-size: 20px;
   }
-  &3xl{
+
+  &3xl {
     font-size: 24px;
   }
 }

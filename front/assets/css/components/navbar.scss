@@ -22,19 +22,23 @@
       }
     }
   }
-  .btn{
-    font-size: 12px;;
-    color: whitesmoke;
-    background-color: transparent;
-    border: 2px solid whitesmoke;
-    border-radius: 10px;
-    padding: 4px 8px;
-    font-weight: 100;
+  .boton{
+    display: flex;
+    flex-direction:row-reverse;
+    .btn{
+      font-size: 12px;;
+      color: whitesmoke;
+      background-color: transparent;
+      border: 1px solid whitesmoke;
+      border-radius: 10px;
+      padding: 4px 8px;
+      font-weight: 100;
+    }
   }
 }
 
 .navigation-first {
-  background: whitesmoke;
+  background: #FFF;
   padding-top: .75rem;
   padding-bottom: .75rem;
   color: $gray-900;

@@ -1,9 +1,11 @@
 <template>
   <div class="navigations position-relative">
     <div class="p-1" style="background: #495057">
-      <b-button class="">Iniciar sesión</b-button>
+      <div class="boton mr-2">
+        <b-button>Iniciar sesión</b-button>
+      </div>
     </div>
-    <b-navbar toggleable="lg" class="navigation-first p-0">
+    <b-navbar toggleable="lg" class="navigation-first p-0 pt-2 pb-2">
       <b-navbar-brand to="/" class="d-flex d-flex-row">
         <!-- <img class="ml-1" src="/img/logo.png" alt="Red de Venta" /> -->
         <h1 class="p-1">MUNDIAL GRIFOS</h1>
@@ -33,7 +35,7 @@
       </b-navbar-nav>
 
       <b-navbar-nav class="ml-auto">
-        <b-nav-form>
+        <b-nav-form class="mr-4">
           <b-form-input size="sm" class="mr-sm-2" placeholder="Buscar"></b-form-input>
         </b-nav-form>
       </b-navbar-nav>

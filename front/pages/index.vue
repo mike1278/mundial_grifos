@@ -1,16 +1,18 @@
 <template>
-<div>
-  <h2>Soy el home</h2>
-</div>
+  <div>
+    <principal-banner/>
+  </div>
 </template>
 
 <script>
 //import gql from 'graphql-tag'
 import category from '@/components/Card/Category'
+import PrincipalBanner from '@/components/PrincipalBanner'
 
 export default {
   components: {
     category,
+    "principal-banner": PrincipalBanner
   },
   data() {
     return {
