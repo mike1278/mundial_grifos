@@ -1,6 +1,6 @@
 <template>
   <div class="navigations position-relative">
-    <div class="p-1" style="background: #495057">
+    <div class="p-1" style="background: #343a40">
       <div class="boton mr-2">
         <b-button>Iniciar sesión</b-button>
       </div>
