@@ -1,6 +1,17 @@
 <template>
-  <div>
-    <b-navbar class="px-2">
+  <div class="navigations position-relative">
+    <div class="p-2" style="background: gray">
+      <b-button>Iniciar sesión</b-button>
+    </div>
+    <b-navbar toggleable="lg" class="navigation-first p-0">
+      <b-navbar-brand to="/" class="d-flex d-flex-row">
+        <!-- <img class="ml-1" src="/img/logo.png" alt="Red de Venta" /> -->
+        <h1 class="p-1">PROFESIONALES</h1>
+      </b-navbar-brand>
+    </b-navbar>
+
+    <!-- Aqui te dejo comentado lo tuyo -->
+    <!-- <b-navbar class="px-2">
       <b-navbar-toggle
         target="sidebar-navbar"
         class="d-block icon-white ml-1 border-0"
@@ -112,7 +123,7 @@
           </div>
         </b-nav>
       </nav>
-    </b-sidebar>
+    </b-sidebar> -->
   </div>
 </template>
 <script>
@@ -140,3 +151,7 @@ export default {
   },
 }
 </script>
+
+<style lang="sass">
+@import "~/assets/css/components/navbar.scss"
+</style>

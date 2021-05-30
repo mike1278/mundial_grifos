@@ -1,0 +1,112 @@
+@import '@/assets/css/_variables.scss';
+
+.navigations{
+  .navigation-second{
+    z-index:1;
+    .nav-link{
+      color: $color3;
+      &:hover,&:focus{
+        color: $color3;
+      }
+    }
+    &.pos-abs{
+      bottom: -56px;
+      position: absolute;
+    }
+    &.text-white{
+      a{
+        color:white;
+        &:hover,&:focus{
+          color: white !important;
+        }
+      }
+    }
+  }
+}
+
+.navigation-first {
+  background: #FFF;
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  color: $gray-900;
+  border-radius: 0;
+  box-shadow: none;
+  border: none;
+  margin-bottom: 0;
+  .navbar-brand {
+    img {
+      height: 35px;
+    }
+    h1{
+      line-height: 1.4;
+      font-size:18px;
+      font-weight:bold;
+      margin-bottom: 0;
+      color:$gray-900;
+    }
+  }
+  svg{
+    color:white;
+  }
+  .navbar-toggler {
+    border-color: #fff;
+  }
+  .nav-link{
+    color: #fff !important;
+    &:hover,&:focus{
+      color: #fff !important;
+    }
+  }
+}
+
+.navigation-first .navbar-toggler:hover, .navigation-first .navbar-toggler:focus {
+  background: none;
+}
+
+.navigation-first .navbar-toggler {
+  color: #fff;
+}
+
+.navigation-first.navbar .navbar-nav .nav-link {
+  font-size: 1.2rem;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.navigation-first .navbar-nav > li > .dropdown-menu {
+  margin-top: -5px;
+  box-shadow: none;
+  background-color: #fff;
+  border-radius: 2px;
+}
+
+@media (min-width:768px) {
+  .navigation-first .navbar-nav .show .dropdown-menu {
+    box-shadow: 0 4px 8px rgba(0,0,0,.1);
+  }
+}
+
+@media (max-width:767px) {
+  .navigation-first .navbar-nav .show .dropdown-menu .dropdown-item {
+    color: #37434d;
+    padding-top: .8rem;
+    padding-bottom: .8rem;
+    line-height: 1;
+  }
+}
+
+.navigation-first .dropdown-menu .dropdown-item:focus, .navigation-first .dropdown-menu .dropdown-item {
+  line-height: 2;
+  color: #37434d;
+}
+
+.navigation-first .dropdown-menu .dropdown-item:focus, .navigation-first .dropdown-menu .dropdown-item:hover {
+  background: #eee;
+  color: inherit;
+}
+
+@media screen and (max-width: 768px){
+  .navigations .navigation-second.pos-abs{
+    bottom: -40px;
+  }
+}

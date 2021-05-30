@@ -1,18 +1,11 @@
 <template>
-  <div class="mt-3">
-    <b-container fluid>
-      <b-row class="justify-content-center">
-        <category
-          v-for="(category, i) in categories.data"
-          :key="i + 'category'"
-          :data="category"
-        />
-      </b-row>
-    </b-container>
-  </div>
+<div>
+  <h2>Soy el home</h2>
+</div>
 </template>
+
 <script>
-import gql from 'graphql-tag'
+//import gql from 'graphql-tag'
 import category from '@/components/Card/Category'
 
 export default {
@@ -24,6 +17,7 @@ export default {
       categories: [],
     }
   },
+  /*
   apollo: {
     categories: gql`
       query {
@@ -43,5 +37,6 @@ export default {
       }
     `,
   },
+  */
 }
 </script>
