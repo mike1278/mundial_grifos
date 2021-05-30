@@ -1,14 +1,45 @@
 <template>
   <div class="navigations position-relative">
-    <div class="p-2" style="background: gray">
-      <b-button>Iniciar sesión</b-button>
+    <div class="p-1" style="background: #495057">
+      <b-button class="">Iniciar sesión</b-button>
     </div>
     <b-navbar toggleable="lg" class="navigation-first p-0">
       <b-navbar-brand to="/" class="d-flex d-flex-row">
         <!-- <img class="ml-1" src="/img/logo.png" alt="Red de Venta" /> -->
-        <h1 class="p-1">PROFESIONALES</h1>
+        <h1 class="p-1">MUNDIAL GRIFOS</h1>
       </b-navbar-brand>
+
+      <b-navbar-nav class="m-auto">
+        <b-nav-item
+          class="nav-item nav-link"
+          to="/"
+        >
+        Inicio
+        </b-nav-item>
+
+        <b-nav-item
+          class="nav-item nav-link pl-4"
+          to="/"
+        >
+        Categorías
+        </b-nav-item>
+
+        <b-nav-item
+          class="nav-item nav-link pl-4"
+          to="/"
+        >
+        Nosotros
+        </b-nav-item>                
+      </b-navbar-nav>
+
+      <b-navbar-nav class="ml-auto">
+        <b-nav-form>
+          <b-form-input size="sm" class="mr-sm-2" placeholder="Buscar"></b-form-input>
+        </b-nav-form>
+      </b-navbar-nav>
     </b-navbar>
+
+      
 
     <!-- Aqui te dejo comentado lo tuyo -->
     <!-- <b-navbar class="px-2">
