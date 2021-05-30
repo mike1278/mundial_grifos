@@ -1,6 +1,7 @@
 <template>
   <div>
     <principal-banner/>
+    <new-products/>
   </div>
 </template>
 
@@ -8,11 +9,13 @@
 //import gql from 'graphql-tag'
 import category from '@/components/Card/Category'
 import PrincipalBanner from '@/components/PrincipalBanner'
+import NewProducts from '@/components/NewProducts'
 
 export default {
   components: {
     category,
-    "principal-banner": PrincipalBanner
+    "principal-banner": PrincipalBanner,
+    "new-products": NewProducts
   },
   data() {
     return {
