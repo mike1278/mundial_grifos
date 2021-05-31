@@ -3,6 +3,7 @@
     <principal-banner/>
     <new-products/>
     <category/>
+    <step-info/>
   </div>
 </template>
 
@@ -11,13 +12,15 @@
 import category from '@/components/Category'
 import NewProducts from '@/components/NewProducts'
 import PrincipalBanner from '@/components/PrincipalBanner'
-import Category from '../components/Card/Category.vue'
+import StepInfo from '@/components/Steps/Info'
+//import Category from '../components/Card/Category.vue'
 
 export default {
   components: {
     category,
     "new-products": NewProducts,
-    "principal-banner": PrincipalBanner
+    "principal-banner": PrincipalBanner,
+    "step-info": StepInfo
   },
   data() {
     return {
