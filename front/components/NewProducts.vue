@@ -1,10 +1,10 @@
 <template>
-  <div class="new-products pt-4 pb-4">
+  <div class="new-products pt-4">
     <h6>Nuevos Productos</h6>
     <hr>
     <b-container fluid class="cont">
       <b-row class="justify-content-center fila">
-        <b-col sm="3" md="3" class="item">
+        <b-col cols="12" lg="3" md="6" class="item pb-4">
           <div class="image" style="background-image: url('/img/grifo.jpg');">
           </div>
           <div class="info mt-2">
@@ -14,7 +14,7 @@
           </div>  
         </b-col>
 
-        <b-col sm="3" md="3" class="item">
+        <b-col cols="12" lg="3" md="6" class="item pb-4">
           <div class="image" style="background-image: url('/img/grifo.jpg');">
           </div>
           <div class="info mt-2">
@@ -24,7 +24,7 @@
           </div>  
         </b-col>
 
-        <b-col sm="3" md="3" class="item">
+        <b-col cols="12" lg="3" md="6" class="item pb-4">
           <div class="image" style="background-image: url('/img/grifo.jpg');">
           </div>
           <div class="info mt-2">
@@ -34,7 +34,7 @@
           </div>  
         </b-col>
 
-        <b-col sm="3" md="3" class="item">
+        <b-col cols="12" lg="3" md="6" class="item pb-4">
           <div class="image" style="background-image: url('/img/grifo.jpg');">
           </div>
           <div class="info mt-2">
@@ -43,7 +43,6 @@
             <p class="price">$ 80.00</p>
           </div>  
         </b-col> 
-
 
       </b-row>
     </b-container>

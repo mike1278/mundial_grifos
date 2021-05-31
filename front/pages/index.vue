@@ -2,20 +2,22 @@
   <div>
     <principal-banner/>
     <new-products/>
+    <category/>
   </div>
 </template>
 
 <script>
 //import gql from 'graphql-tag'
-import category from '@/components/Card/Category'
-import PrincipalBanner from '@/components/PrincipalBanner'
+import category from '@/components/Category'
 import NewProducts from '@/components/NewProducts'
+import PrincipalBanner from '@/components/PrincipalBanner'
+import Category from '../components/Card/Category.vue'
 
 export default {
   components: {
     category,
-    "principal-banner": PrincipalBanner,
-    "new-products": NewProducts
+    "new-products": NewProducts,
+    "principal-banner": PrincipalBanner
   },
   data() {
     return {

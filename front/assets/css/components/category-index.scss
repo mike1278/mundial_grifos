@@ -1,54 +1,53 @@
 @import '@/assets/css/_variables.scss';
 
-.new-products{
+.categories {
   text-align: center;
-  h6{
+
+  h6 {
     font-weight: 400;
     line-height: 0.5;
     color: $gray-700;
     font-size: 1.5rem;
   }
-  hr{
+
+  hr {
     font-weight: bolder;
     width: 86%;
     border: 0.5px solid $gray-400;
   }
-  .cont{   
+
+  .cont {
     display: flex;
     justify-content: center;
     align-items: center;
-    .fila{
-      width: 90%;
-      .item{
-        .image{
+
+    .fila {
+      .item {
+        .image {
           // background-image: url("/img/banner.jpg");  
-          width: 280px;
-          height: 350px;
+          width: 400px;
+          height: 500px;
           text-align: center;
           background-position: center;
           background-size: cover;
           background-repeat: no-repeat;
           position: relative;
           display: flex;
-          justify-content:center;
-          align-items:flex-end;
+          justify-content: center;
+          align-items: center;
           margin: 0 auto;
           background-color: blue;
-    
-        }
-        .info{
-          //background: rgb(92, 194, 209);     
-          text-align: left;     
-          .title{
-            color: $gray-700;
-            font-size: 1.25rem;
-            text-align: left;
-          }
-          .category, .price{
-            color: $gray-500;
-            font-size: 0.90rem;
-            line-height: 0;
-            text-align: left;
+          .name{
+            width: 100%;
+            background-color: rgba(121, 204, 159, 0.8);
+            h2{
+              font-size: 2rem;
+              text-transform: uppercase;
+              font-weight: 1000;
+              color: white;
+              letter-spacing: 3px;
+              font-style:oblique;
+            }
           }
         }
       }
