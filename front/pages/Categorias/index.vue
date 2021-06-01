@@ -1,4 +1,5 @@
 <template>
+  <div>
     <b-container fluid class="categorias">
       <hr>
       <b-row>
@@ -40,8 +41,19 @@
         </b-col>
       </b-row>
     </b-container>
+    <select-category/>
+  </div>
 </template>
 
+<script>
+import SelectCategory from '@/components/Category/SelectCategory'
+
+export default {
+  components: {
+    "select-category": SelectCategory
+  }
+}
+</script>
 
 <style lang="sass">
 @import "~/assets/css/components/categorias.scss"

@@ -8,7 +8,7 @@
             <ul>
               <li>
                 <a href="mailto:info@reddeventa.com"
-                  ><i class="far fa-envelope" />&nbsp;info@reddeventa.com</a
+                  ><i class="far fa-envelope" />&nbsp;info@mundialgrifo.com</a
                 >
               </li>
               <li>
@@ -28,7 +28,7 @@
               </li>
               <li>
                 <a
-                  href="/Terminos y condiciones Red de venta.pdf"
+                  href="/Terminos y condiciones"
                   target="_blank"
                   >Terminos y Condiciones</a
                 >
