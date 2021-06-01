@@ -21,7 +21,7 @@
 
         <b-nav-item
           class="nav-item nav-link pl-4"
-          to="/"
+          to="/Categorias"
         >
         Categorías
         </b-nav-item>
