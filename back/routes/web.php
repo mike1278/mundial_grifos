@@ -23,4 +23,6 @@ Route::middleware(['auth', 'verified', 'role:admin|superAdmin'])->group(function
     Route::resource('orders', CategoryController::class)->whereNumber('order');
 });
 
+Route::view('/prueba','prueba');
+
 Route::fallback(FallBackController::class);
