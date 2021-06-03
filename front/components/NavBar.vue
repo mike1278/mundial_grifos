@@ -1,6 +1,50 @@
 <template>
-  <div>
-    <b-navbar class="px-2">
+  <div class="navigations position-relative">
+    <div class="p-1" style="background: #343a40">
+      <div class="boton mr-2">
+        <b-button>Iniciar sesión</b-button>
+      </div>
+    </div>
+    <b-navbar toggleable="lg" class="navigation-first p-0 pt-2 pb-2">
+      <b-navbar-brand to="/" class="d-flex d-flex-row">
+        <!-- <img class="ml-1" src="/img/logo.png" alt="Red de Venta" /> -->
+        <h1 class="p-1">MUNDIAL GRIFOS</h1>
+      </b-navbar-brand>
+
+      <b-navbar-nav class="m-auto">
+        <b-nav-item
+          class="nav-item nav-link"
+          to="/"
+        >
+        Inicio
+        </b-nav-item>
+
+        <b-nav-item
+          class="nav-item nav-link pl-4"
+          to="/Categorias"
+        >
+        Categorías
+        </b-nav-item>
+
+        <b-nav-item
+          class="nav-item nav-link pl-4"
+          to="/"
+        >
+        Nosotros
+        </b-nav-item>                
+      </b-navbar-nav>
+
+      <b-navbar-nav class="ml-auto">
+        <b-nav-form class="mr-4">
+          <b-form-input size="sm" class="mr-sm-2" placeholder="Buscar"></b-form-input>
+        </b-nav-form>
+      </b-navbar-nav>
+    </b-navbar>
+
+      
+
+    <!-- Aqui te dejo comentado lo tuyo -->
+    <!-- <b-navbar class="px-2">
       <b-navbar-toggle
         target="sidebar-navbar"
         class="d-block icon-white ml-1 border-0"
@@ -112,7 +156,7 @@
           </div>
         </b-nav>
       </nav>
-    </b-sidebar>
+    </b-sidebar> -->
   </div>
 </template>
 <script>
@@ -140,3 +184,7 @@ export default {
   },
 }
 </script>
+
+<style lang="sass">
+@import "~/assets/css/components/navbar.scss"
+</style>

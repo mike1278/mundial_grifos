@@ -1,0 +1,43 @@
+@import '@/assets/css/_variables.scss';
+
+.steps-shop{
+	background-image: url("/img/BannerSecundario.jpg");
+	text-align: center;
+	background-position: right;
+	background-size: cover;
+	background-repeat: no-repeat;
+	position: relative;
+	border-top: 7px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+	.title{
+		color: white;
+		margin-top: 85px;
+		text-align: center;
+		padding-top:10px;
+		padding-bottom:10px;
+		h2{
+			font-size: 3.5rem;
+			font-weight: 1000;
+      text-transform: uppercase;
+		}
+    p{
+			font-size: 2rem;
+      text-transform: uppercase;
+      line-height: 0;
+    }
+	}
+}
+@media screen and (max-width: 790px) {
+	.steps-shop{
+		.title{
+			h2{
+				font-size: 1.3rem;
+			}
+      p{
+        font-size: 0.6;
+      }
+		}
+	}
+}
