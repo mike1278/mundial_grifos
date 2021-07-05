@@ -1,0 +1,25 @@
+
+union Viewable = Product | Category | Promotion | Brand | Model
+
+type Query {
+    views: [View] @paginate
+    view(id: ID @eq): View @find
+}
+
+type View {
+    id: ID!
+    viewable_id: ID!
+    viewable_type: String!
+    viewable: Viewable! @morphTo
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+input CreateViewInput {
+    viewable_id: ID!
+    viewable_type: String!
+}
+
+type Mutation {
+    createView(input: CreateViewInput! @spread): View @create
+}

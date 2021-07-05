@@ -1,19 +1,24 @@
 @import './variables';
-@import "navigation";
+@import 'bootstrap/scss/bootstrap.scss';
+@import "components/navbar";
+@import "components/homeBanner";
+@import "components/step-age";
+@import "components/categories";
+@import "components/footer";
+@import "cards";
+@import "components/step-info";
+//@import
 
-.grid {
-  display: grid;
+@font-face {
+  font-family: gabriela;
+  src: url('/fonts/Gabriela-Regular.ttf');
 }
 
-.gap- {
-  @for $i from 1 through 10 {
-    &#{$i} {
-      width: #{$i}px;
-    }
-  }
+*{
+  font-family: gabriela, sans-serif;
 }
 
-.w- {
+.w-{
   @for $i from 1 through 30 {
     &#{$i} {
       width: #{$i}rem;
@@ -26,11 +31,9 @@
     &500 {
       color: $gray-500;
     }
-
     &600 {
       color: $gray-600;
     }
-
     &700 {
       color: $gray-700;
     }
@@ -40,28 +43,86 @@
   &xs {
     font-size: 10px;
   }
-
   &sm {
     font-size: 12px;
   }
-
   &md {
     font-size: 14px;
   }
-
   &lg {
     font-size: 16px;
   }
-
   &xl {
     font-size: 18px;
   }
-
   &2xl {
     font-size: 20px;
   }
-
   &3xl {
     font-size: 24px;
+  }
+  &4xl {
+    font-size: 28px;
+  }
+
+  &weight-{
+    &sm{
+      font-weight: 400;
+    }
+    &md{
+      font-weight: 500;
+    }
+    &lg{
+      font-weight: 600;
+    }
+    &xl{
+      font-weight: 700;
+    }
+    &2xl{
+      font-weight: 800;
+    }
+  }
+  &italic{
+    font-style: italic;
+  }
+  &oblique{
+    font-style: oblique;
+  }
+  &sparcing-{
+    &1{
+      letter-spacing: 1px;
+    }
+  }
+  &uppercase{
+    text-transform: uppercase;
+  }
+}
+
+.top-0{
+  top: 0;
+}
+.left-0{
+  left: 0;
+}
+.pointer{
+  cursor: pointer;
+}
+
+.border-{
+  &gray-{
+    &400{
+      border-color: $gray-400;
+    }
+  }
+  &t-{
+    &2{
+      border-top-width: 2px;
+    }
+  }
+}
+
+.letter-spacing-{
+  &2{
+    letter-spacing: 2px;
   }
 }

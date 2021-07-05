@@ -1,46 +1,52 @@
 <template>
-    <jet-authentication-card>
-        <template #logo>
-            <jet-authentication-card-logo />
-        </template>
+    <div class="">
+        <div
+            class="col-span-3 min-h-screen"
+            style="background: rgba(0, 0, 0, 0) url('/login.jpg') no-repeat scroll center center; background-size: cover;"
+        >
+            <jet-authentication-card>
 
-        <jet-validation-errors class="mb-4" />
+                <jet-validation-errors class="mb-4" />
 
-        <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
-            {{ status }}
+                <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
+                    {{ status }}
+                </div>
+
+                <form @submit.prevent="submit" class="bg-white bg-opacity-80 px-4 py-3 rounded">
+                    <div class="flex justify-center mb-2">
+                        <jet-authentication-card-logo />
+                    </div>
+                    <div>
+                        <jet-label for="email" value="Correo Electrónico" />
+                        <jet-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus />
+                    </div>
+
+                    <div class="mt-4">
+                        <jet-label for="password" value="Clave" />
+                        <jet-input id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="current-password" />
+                    </div>
+
+                    <div class="block mt-4">
+                        <label class="flex items-center">
+                            <jet-checkbox name="remember" v-model:checked="form.remember" />
+                            <span class="ml-2 text-sm text-gray-600">Recuerda me</span>
+                        </label>
+                    </div>
+
+                    <div class="flex items-center justify-end mt-4">
+                        <inertia-link :href="route('password.request')" class="underline text-sm text-gray-600 hover:text-gray-900">
+                            ¿Recuperar Contraseña?
+                        </inertia-link>
+
+                        <jet-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                            Iniciar Sesión
+                        </jet-button>
+                    </div>
+                </form>
+            </jet-authentication-card>
         </div>
-
-        <form @submit.prevent="submit">
-            <div>
-                <jet-label for="email" value="Correo Electrónico" />
-                <jet-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus />
-            </div>
-
-            <div class="mt-4">
-                <jet-label for="password" value="Clave" />
-                <jet-input id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="current-password" />
-            </div>
-
-            <div class="block mt-4">
-                <label class="flex items-center">
-                    <jet-checkbox name="remember" v-model:checked="form.remember" />
-                    <span class="ml-2 text-sm text-gray-600">Recuerda me</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <inertia-link :href="route('password.request')" class="underline text-sm text-gray-600 hover:text-gray-900">
-                    ¿Recuperar Contraseña?
-                </inertia-link>
-
-                <jet-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Iniciar Sesión
-                </jet-button>
-            </div>
-        </form>
-    </jet-authentication-card>
+    </div>
 </template>
-
 <script>
 import JetAuthenticationCard from '@/Jetstream/AuthenticationCard'
 import JetAuthenticationCardLogo from '@/Jetstream/AuthenticationCardLogo'

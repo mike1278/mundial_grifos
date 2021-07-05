@@ -9,7 +9,7 @@ use App\Models\Color;
 use App\Models\Currency;
 use App\Models\Model;
 use App\Models\Product;
-use App\Service\ManageFile;
+use App\Services\ManageFile;
 use DB;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -23,7 +23,7 @@ class ProductController extends Controller
     public function index(): InertiaResponse
     {
         return Inertia::render('Products/Index', [
-            'products' => Product::with(['images'])->paginate()
+            'products' => Product::with(['images'])->paginate(12)
         ]);
     }
 
@@ -61,16 +61,19 @@ class ProductController extends Controller
                 ]);
             }
             DB::commit();
-            return redirect()->back();
         }catch (Throwable $e){
             Log::error($e);
             DB::rollBack();
         }
+        return redirect()->back();
     }
 
-    public function show(Product $product)
+    public function show(Product $product): InertiaResponse
     {
-        //
+        $product->load(['model','brand','images','category','colors','colors.image']);
+        return Inertia::render('Products/Show', [
+            'product' => $product
+        ]);
     }
 
     public function edit(Product $product)

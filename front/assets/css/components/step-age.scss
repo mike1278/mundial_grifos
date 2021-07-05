@@ -1,11 +1,11 @@
 @import '@/assets/css/_variables.scss';
 
 .steps-shop{
-	background-image: url("/img/BannerSecundario.jpg");
-	text-align: center;
+	background-image: url("/img/banner.jpg");
 	background-position: right;
 	background-size: cover;
 	background-repeat: no-repeat;
+	text-align: center;
 	position: relative;
 	border-top: 7px solid white;
   display: flex;
@@ -13,7 +13,6 @@
   align-items: center;
 	.title{
 		color: white;
-		margin-top: 85px;
 		text-align: center;
 		padding-top:10px;
 		padding-bottom:10px;

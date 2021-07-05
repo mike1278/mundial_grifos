@@ -1,51 +1,53 @@
 <template>
-    <div class="flex justify-between mb-4 px-2">
-        <h2 class="text-gray-700 text-xl">Clientes</h2>
-    </div>
-    <c-table>
-        <template #header>
-            <tr>
-                <td-head>Id</td-head>
-                <td-head>Dni</td-head>
-                <td-head>Nombre</td-head>
-                <td-head>Correo</td-head>
-                <td-head>Eliminar</td-head>
+    <div>
+        <div class="flex justify-between mb-4 px-2">
+            <h2 class="text-gray-700 text-xl">Clientes</h2>
+        </div>
+        <c-table>
+            <template #header>
+                <tr>
+                    <td-head>Id</td-head>
+                    <td-head>Dni</td-head>
+                    <td-head>Nombre</td-head>
+                    <td-head>Correo</td-head>
+                    <td-head>Eliminar</td-head>
+                </tr>
+            </template>
+            <tr v-for="data in clients.data" :key="data.id">
+                <td-body>{{ data.id }}</td-body>
+                <td-body>{{ data.dni }}</td-body>
+                <td-body>{{ data.user.name + ' ' + data.lastname }}</td-body>
+                <td-body>{{ data.user.email }}</td-body>
+                <td-body>
+                    <jet-button @click="modalTrash(data)">
+                        <i class="fas fa-trash"></i>
+                    </jet-button>
+                </td-body>
             </tr>
-        </template>
-        <tr v-for="data in clients.data" :key="data.id">
-            <td-body>{{ data.id }}</td-body>
-            <td-body>{{ data.dni }}</td-body>
-            <td-body>{{ data.user.name + ' ' + data.lastname }}</td-body>
-            <td-body>{{ data.user.email }}</td-body>
-            <td-body>
-                <jet-button @click="modalTrash(data)">
-                    <i class="fas fa-trash"></i>
-                </jet-button>
-            </td-body>
-        </tr>
-    </c-table>
-    <paginator :paginator="clients"></paginator>
-    <modal :show="trash" v-if="rowTrash">
-        <div class="flex justify-between border-b border-gray-200 border-solid">
-            <h3 class="text-gray-700 text-lg py-2 px-2">
-                Desea eliminar la categoria {{ rowTrash.name }}
-            </h3>
-            <button
-                class="px-4 py-2 bg-gray-50 text-gray-700 hover:text-red-700 transition"
-                @click="closeModal('trash')"
-            >
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        <div class="flex justify-center m-8">
-            <button class="bg-yellow-500 px-4 py-2 text-white mr-4 rounded" @click="closeModal('trash')">
-                <i class="fas fa-times"></i> Cancelar
-            </button>
-            <button class="bg-red-500 px-4 py-2 text-white rounded" @click="trash()">
-                <i class="fas fa-trash"></i> Eliminar
-            </button>
-        </div>
-    </modal>
+        </c-table>
+        <paginator :paginator="clients"></paginator>
+        <modal :show="trash" v-if="rowTrash">
+            <div class="flex justify-between border-b border-gray-200 border-solid">
+                <h3 class="text-gray-700 text-lg py-2 px-2">
+                    Desea eliminar la categoria {{ rowTrash.name }}
+                </h3>
+                <button
+                    class="px-4 py-2 bg-gray-50 text-gray-700 hover:text-red-700 transition"
+                    @click="closeModal('trash')"
+                >
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="flex justify-center m-8">
+                <button class="bg-yellow-500 px-4 py-2 text-white mr-4 rounded" @click="closeModal('trash')">
+                    <i class="fas fa-times"></i> Cancelar
+                </button>
+                <button class="bg-red-500 px-4 py-2 text-white rounded" @click="trash()">
+                    <i class="fas fa-trash"></i> Eliminar
+                </button>
+            </div>
+        </modal>
+    </div>
 </template>
 <script>
 import Paginator from "@/Components/Paginator";
@@ -55,7 +57,7 @@ import tdBody from '@/Components/TdBody'
 import tdHead from '@/Components/TdHead'
 import toast from '@/Components/Toast'
 import jetButton from '@/Jetstream/Button'
-import linkButton from '@/Components/ButtonLink'
+import linkButton from '@/Components/Button'
 import { Inertia } from '@inertiajs/inertia'
 export default {
     components: {

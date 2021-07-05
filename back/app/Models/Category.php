@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Visitable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -28,9 +29,15 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
  * @method static \Illuminate\Database\Eloquent\Builder|Category whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Category whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Category whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\View[] $views
+ * @property-read int|null $views_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Category visit()
+ * @method static \Illuminate\Database\Eloquent\Builder|Category addViews($x)
  */
 class Category extends Model
 {
+    use Visitable;
+
     protected $fillable = [
         'name','category_id'
     ];

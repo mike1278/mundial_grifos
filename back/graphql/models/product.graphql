@@ -3,6 +3,9 @@ extend type Query {
     product(id: ID @eq): Product @find
     products(
         where: _ @whereConditions(columns: ["category_id", "published", "brand_id", "model_id", "name"])
+        orderBy: _ @orderBy(columns: ["created_at", "name", "price", "discount", "views"])
+        addViews: ID @scope(name: "addViews")
+        similar: ID @scope(name: "similar")
     ): [Product!]! @paginate
 }
 
@@ -21,8 +24,18 @@ type Product {
     category: Category! @belongsTo
     brand: Brand @belongsTo
     model: Model @belongsTo
+    views: Int! @count(relation: "views")
     images: [File!]! @morphMany
-    colors: File @belongsToMany
+    colors: [Color!]! @belongsToMany
     currency: Currency @belongsTo
     created_at: DateTime!
+    pivot: OrderProductPivot
+}
+
+type OrderProductPivot {
+    quantity: Int!
+    product_color_id: Int!
+    color: Color! @belongsTo
+    price: Float!
+    discount: Float!
 }

@@ -2,7 +2,10 @@
   <b-container
     class="d-flex justify-content-center align-items-center min-vh-100"
   >
-    <b-form style="max-width: 400px; min-width: 280px" @submit.prevent="login">
+    <b-form
+      style="max-width: 350px; min-width: 300px; width: 350px"
+      @submit.prevent="login"
+    >
       <b-form-group label="Correo">
         <b-form-input
           id="email"

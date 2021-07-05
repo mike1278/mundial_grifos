@@ -2,7 +2,7 @@
   <div>
     <nav-bar></nav-bar>
     <Nuxt />
-    <Footer/>
+    <Footer />
   </div>
 </template>
 <script>
@@ -12,7 +12,10 @@ import Footer from '@/components/Footer'
 export default {
   components: {
     navBar,
-    Footer
+    Footer,
+  },
+  mounted() {
+    this.$store.dispatch('cart/getActiveOrder')
   },
 }
 </script>

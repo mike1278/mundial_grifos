@@ -27,9 +27,10 @@
       "@types/node",
       "bootstrap-vue",
       "@nuxtjs/auth-next",
+      "@nuxtjs/fontawesome",
+      "@fortawesome/free-brands-svg-icons",
+      "@fortawesome/free-solid-svg-icons",
       "vue-awesome-swiper/src/index.d.ts",
-      "types/index.d.ts",
-      "types/global.d.ts",
     ]
   },
   "exclude": [

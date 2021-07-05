@@ -1,6 +1,6 @@
 <template>
-    <li class="p-2 border-l-4 border-solid" :class="active ? 'border-blue-400' : ''">
-        <inertia-link :class="active ? 'text-blue-400' : 'text-gray-700'" :href="route(to)">
+    <li class="p-2 border-l-4 border-solid" :class="active ? 'border-green-blue' : 'border-transparent'">
+        <inertia-link :class="active ? 'text-green-blue' : 'text-white'" :href="route(to)">
             <i :class="prefixIcon+icon" class="mx-3"/>
             <span>{{ text }}</span>
         </inertia-link>

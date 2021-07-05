@@ -1,83 +1,80 @@
 <template>
-  <div class="navigations position-relative">
-    <div class="p-1" style="background: #343a40">
-      <div class="boton mr-2">
-        <b-button>Iniciar sesión</b-button>
-      </div>
-    </div>
-    <b-navbar toggleable="lg" class="navigation-first p-0 pt-2 pb-2">
-      <b-navbar-brand to="/" class="d-flex d-flex-row">
-        <!-- <img class="ml-1" src="/img/logo.png" alt="Red de Venta" /> -->
-        <h1 class="p-1">MUNDIAL GRIFOS</h1>
-      </b-navbar-brand>
-
-      <b-navbar-nav class="m-auto">
-        <b-nav-item
-          class="nav-item nav-link"
-          to="/"
-        >
-        Inicio
-        </b-nav-item>
-
-        <b-nav-item
-          class="nav-item nav-link pl-4"
-          to="/Categorias"
-        >
-        Categorías
-        </b-nav-item>
-
-        <b-nav-item
-          class="nav-item nav-link pl-4"
-          to="/"
-        >
-        Nosotros
-        </b-nav-item>                
-      </b-navbar-nav>
-
-      <b-navbar-nav class="ml-auto">
-        <b-nav-form class="mr-4">
-          <b-form-input size="sm" class="mr-sm-2" placeholder="Buscar"></b-form-input>
-        </b-nav-form>
-      </b-navbar-nav>
-    </b-navbar>
-
-      
-
-    <!-- Aqui te dejo comentado lo tuyo -->
-    <!-- <b-navbar class="px-2">
-      <b-navbar-toggle
-        target="sidebar-navbar"
-        class="d-block icon-white ml-1 border-0"
-      >
+  <div
+    class="navigations position-relative"
+    style="background: url('/img/fondo.jpg')"
+  >
+    <b-navbar
+      toggleable="lg"
+      class="p-0 pt-2 pb-2"
+      style="background: rgba(40, 40, 40, 0.71)"
+    >
+      <b-navbar-toggle target="sidebar-navbar" class="icon-white ml-1 border-0">
         <template #default="{ expanded }">
           <font-awesome-icon v-show="expanded" icon="times" />
           <font-awesome-icon v-show="!expanded" icon="bars" />
         </template>
       </b-navbar-toggle>
       <b-navbar-brand to="/" class="d-flex d-flex-row">
-        <h1 class="p-1 mb-0 text-2xl text-gray-700">Mundial Grifos</h1>
+        <img class="ml-1 h-100" src="/icon-white.png" alt="Mundial Grifos" />
+        <h1 class="p-1 d-flex flex-column">
+          <span class="text-weight-sm text-2xl">MUNDIAL</span>
+          <span class="text-weight-lg text-3xl letter-spacing-2">Grifos</span>
+        </h1>
       </b-navbar-brand>
-      <b-navbar-nav class="ml-auto d-none d-md-flex">
-        <b-nav-item-dropdown
-          v-if="$auth.loggedIn"
-          :text="$auth.user.name"
-          style="border: none"
-          right
+      <b-navbar-nav class="mx-auto d-none d-lg-flex justify-content-center">
+        <b-nav-item class="nav-item nav-link text-xl text-weight-md" to="/"
+          >Inicio</b-nav-item
         >
-          <b-dropdown-item
-            v-for="(link, i) in links"
-            :key="i + 'links-users'"
-            :to="link.link"
-          >
-            {{ link.text }}
-          </b-dropdown-item>
-          <b-dropdown-item @click.prevent="logout">
-            Cerrar Sesión
-          </b-dropdown-item>
+        <b-nav-item
+          class="nav-item nav-link pl-4 text-xl text-weight-md"
+          to="/productos"
+        >
+          Productos
+        </b-nav-item>
+        <b-nav-item
+          class="nav-item nav-link pl-4 text-xl text-weight-md"
+          to="/nosotros"
+        >
+          Nosotros
+        </b-nav-item>
+      </b-navbar-nav>
+
+      <b-navbar-nav class="mr-4">
+        <b-nav-item
+          class="nav-item nav-link text-xl text-weight-md"
+          to="/carrito"
+        >
+          <font-awesome-icon icon="shopping-cart" />
+        </b-nav-item>
+        <b-nav-item-dropdown class="border-0 d-flex align-items-center" right>
+          <template #button-content>
+            <font-awesome-icon icon="user" />
+            <span v-if="$auth.loggedIn">
+              {{ $auth.user.name }}
+            </span>
+          </template>
+          <span v-if="$auth.loggedIn">
+            <b-dropdown-item
+              v-if="hasRole(['admin', 'root'])"
+              :href="
+                $config.backUrl + '/front/auth/' + $auth.strategy.token.get()
+              "
+              >Panel Administrativo</b-dropdown-item
+            >
+            <b-dropdown-item to="/perfil">Perfil</b-dropdown-item>
+            <b-dropdown-item @click.prevent="logout">
+              Cerrar Sesión
+            </b-dropdown-item>
+          </span>
+          <span v-if="!$auth.loggedIn">
+            <b-dropdown-item to="/login">Iniciar Sesión</b-dropdown-item>
+            <b-dropdown-item to="/registro">Registrate</b-dropdown-item>
+          </span>
         </b-nav-item-dropdown>
       </b-navbar-nav>
     </b-navbar>
-    <b-sidebar
+
+    <!--    <b-sidebar
       id="sidebar-navbar"
       :title="$auth.loggedIn ? $auth.user.name : 'Bienvenido'"
       backdrop-variant="dark"
@@ -161,16 +158,6 @@
 </template>
 <script>
 export default {
-  computed: {
-    links() {
-      return [
-        {
-          text: 'Perfil',
-          link: '/',
-        },
-      ]
-    },
-  },
   methods: {
     active(link) {
       return this.$route.name.split('-')[0] === link
@@ -184,7 +171,3 @@ export default {
   },
 }
 </script>
-
-<style lang="sass">
-@import "~/assets/css/components/navbar.scss"
-</style>

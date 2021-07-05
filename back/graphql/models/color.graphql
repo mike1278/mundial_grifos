@@ -7,4 +7,5 @@ type Color {
     id: ID!
     name: String!
     image: File @morphOne
+    products: [Product!]! @belongsToMany
 }

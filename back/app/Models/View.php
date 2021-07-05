@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 /**
  * App\Models\View
@@ -21,7 +22,16 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|View whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|View whereViewableId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|View whereViewableType($value)
+ * @property-read Model|\Eloquent $viewable
  */
 class View extends Model
 {
+    protected $fillable = [
+        'viewable_id','viewable_type'
+    ];
+
+    public function viewable(): MorphTo
+    {
+        return $this->morphTo();
+    }
 }

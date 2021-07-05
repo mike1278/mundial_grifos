@@ -27,7 +27,6 @@
         </transition>
     </teleport>
 </template>
-
 <script>
 import { onMounted, onUnmounted } from "vue";
 
@@ -53,7 +52,7 @@ export default {
                     if (show) {
                         document.body.style.overflow = 'hidden'
                     } else {
-                        document.body.style.overflow = null
+                        document.body.style.overflow = 'auto'
                     }
                 }
             }

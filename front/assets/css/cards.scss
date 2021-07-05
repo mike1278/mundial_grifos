@@ -1,8 +1,56 @@
 .card {
   border-radius: 2px;
-  border: 1px solid rgba(177, 177, 177, 0.75);
 
   &.product{
+    .info{
+      text-align: left;
+      .title{
+        color: $gray-700;
+        font-size: 1.25rem;
+        line-height: 1;
+        text-align: left;
+      }
+      .category, .price{
+        line-height: 0;
+        color: $gray-500;
+        text-align: left;
+      }
+    }
+  }
 
+  &.category{
+    width: 300px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .name{
+      background-color: rgba(31,160, 155,.5);
+      h2{
+        font-size: 2rem;
+        text-transform: uppercase;
+        font-weight: 1000;
+        letter-spacing: 3px;
+        font-style:oblique;
+      }
+    }
+  }
+}
+
+.cards {
+  .title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid $gray-400;
+    margin-bottom: 40px;
+    h2{
+      font-size: 2rem;
+      letter-spacing: 2px;
+      font-style: oblique;
+      color: $gray-600;
+      font-weight: 1000;
+      text-transform: uppercase;
+    }
   }
 }

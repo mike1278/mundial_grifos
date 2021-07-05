@@ -10,9 +10,13 @@
         class="w-100 h-100"
       />
     </b-aspect>
-    <h3 class="text-xl text-secondary text-center px-1">
-      {{ data.name }}
-    </h3>
+    <div class="info px-2 mt-2">
+      <p class="pt-2 category mb-3">
+        {{ data.category.name }} / {{ data.model.name }}
+      </p>
+      <p class="title mb-3 text-weight-lg">{{ data.name }}</p>
+      <p class="price text-2xl mb-4">$ {{ data.price }}</p>
+    </div>
   </nuxt-link>
 </template>
 <script>

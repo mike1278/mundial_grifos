@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Visitable;
 use Illuminate\Database\Eloquent\Model as BaseModel;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -22,9 +23,15 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder|Model whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Model whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\View[] $views
+ * @property-read int|null $views_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Model visit()
+ * @method static \Illuminate\Database\Eloquent\Builder|Model addViews($x)
  */
 class Model extends BaseModel
 {
+    use Visitable;
+
     protected $fillable = [
         'name',
     ];

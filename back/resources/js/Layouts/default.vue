@@ -14,7 +14,7 @@
             <nav-item
                 text="Categorías"
                 to="categories.index"
-                icon="bars"
+                icon="tags"
             />
             <nav-item
                 text="Productos"
@@ -27,23 +27,28 @@
                 icon="tint"
             />
             <nav-item
-                text="Brand"
+                text="Marcas"
                 to="brands.index"
                 icon="copyright"
             />
             <nav-item
-                text="Modelos"
-                to="models.index"
-                icon="cog"
+                text="Ordenes"
+                to="brands.index"
+                icon="list"
             />
             <nav-item
-                text="Estadísticas"
+                text="Modelos"
                 to="models.index"
-                icon="chart-bar"
+                icon="box"
             />
+<!--            <nav-item-->
+<!--                text="Estadísticas"-->
+<!--                to="models.index"-->
+<!--                icon="chart-bar"-->
+<!--            />-->
         </c-sidebar>
         <div class="min-h-screen bg-gray-100 flex-grow">
-            <nav class="bg-white border-b border-gray-100">
+            <nav class="bg-white border-b border-gray-100 max-w-full">
                 <div class="mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
                         <div class="flex">
@@ -89,7 +94,7 @@
             <main>
                 <div class="py-4">
                     <div class="mx-2 sm:px-2">
-                        <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-2">
+                        <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-2 max-w-full overflow-auto">
                             <slot></slot>
                         </div>
                     </div>
@@ -98,7 +103,6 @@
         </div>
     </div>
 </template>
-
 <script>
 import JetApplicationMark from '@/Jetstream/ApplicationMark'
 import JetBanner from '@/Jetstream/Banner'

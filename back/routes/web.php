@@ -1,5 +1,6 @@
 <?php
 
+use App\Actions\GenerateSession;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ClientController;
@@ -10,7 +11,9 @@ use App\Http\Controllers\ModelController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['auth', 'verified', 'role:admin|superAdmin'])->group(function(){
+Route::get('/front/auth/{token}', GenerateSession::class);
+
+Route::middleware(['auth', 'verified', 'role:admin|root'])->group(function(){
     Route::inertia('/', 'Dashboard')->name('dashboard');
     Route::post('/image', [FileController::class,'store'])->name('files.store');
 
@@ -22,7 +25,5 @@ Route::middleware(['auth', 'verified', 'role:admin|superAdmin'])->group(function
     Route::resource('categories', CategoryController::class)->whereNumber('category');
     Route::resource('orders', CategoryController::class)->whereNumber('order');
 });
-
-Route::view('/prueba','prueba');
 
 Route::fallback(FallBackController::class);

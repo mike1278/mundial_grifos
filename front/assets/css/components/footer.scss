@@ -1,9 +1,6 @@
-@import '@/assets/css/_variables.scss';
+@import '../_variables.scss';
 
-/* footer */
 .footer-clean {
-  padding: 50px 0;
-  background-color: $gray-800;
   color: #fff;
   .item{
     text-align: center;

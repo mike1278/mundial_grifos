@@ -20,7 +20,7 @@ class Index
                 AllowedFilter::exact('model','model_id'),
                 'published',
             ])
-            ->with('images')
+            ->with(['images','colors'])
             ->paginate();
     }
 }

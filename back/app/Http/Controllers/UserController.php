@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\MeResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -30,13 +31,8 @@ class UserController extends Controller
     public function me(Request $request)
     {
         $user = $request->user();
-        $user->load('client');
-        return response([
-            'name' => $user->name,
-            'lastname' => $user->client->lastname,
-            'email' => $user->email,
-            'email_verified_at' => $user->email_verified_at,
-        ]);
+        $user->load(['client','roles','permissions']);
+        return response()->json(new MeResource($user));
     }
 
     public function edit(User $user)

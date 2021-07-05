@@ -5,6 +5,18 @@ Vue.mixin({
     imageUrl(size = 'square-small') {
       return this.$config.backUrl + '/image/' + size + '/'
     },
+    hasRole(role) {
+      if (!Array.isArray(role)) role = [role]
+      return this.$auth.user.roles.find((el) => {
+        return role.includes(el)
+      })
+    },
+    hasPermission(permission) {
+      if (!Array.isArray(permission)) permission = [permission]
+      return this.$auth.user.permissions.find((el) => {
+        return permission.includes(el)
+      })
+    },
     processError(error) {
       if (error.response) {
         if (error.response.data.errors) {

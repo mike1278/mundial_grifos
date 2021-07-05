@@ -1,0 +1,14 @@
+type Query {
+    OrderProducts(id: ID @eq): [OrderProduct] @all
+}
+
+type OrderProduct {
+    id: ID!
+    order_id: ID!
+    product_id: ID!
+    price: Int!
+    quantity: Int!
+    product_color_id: ID!
+    created_at: DateTime!
+    updated_at: DateTime!
+}

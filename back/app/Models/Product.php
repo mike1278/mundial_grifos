@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
+use App\Traits\Visitable;
 use Illuminate\Database\Eloquent\Model as BaseModel;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -60,10 +60,20 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read \App\Models\Model|null $model
  * @method static \Illuminate\Database\Eloquent\Builder|Product wherePrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereQuantity($value)
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\View[] $views
+ * @property-read int|null $views_count
+ * @method static \Illuminate\Database\Query\Builder|Product onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Product similar($id)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product visit()
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereDeletedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|Product withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Product withoutTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Product addViews($x)
  */
 class Product extends BaseModel
 {
-    use SoftDeletes;
+    use SoftDeletes, Visitable;
 
     protected $fillable = [
         'name',
@@ -83,6 +93,12 @@ class Product extends BaseModel
     public function setNameAttribute($value): string
     {
         return $this->attributes['name'] = ucwords($value);
+    }
+
+    public function scopeSimilar($query,$id){
+        $query->whereIn('model_id',Product::whereId($id)->select('model_id'))
+            ->whereIn('category_id',Product::whereId($id)->select('category_id'))
+            ->where('id','<>',$id);
     }
 
     public function images(): MorphMany

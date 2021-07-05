@@ -1,10 +1,10 @@
 {
   "name": "Untitled GraphQL Schema",
-  "schemaPath": "./path/to/schema.graphql",
+  "schemaPath": "./graphql/schema.graphql",
   "extensions": {
     "endpoints": {
       "Default GraphQL Endpoint": {
-        "url": "http://url/to/the/graphql/api",
+        "url": "http://back.ecommerce.local/graphql",
         "headers": {
           "user-agent": "JS GraphQL"
         },

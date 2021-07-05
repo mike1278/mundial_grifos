@@ -1,12 +1,52 @@
 <template>
   <div>
-    <b-container class="mt-3">
-      <b-row class="justify-content-center justify-content-lg-start">
-        <product
-          v-for="(product, i) in products.data"
-          :key="i + 'product'"
-          :data="product"
-        />
+    <b-container fluid="" class="my-5">
+      <b-row>
+        <b-col cols="12" lg="3" xl="2">
+          <div>
+            <h2>Categorías</h2>
+            <ul class="list-unstyled">
+              <li class="pointer" @click="updateCategory(null)">Todas</li>
+              <li
+                v-for="category in categories"
+                :key="category.id + 'category'"
+                class="pointer"
+                @click="updateCategory(category.id)"
+              >
+                {{ category.name }}
+              </li>
+            </ul>
+          </div>
+        </b-col>
+        <b-col>
+          <b-row
+            v-if="!$apollo.loading"
+            class="justify-content-center"
+          >
+            <product
+              v-for="(product, i) in products.data"
+              :key="i + 'product'"
+              :data="product"
+            />
+          </b-row>
+          <b-row v-else class="mb-2">
+            <b-col
+              v-for="i in 10"
+              :key="i"
+              cols="12"
+              sm="6"
+              md="4"
+              lg="3"
+              xl="2"
+              class="px-3 py-2"
+            >
+              <b-skeleton-img width="100%" />
+              <b-skeleton animation="wave" width="100%" />
+              <b-skeleton animation="wave" width="100%" />
+              <b-skeleton animation="wave" width="100%" />
+            </b-col>
+          </b-row>
+        </b-col>
       </b-row>
     </b-container>
   </div>
@@ -19,19 +59,6 @@ import { filters } from '@/functions/filters'
 export default {
   components: {
     product,
-  },
-  async asyncData({ $axios, query }) {
-    let products = []
-    const filter = filters(['category', 'model', 'brand'], query)
-    await $axios
-      .$get('products?' + filter)
-      .then((result) => {
-        products = result
-      })
-      .catch(() => {})
-    return {
-      products,
-    }
   },
   data() {
     return {
@@ -50,50 +77,76 @@ export default {
   watch: {
     filters: {
       deep: true,
-      handler: [
-        async function (val) {
-          await this.$router.push({
-            path: '/products',
-            query: val,
-          })
-        },
-        'getProducts',
-      ],
+      async handler(val) {
+        await this.$router.push({
+          path: '/productos',
+          query: val,
+        })
+        this.$apollo.queries.allCategories.refresh()
+      },
     },
   },
   methods: {
-    getProducts() {
-      const filter = filters(['category', 'model', 'brand'], this.$route.query)
-      this.$axios
-        .$get('/products?' + filter)
-        .then((result) => {
-          this.products = result
-        })
-        .catch((error) => {})
+    updateCategory(id) {
+      this.filters.category = id
     },
   },
   apollo: {
-    allCategories: {
-      query: gql`
-        query {
-          allCategories {
-            id
-            name
+    categories: {
+      query() {
+        const wheres = filters(
+          ['category', 'model', 'brand'],
+          this.$route.query
+        )
+        return gql`
+          query {
+            products (
+              first: 9,
+              orderBy: [{ column: CREATED_AT, order: DESC }],
+              ${wheres}
+            ) {
+              data {
+                id
+                name
+                price
+                discount
+                images {
+                  url
+                }
+                category {
+                  name
+                }
+                brand {
+                  name
+                }
+                model {
+                  name
+                }
+              }
+              paginatorInfo {
+                currentPage
+                lastPage
+              }
+            }
+            categories {
+              id
+              name
+            }
+            allModels {
+              id
+              name
+            }
+            allBrands {
+              id
+              name
+            }
           }
-          allModels {
-            id
-            name
-          }
-          allBrands {
-            id
-            name
-          }
-        }
-      `,
+        `
+      },
       result(data) {
-        this.categories = data.allCategories
-        this.models = data.allModels
-        this.brands = data.allBrands
+        this.models = data.data.allModels
+        this.products = data.data.products
+        this.brands = data.data.allBrands
       },
     },
   },

@@ -1,6 +1,6 @@
 <template>
     <input
-        class="border-gray-400 w-full hover:border-indigo-600 placeholder-gray-400 focus:border-indigo-600 outline-none border-b-2 px-1 pb-1 shadow-sm"
+        class="border-gray-400 w-full hover:border-green-blue placeholder-gray-400 focus:border-green-blue outline-none border-b-2 px-1 pb-1 shadow-sm"
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
         ref="input"

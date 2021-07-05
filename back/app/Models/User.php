@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -80,6 +81,8 @@ use Laratrust\Traits\LaratrustUserTrait;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereViaNotification($value)
  * @method static \Illuminate\Database\Query\Builder|User withTrashed()
  * @method static \Illuminate\Database\Query\Builder|User withoutTrashed()
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Order[] $orders
+ * @property-read int|null $orders_count
  */
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -118,5 +121,9 @@ class User extends Authenticatable implements MustVerifyEmail
     public function client(): HasOne
     {
         return $this->hasOne(Client::class);
+    }
+    public function orders(): HasManyThrough
+    {
+        return $this->hasManyThrough(Order::class, Client::class);
     }
 }

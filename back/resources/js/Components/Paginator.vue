@@ -3,87 +3,24 @@
         v-if="paginator!==undefined"
         role="navigation"
     >
-        <div class="flex-1 flex items-center justify-center md:justify-between">
-            <div class="hidden md:block">
-                <p class="text-sm text-gray-700 leading-5">
-                    Mostrando de
-                    <span class="font-medium" v-text="firstItem"></span>
-                    a
-                    <span class="font-medium" v-text="lastItem"></span>
-                    de
-                    <span class="font-medium" v-text="total"></span>
-                    resultados
-                </p>
-            </div>
-
-            <div>
-                <span class="relative z-0 inline-flex shadow-sm rounded-md">
-                    <span
-                        v-if="onFirstPage"
-                        aria-disabled="true"
-                        aria-hidden="true"
-                        class="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-gray-100 border border-gray-300 cursor-default rounded-l leading-5"
-                    >
-                        <svg class="w-5 h-5" fill="currentColor"
-                             viewBox="0 0 20 20">
-                            <path clip-rule="evenodd"
-                                  d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                                  fill-rule="evenodd"/>
-                        </svg>
-                    </span>
+        <div class="flex-1 flex items-center justify-center">
+            <span class="relative z-0 inline-flex shadow-sm rounded-md">
+                <div v-for="(link,i) in paginator.links" :key="i">
                     <inertia-link
-                        v-else
-                        :href="previousPageUrl"
-                        class="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-l leading-5 hover:text-gray-400 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150"
-                        rel="prev"
-                    >
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                            <path clip-rule="evenodd"
-                                  d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                                  fill-rule="evenodd"/>
-                        </svg>
-                    </inertia-link>
-                    <div v-for="(link,i) in paginator.links" :key="i">
-                        <inertia-link
-                            v-if="!link.active && link.url !== null"
-                            :href="link.url"
-                            v-html="link.label"
-                            class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
-                        ></inertia-link>
-                        <span
-                            v-if="link.active"
-                            aria-disabled="true"
-                            class="relative inline-flex bg-gray-800 text-white items-center px-4 py-2 -ml-px text-sm font-medium border border-gray-300 cursor-default leading-5"
-                        >
-                            {{ link.label }}
-                        </span>
-                    </div>
-                    <inertia-link
-                        v-if="hasMorePages"
-                        :href="nextPageUrl"
-                        class="relative inline-flex items-center px-2 py-2 -ml-px text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-r leading-5 hover:text-gray-400 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150"
-                    >
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                            <path clip-rule="evenodd"
-                                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                  fill-rule="evenodd"/>
-                        </svg>
-                    </inertia-link>
+                        v-if="!link.active && link.url !== null"
+                        :href="link.url"
+                        v-html="link.label"
+                        class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
+                    ></inertia-link>
                     <span
                         v-else
                         aria-disabled="true"
-                        aria-hidden="true"
-                        class="relative inline-flex items-center px-2 py-2 -ml-px text-sm font-medium text-gray-500 bg-gray-100 border border-gray-300 cursor-default rounded-r leading-5"
-                    >
-                        <svg class="w-5 h-5" fill="currentColor"
-                             viewBox="0 0 20 20">
-                            <path clip-rule="evenodd"
-                                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                  fill-rule="evenodd"/>
-                        </svg>
-                    </span>
-                </span>
-            </div>
+                        v-html="link.label"
+                        :class="link.active ? 'bg-gray-800 border-gray-300 text-white' : ''"
+                        class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium border cursor-default leading-5"
+                    ></span>
+                </div>
+            </span>
         </div>
     </nav>
 </template>

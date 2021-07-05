@@ -1,0 +1,16 @@
+
+extend type Query {
+    address(id: ID @eq): Address @find @whereAuth(guard: "api", relation: "client.user")
+    addresses(
+        orderBy: _ @orderBy(columns: ["created_at"])
+    ): [Address!]! @paginate @whereAuth(guard: "api", relation: "client.user")
+}
+
+type Address {
+    id: ID!
+    client_id: ID!
+    location_id: ID!
+    client: Client! @belongsTo
+    location: Location! @belongsTo
+    created_at: DateTime!
+}

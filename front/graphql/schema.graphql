@@ -1,0 +1,624 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+union Fileable = Category | Product | Promotion
+
+union Viewable = Brand | Category | Model | Product | Promotion
+
+type Address {
+  client: Client!
+  client_id: ID!
+  created_at: DateTime!
+  id: ID!
+  location: Location!
+  location_id: ID!
+}
+
+"A paginated list of Address items."
+type AddressPaginator {
+  "A list of Address items."
+  data: [Address!]!
+  "Pagination information about the list of items."
+  paginatorInfo: PaginatorInfo!
+}
+
+type Brand {
+  id: ID!
+  name: String!
+}
+
+"A paginated list of Brand items."
+type BrandPaginator {
+  "A list of Brand items."
+  data: [Brand!]!
+  "Pagination information about the list of items."
+  paginatorInfo: PaginatorInfo!
+}
+
+type Category {
+  category_id: Int
+  created_at: DateTime!
+  fromCategory: Category
+  id: ID!
+  image: File
+  name: String!
+  updated_at: DateTime!
+}
+
+type Client {
+  created_at: DateTime!
+  id: ID!
+}
+
+type Color {
+  id: ID!
+  image: File
+  name: String!
+  products: [Product!]!
+}
+
+"A paginated list of Color items."
+type ColorPaginator {
+  "A list of Color items."
+  data: [Color!]!
+  "Pagination information about the list of items."
+  paginatorInfo: PaginatorInfo!
+}
+
+type Currency {
+  created_at: DateTime!
+  id: ID!
+  name: String!
+  rate: Rate
+  symbol: String!
+  updated_at: DateTime!
+}
+
+"A paginated list of Currency items."
+type CurrencyPaginator {
+  "A list of Currency items."
+  data: [Currency!]!
+  "Pagination information about the list of items."
+  paginatorInfo: PaginatorInfo!
+}
+
+type File {
+  created_at: DateTime!
+  fileable: Fileable!
+  id: ID!
+  updated_at: DateTime!
+  url: String!
+}
+
+"A paginated list of File items."
+type FilePaginator {
+  "A list of File items."
+  data: [File!]!
+  "Pagination information about the list of items."
+  paginatorInfo: PaginatorInfo!
+}
+
+type Location {
+  address: String!
+  created_at: DateTime!
+  id: ID!
+  point: Point!
+}
+
+type Model {
+  id: ID!
+  name: String!
+}
+
+"A paginated list of Model items."
+type ModelPaginator {
+  "A list of Model items."
+  data: [Model!]!
+  "Pagination information about the list of items."
+  paginatorInfo: PaginatorInfo!
+}
+
+type Mutation {
+  createView(input: CreateViewInput!): View
+}
+
+type Order {
+  address: Address!
+  address_id: Float!
+  client: Client!
+  client_id: Int!
+  complete: Boolean!
+  created_at: DateTime!
+  delivery_type: String!
+  id: ID!
+  note: String!
+  note_shop: String
+  products: [Product!]!
+  state: OrderState
+  state_id: Int!
+  viewed: Boolean!
+}
+
+"A paginated list of Order items."
+type OrderPaginator {
+  "A list of Order items."
+  data: [Order!]!
+  "Pagination information about the list of items."
+  paginatorInfo: PaginatorInfo!
+}
+
+type OrderProduct {
+  created_at: DateTime!
+  id: ID!
+  order_id: ID!
+  price: Int!
+  product_color_id: ID!
+  product_id: ID!
+  quantity: Int!
+  updated_at: DateTime!
+}
+
+type OrderProductPivot {
+  color: Color!
+  discount: Float!
+  price: Float!
+  product_color_id: Int!
+  quantity: Int!
+}
+
+type OrderState {
+  created_at: DateTime!
+  id: ID!
+  name: String!
+  type: String!
+}
+
+"Pagination information about the corresponding list of items."
+type PageInfo {
+  "Count of nodes in current request."
+  count: Int
+  "Current page of request."
+  currentPage: Int
+  "When paginating forwards, the cursor to continue."
+  endCursor: String
+  "When paginating forwards, are there more items?"
+  hasNextPage: Boolean!
+  "When paginating backwards, are there more items?"
+  hasPreviousPage: Boolean!
+  "Last page in connection."
+  lastPage: Int
+  "When paginating backwards, the cursor to continue."
+  startCursor: String
+  "Total number of node in connection."
+  total: Int
+}
+
+"Pagination information about the corresponding list of items."
+type PaginatorInfo {
+  "Count of available items in the page."
+  count: Int!
+  "Current pagination page."
+  currentPage: Int!
+  "Index of first item in the current page."
+  firstItem: Int
+  "If collection has more pages."
+  hasMorePages: Boolean!
+  "Index of last item in the current page."
+  lastItem: Int
+  "Last page number of the collection."
+  lastPage: Int!
+  "Number of items per page in the collection."
+  perPage: Int!
+  "Total items available in the collection."
+  total: Int!
+}
+
+type Product {
+  brand: Brand
+  brand_id: Int!
+  category: Category!
+  category_id: Int!
+  colors: [Color!]!
+  created_at: DateTime!
+  currency: Currency
+  description: String!
+  discount: String!
+  id: ID!
+  images: [File!]!
+  model: Model
+  model_id: Int!
+  name: String!
+  pivot: OrderProductPivot
+  price: Float!
+  published: Boolean!
+  quantity: Int!
+  serial_code: String!
+  views: Int!
+}
+
+"A paginated list of Product items."
+type ProductPaginator {
+  "A list of Product items."
+  data: [Product!]!
+  "Pagination information about the list of items."
+  paginatorInfo: PaginatorInfo!
+}
+
+type Promotion {
+  id: ID!
+}
+
+type Query {
+  activeOrder: Order
+  address(id: ID): Address
+  addresses(
+    "Limits number of fetched elements."
+    first: Int!,
+    orderBy: [QueryAddressesOrderByOrderByClause!],
+    "The offset from which elements are returned."
+    page: Int
+  ): AddressPaginator
+  allBrands: [Brand!]!
+  allModels: [Model!]!
+  brand(id: ID): Brand
+  brands(
+    "Limits number of fetched elements."
+    first: Int!,
+    "The offset from which elements are returned."
+    page: Int
+  ): BrandPaginator
+  categories: [Category!]!
+  category(id: ID): Category
+  client(id: ID): Client
+  color(id: ID): Color
+  colors(
+    "Limits number of fetched elements."
+    first: Int!,
+    "The offset from which elements are returned."
+    page: Int
+  ): ColorPaginator
+  currencies(
+    "Limits number of fetched elements."
+    first: Int!,
+    "The offset from which elements are returned."
+    page: Int
+  ): CurrencyPaginator
+  currency(id: ID): Currency
+  file(id: ID): File
+  files(
+    "Limits number of fetched elements."
+    first: Int!,
+    "The offset from which elements are returned."
+    page: Int
+  ): FilePaginator
+  model(id: ID): Model
+  models(
+    "Limits number of fetched elements."
+    first: Int!,
+    "The offset from which elements are returned."
+    page: Int
+  ): ModelPaginator
+  order(id: ID): Order
+  orders(
+    "Limits number of fetched elements."
+    first: Int!,
+    orderBy: [QueryOrdersOrderByOrderByClause!],
+    "The offset from which elements are returned."
+    page: Int,
+    where: QueryOrdersWhereWhereConditions
+  ): OrderPaginator
+  product(id: ID): Product
+  products(
+    addViews: ID,
+    "Limits number of fetched elements."
+    first: Int!,
+    orderBy: [QueryProductsOrderByOrderByClause!],
+    "The offset from which elements are returned."
+    page: Int,
+    similar: ID,
+    where: QueryProductsWhereWhereConditions
+  ): ProductPaginator
+  rate(id: ID): Rate
+  rates(
+    "Limits number of fetched elements."
+    first: Int!,
+    "The offset from which elements are returned."
+    page: Int
+  ): RatePaginator
+  testOrder(id: ID): Order
+  view(id: ID): View
+  views(
+    "Limits number of fetched elements."
+    first: Int!,
+    "The offset from which elements are returned."
+    page: Int
+  ): ViewPaginator
+}
+
+type Rate {
+  created_at: DateTime!
+  currency: Currency
+  currency_id: String!
+  id: ID!
+  name: String!
+  rate: Float!
+  toCurrency: Currency
+  to_currency_id: String!
+  updated_at: DateTime!
+}
+
+"A paginated list of Rate items."
+type RatePaginator {
+  "A list of Rate items."
+  data: [Rate!]!
+  "Pagination information about the list of items."
+  paginatorInfo: PaginatorInfo!
+}
+
+"Pagination information about the corresponding list of items."
+type SimplePaginatorInfo {
+  "Count of available items in the page."
+  count: Int!
+  "Current pagination page."
+  currentPage: Int!
+  "Index of first item in the current page."
+  firstItem: Int
+  "Index of last item in the current page."
+  lastItem: Int
+  "Number of items per page in the collection."
+  perPage: Int!
+}
+
+type User {
+  created_at: DateTime!
+  deleted_at: DateTime
+  email: String!
+  email_verified_at: DateTime
+  id: ID!
+  name: String!
+  updated_at: DateTime!
+}
+
+type View {
+  created_at: DateTime!
+  id: ID!
+  updated_at: DateTime!
+  viewable: Viewable!
+  viewable_id: ID!
+  viewable_type: String!
+}
+
+"A paginated list of View items."
+type ViewPaginator {
+  "A list of View items."
+  data: [View!]!
+  "Pagination information about the list of items."
+  paginatorInfo: PaginatorInfo!
+}
+
+"Allowed column names for the `orderBy` argument on field `addresses` on type `Query`."
+enum QueryAddressesOrderByColumn {
+  CREATED_AT
+}
+
+"Allowed column names for the `orderBy` argument on field `orders` on type `Query`."
+enum QueryOrdersOrderByColumn {
+  CREATED_AT
+  VIEWS
+}
+
+"Allowed column names for the `where` argument on field `orders` on type `Query`."
+enum QueryOrdersWhereColumn {
+  CLIENT_ID
+  STATE_ID
+  VIEWED
+}
+
+"Allowed column names for the `orderBy` argument on field `products` on type `Query`."
+enum QueryProductsOrderByColumn {
+  CREATED_AT
+  DISCOUNT
+  NAME
+  PRICE
+  VIEWS
+}
+
+"Allowed column names for the `where` argument on field `products` on type `Query`."
+enum QueryProductsWhereColumn {
+  BRAND_ID
+  CATEGORY_ID
+  MODEL_ID
+  NAME
+  PUBLISHED
+}
+
+"The available SQL operators that are used to filter query results."
+enum SQLOperator {
+  "Whether a value is within a range of values (`BETWEEN`)"
+  BETWEEN
+  "Equal operator (`=`)"
+  EQ
+  "Greater than operator (`>`)"
+  GT
+  "Greater than or equal operator (`>=`)"
+  GTE
+  "Whether a value is within a set of values (`IN`)"
+  IN
+  "Whether a value is not null (`IS NOT NULL`)"
+  IS_NOT_NULL
+  "Whether a value is null (`IS NULL`)"
+  IS_NULL
+  "Simple pattern matching (`LIKE`)"
+  LIKE
+  "Less than operator (`<`)"
+  LT
+  "Less than or equal operator (`<=`)"
+  LTE
+  "Not equal operator (`!=`)"
+  NEQ
+  "Whether a value is not within a range of values (`NOT BETWEEN`)"
+  NOT_BETWEEN
+  "Whether a value is not within a set of values (`NOT IN`)"
+  NOT_IN
+  "Negation of simple pattern matching (`NOT LIKE`)"
+  NOT_LIKE
+}
+
+"The available directions for ordering a list of records."
+enum SortOrder {
+  "Sort records in ascending order."
+  ASC
+  "Sort records in descending order."
+  DESC
+}
+
+"Specify if you want to include or exclude trashed results from a query."
+enum Trashed {
+  "Only return trashed results."
+  ONLY
+  "Return both trashed and non-trashed results."
+  WITH
+  "Only return non-trashed results."
+  WITHOUT
+}
+
+input CreateViewInput {
+  viewable_id: ID!
+  viewable_type: String!
+}
+
+"Allows ordering a list of records."
+input OrderByClause {
+  "The column that is used for ordering."
+  column: String!
+  "The direction that is used for ordering."
+  order: SortOrder!
+}
+
+"Order by clause for the `orderBy` argument on the query `addresses`."
+input QueryAddressesOrderByOrderByClause {
+  "The column that is used for ordering."
+  column: QueryAddressesOrderByColumn!
+  "The direction that is used for ordering."
+  order: SortOrder!
+}
+
+"Order by clause for the `orderBy` argument on the query `orders`."
+input QueryOrdersOrderByOrderByClause {
+  "The column that is used for ordering."
+  column: QueryOrdersOrderByColumn!
+  "The direction that is used for ordering."
+  order: SortOrder!
+}
+
+"Dynamic WHERE conditions for the `where` argument on the query `orders`."
+input QueryOrdersWhereWhereConditions {
+  "A set of conditions that requires all conditions to match."
+  AND: [QueryOrdersWhereWhereConditions!]
+  "Check whether a relation exists. Extra conditions or a minimum amount can be applied."
+  HAS: QueryOrdersWhereWhereConditionsRelation
+  "A set of conditions that requires at least one condition to match."
+  OR: [QueryOrdersWhereWhereConditions!]
+  "The column that is used for the condition."
+  column: QueryOrdersWhereColumn
+  "The operator that is used for the condition."
+  operator: SQLOperator = EQ
+  "The value that is used for the condition."
+  value: Mixed
+}
+
+"Dynamic HAS conditions for WHERE conditions for the `where` argument on the query `orders`."
+input QueryOrdersWhereWhereConditionsRelation {
+  "The amount to test."
+  amount: Int = 1
+  "Additional condition logic."
+  condition: QueryOrdersWhereWhereConditions
+  "The comparison operator to test against the amount."
+  operator: SQLOperator = GTE
+  "The relation that is checked."
+  relation: String!
+}
+
+"Order by clause for the `orderBy` argument on the query `products`."
+input QueryProductsOrderByOrderByClause {
+  "The column that is used for ordering."
+  column: QueryProductsOrderByColumn!
+  "The direction that is used for ordering."
+  order: SortOrder!
+}
+
+"Dynamic WHERE conditions for the `where` argument on the query `products`."
+input QueryProductsWhereWhereConditions {
+  "A set of conditions that requires all conditions to match."
+  AND: [QueryProductsWhereWhereConditions!]
+  "Check whether a relation exists. Extra conditions or a minimum amount can be applied."
+  HAS: QueryProductsWhereWhereConditionsRelation
+  "A set of conditions that requires at least one condition to match."
+  OR: [QueryProductsWhereWhereConditions!]
+  "The column that is used for the condition."
+  column: QueryProductsWhereColumn
+  "The operator that is used for the condition."
+  operator: SQLOperator = EQ
+  "The value that is used for the condition."
+  value: Mixed
+}
+
+"Dynamic HAS conditions for WHERE conditions for the `where` argument on the query `products`."
+input QueryProductsWhereWhereConditionsRelation {
+  "The amount to test."
+  amount: Int = 1
+  "Additional condition logic."
+  condition: QueryProductsWhereWhereConditions
+  "The comparison operator to test against the amount."
+  operator: SQLOperator = GTE
+  "The relation that is checked."
+  relation: String!
+}
+
+"Dynamic WHERE conditions for queries."
+input WhereConditions {
+  "A set of conditions that requires all conditions to match."
+  AND: [WhereConditions!]
+  "Check whether a relation exists. Extra conditions or a minimum amount can be applied."
+  HAS: WhereConditionsRelation
+  "A set of conditions that requires at least one condition to match."
+  OR: [WhereConditions!]
+  "The column that is used for the condition."
+  column: String
+  "The operator that is used for the condition."
+  operator: SQLOperator = EQ
+  "The value that is used for the condition."
+  value: Mixed
+}
+
+"Dynamic HAS conditions for WHERE condition queries."
+input WhereConditionsRelation {
+  "The amount to test."
+  amount: Int = 1
+  "Additional condition logic."
+  condition: WhereConditions
+  "The comparison operator to test against the amount."
+  operator: SQLOperator = GTE
+  "The relation that is checked."
+  relation: String!
+}
+
+
+"A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`."
+scalar DateTime
+
+scalar Point
+
+"""
+Loose type that allows any value. Be careful when passing in large `Int` or `Float` literals,
+as they may not be parsed correctly on the server side. Use `String` literals if you are
+dealing with really large numbers to be on the safe side.
+"""
+scalar Mixed
+
+"A date string with format `Y-m-d`, e.g. `2011-05-23`."
+scalar Date

@@ -1,11 +1,11 @@
 <template>
     <div
-        class="absolute md:relative w-72 max-h-screen h-screen bg-white z-10"
+        class="absolute md:sticky top-0 w-72 max-h-screen h-screen bg-gray-800 z-10"
         :class="show ? '': '-ml-72'"
     >
         <ul class="overflow-y-auto z-20 border-r border-gray-300 border-solid min-h-screen">
             <li class="p-2 flex justify-end">
-                <span class="text-gray-700 cursor-pointer text-2xl" @click="toggle()">
+                <span class="text-white cursor-pointer text-2xl" @click="toggle()">
                     <i class="fas fa-times mx-3"/>
                 </span>
             </li>
@@ -17,7 +17,6 @@
 import dropdown from "@/Components/sidebar/dropdown"
 import navItem from "@/Components/sidebar/NavItem";
 import { Inertia } from '@inertiajs/inertia'
-// import '@/directives/outsideclick'
 
 export default {
     components: {

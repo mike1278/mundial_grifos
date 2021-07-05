@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Visitable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -22,9 +23,15 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder|Brand whereUpdatedAt($value)
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
  * @property-read int|null $products_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\View[] $views
+ * @property-read int|null $views_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Brand visit()
+ * @method static \Illuminate\Database\Eloquent\Builder|Brand addViews($x)
  */
 class Brand extends Model
 {
+    use Visitable;
+
     protected $fillable = ['name'];
 
     public function setNameAttribute($value){

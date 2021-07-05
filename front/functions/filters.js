@@ -3,10 +3,29 @@ export function filters(filters, query) {
   if (Array.isArray(filters)) {
     filters.forEach((el) => {
       if (Object.prototype.hasOwnProperty.call(query, el)) {
-        filter += filter !== '' ? '&' : ''
-        filter += 'filter[' + el + ']=' + query[el]
+        if (!query[el]) {
+          return
+        }
+        if (filter !== '') {
+          filter += `
+          `
+        }
+        filter +=
+          '{ column:' +
+          el.toUpperCase() +
+          '_ID' +
+          ', operator: EQ, value:' +
+          query[el] +
+          '}'
       }
     })
+    if (filter !== '') {
+      filter = `where: {
+            AND: [
+              ${filter}
+            ]
+        }`
+    }
   }
   return filter
 }

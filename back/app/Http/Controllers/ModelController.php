@@ -14,7 +14,7 @@ class ModelController extends Controller
     public function index(): Response
     {
         return Inertia::render('Models/Index', [
-            'models' => Model::paginate()
+            'models' => Model::paginate(10)
         ]);
     }
 

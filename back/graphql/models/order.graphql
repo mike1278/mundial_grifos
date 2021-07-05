@@ -1,0 +1,26 @@
+
+extend type Query {
+    activeOrder: Order @whereAuth(guard: "api", relation: "client.user") @first(scopes: ["Incomplete"])
+    order(id: ID @eq): Order @find @whereAuth(guard: "api", relation: "client.user")
+    orders(
+        where: _ @whereConditions(columns: ["viewed", "client_id", "state_id"])
+        orderBy: _ @orderBy(columns: ["created_at", "viewed"])
+    ): [Order!]! @paginate @whereAuth(guard: "api", relation: "client.user")
+}
+
+type Order {
+    id: ID!
+    viewed: Boolean!
+    address_id: Float!
+    note: String!
+    note_shop: String
+    delivery_type: String!
+    client_id: Int!
+    state_id: Int!
+    complete: Boolean!
+    address: Address! @belongsTo
+    client: Client! @belongsTo
+    state: OrderState @belongsTo
+    products: [Product!]! @belongsToMany
+    created_at: DateTime!
+}

@@ -1,7 +1,16 @@
 <template>
-    <form-section @submitted="submit()" title="Crear Producto" class="py-2 px-2">
+    <form-section @submitted="submit()" class="py-2 px-2">
+        <template #title>
+            <div class="flex justify-between">
+                <span>Crear Producto</span>
+                <div class="flex">
+                    <form-label for="brand" class="h-6 hidden md:inline-block">Publicado:</form-label>
+                    <form-switch v-model="form.published"/>
+                </div>
+            </div>
+        </template>
         <template #form>
-            <div class="grid grid-cols-3 gap-4 mb-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                 <div>
                     <form-label for="name" class="h-6">Nombre</form-label>
                     <form-input id="name" v-model="form.name" placeholder="Nombre"/>
@@ -20,6 +29,11 @@
                         <form-input id="discount" v-model="form.discount" placeholder="Descuento"/>
                     </form-input-group>
                     <form-field-error v-if="form.errors.discount">{{ form.errors.discount }}</form-field-error>
+                </div>
+                <div>
+                    <form-label for="quantity" class="h-6">Cantidad</form-label>
+                    <form-input id="quantity" v-model="form.quantity" placeholder="Cantidad"/>
+                    <form-field-error v-if="form.errors.quantity">{{ form.errors.quantity }}</form-field-error>
                 </div>
                 <div>
                     <form-label for="serialCode" class="h-6">Código Serial</form-label>
@@ -70,11 +84,6 @@
                         placeholder="Seleccionar Modelo"
                     />
                     <form-field-error v-if="form.errors.model_id">{{ form.errors.model_id }}</form-field-error>
-                </div>
-                <div>
-                    <form-label for="brand" class="h-6">Publicado</form-label>
-                    <form-switch v-model="form.published"/>
-                    <form-field-error v-if="form.errors.published">{{ form.errors.published }}</form-field-error>
                 </div>
             </div>
             <div class="w-full mb-4">
@@ -130,7 +139,7 @@ export default {
             form: this.$inertia.form({
                 name: '',
                 description: '',
-                published: false,
+                published: true,
                 serial_code: '',
                 discount: 0,
                 price: 0,

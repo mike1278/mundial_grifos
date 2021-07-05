@@ -1,0 +1,8 @@
+extend type Query {
+    client(id: ID @eq): Client @find @whereAuth(guard: "api", relation: "user")
+}
+
+type Client {
+    id: ID!
+    created_at: DateTime!
+}

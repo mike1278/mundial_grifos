@@ -46,8 +46,10 @@ export default {
     clientConfigs: {
       default: {
         httpEndpoint: process.env.BACK_DOMAIN + '/graphql',
+        tokenName: 'auth._token.laravelPassport',
       },
     },
+    authenticationType: '',
   },
   modules: [
     'bootstrap-vue/nuxt',
@@ -67,6 +69,9 @@ export default {
         icons: ['fab'],
       },
     ],
+  },
+  bootstrapVue: {
+    bootstrapCSS: false,
   },
   auth: {
     redirect: {

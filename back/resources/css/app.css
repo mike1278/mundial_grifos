@@ -1,3 +1,22 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    @variants responsive, hover, focus {
+        .text-green-blue {
+            --tw-text-opacity: 1;
+            color: rgba(31, 160, 155, var(--tw-text-opacity));
+        }
+
+        .border-green-blue {
+            --tw-border-opacity: 1;
+            border-color: rgba(31, 160, 155, var(--tw-border-opacity));
+        }
+
+        .bg-green-blue {
+            --tw-bg-opacity: 1;
+            background: rgba(31, 160, 155, var(--tw-bg-opacity));
+        }
+    }
+}
