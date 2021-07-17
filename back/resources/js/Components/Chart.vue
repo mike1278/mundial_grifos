@@ -16,11 +16,18 @@ export default {
             instance: null,
         }
     },
+    beforeMount() {
+        window.ApexCharts = ApexCharts;
+    },
     mounted() {
-        let chart = new ApexCharts(this.$refs['chart'], this.options);
-        chart.render()
-        this.$emit('chart-instance',chart)
-        this.instance = chart
+        this.instance = new ApexCharts(this.$refs['chart'], this.options);
+        this.instance.render()
+        this.$emit('chart-instance',this.instance)
+    },
+    beforeUnmount() {
+        if(this.instance){
+            this.instance.destroy()
+        }
     },
 }
 </script>

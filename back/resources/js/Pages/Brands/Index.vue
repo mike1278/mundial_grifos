@@ -2,32 +2,29 @@
     <div>
         <div class="flex justify-between mb-4 px-2">
             <h2 class="text-gray-700 text-xl">Marcas</h2>
-            <link-button is="link" :href="route('brands.create')">Crear</link-button>
+            <link-button is="link" :href="route('brands.create')" variant="primary">Crear</link-button>
         </div>
-        <c-table>
+        <vue-table>
             <template #header>
                 <tr>
                     <td-head>Id</td-head>
                     <td-head>Nombre</td-head>
-                    <td-head>Editar</td-head>
-                    <td-head>Eliminar</td-head>
+                    <td-head>Acciones</td-head>
                 </tr>
             </template>
             <tr v-for="data in brands.data" :key="data.id">
                 <td-body>{{ data.id }}</td-body>
                 <td-body>{{ data.name }}</td-body>
                 <td-body>
-                    <link-button is="link" :href="route('brands.edit',data.id)">
+                    <link-button is="link" :href="route('brands.edit',data.id)" variant="primary" class="mr-2">
                         <i class="fas fa-edit"></i>
                     </link-button>
-                </td-body>
-                <td-body>
-                    <jet-button @click="modalTrash(data)">
+                    <link-button @click="modalTrash(data)" variant="danger">
                         <i class="fas fa-trash"></i>
-                    </jet-button>
+                    </link-button>
                 </td-body>
             </tr>
-        </c-table>
+        </vue-table>
         <paginator :paginator="brands"></paginator>
         <modal :show="trash" v-if="rowTrash">
             <div class="flex justify-between border-b border-gray-200 border-solid">
@@ -55,7 +52,7 @@
 <script>
 import Paginator from "@/Components/Paginator";
 import modal from '@/Jetstream/Modal'
-import cTable from '@/Components/Table'
+import vueTable from '@/Components/Table'
 import tdBody from '@/Components/TdBody'
 import tdHead from '@/Components/TdHead'
 import toast from '@/Components/Toast'
@@ -69,7 +66,7 @@ export default {
         linkButton,
         toast,
         modal,
-        cTable,
+        vueTable,
         tdBody,
         tdHead,
     },

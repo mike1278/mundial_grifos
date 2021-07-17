@@ -1,5 +1,5 @@
 <template>
-    <form-section @submitted="submit()" title="Crear Modelo" class="py-2 px-2">
+    <form-section @submitted="submit()" title="Crear modelo" class="py-2 px-2">
         <template #form>
             <div>
                 <form-label for="name" class="h-6">Nombre</form-label>

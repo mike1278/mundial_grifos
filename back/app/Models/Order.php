@@ -42,6 +42,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder|Order incomplete()
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereComplete($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order wherePaymentDetails($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\OrderProduct[] $orderProducts
+ * @property-read int|null $order_products_count
  */
 class Order extends Model
 {

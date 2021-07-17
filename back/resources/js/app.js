@@ -4,6 +4,7 @@ import { App as InertiaApp, plugin as InertiaPlugin } from '@inertiajs/inertia-v
 import { InertiaProgress } from '@inertiajs/progress';
 import Layout from '@/Layouts/default'
 import buttonLink from '@/Components/Button'
+import numeralFilter from '@/Filters/numeral'
 
 const el = document.getElementById('app');
 
@@ -44,5 +45,11 @@ app.mixin({
 })
 .use(InertiaPlugin)
 .mount(el);
+
+app.config.globalProperties.$filters = {
+    numeral(value, format = '0,0.00') {
+        return numeralFilter.exposedNumeral(value, format)
+    }
+}
 
 InertiaProgress.init({ color: '#4B5563' });

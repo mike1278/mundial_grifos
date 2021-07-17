@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * App\Models\Rate
@@ -29,13 +30,15 @@ use Illuminate\Database\Eloquent\Model;
 class Rate extends Model
 {
     protected $fillable = [
-        'rate','currency_id','to_currency_id'
+        'rate','currency_id','to_currency_id','active'
     ];
 
-    public function currency(){
+    public function currency(): BelongsTo
+    {
         return $this->belongsTo(Currency::class);
     }
-    public function toCurrency(){
+    public function toCurrency(): BelongsTo
+    {
         return $this->belongsTo(Currency::class,'to_currency_id');
     }
 }

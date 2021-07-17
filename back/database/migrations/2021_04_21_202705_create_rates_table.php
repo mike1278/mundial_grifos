@@ -16,6 +16,7 @@ class CreateRatesTable extends Migration
         Schema::create('rates', function (Blueprint $table) {
             $table->id();
             $table->double('rate');
+            $table->boolean('active')->default(false);
             $table->foreignId('currency_id')->constrained();
             $table->foreignId('to_currency_id')->constrained('currencies');
             $table->timestamps();

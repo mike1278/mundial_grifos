@@ -3,7 +3,7 @@
         class="absolute md:sticky top-0 w-72 max-h-screen h-screen bg-gray-800 z-10"
         :class="show ? '': '-ml-72'"
     >
-        <ul class="overflow-y-auto z-20 border-r border-gray-300 border-solid min-h-screen">
+        <ul class="overflow-y-auto z-20 border-r border-gray-300 border-solid min-h-screen relative">
             <li class="p-2 flex justify-end">
                 <span class="text-white cursor-pointer text-2xl" @click="toggle()">
                     <i class="fas fa-times mx-3"/>

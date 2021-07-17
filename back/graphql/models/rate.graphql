@@ -6,9 +6,8 @@ extend type Query {
 
 type Rate {
     id: ID!
-    name: String!
-    currency_id: String!
-    to_currency_id: String!
+    currency_id: Int!
+    to_currency_id: Int!
     currency: Currency @belongsTo
     toCurrency: Currency @belongsTo
     rate: Float!

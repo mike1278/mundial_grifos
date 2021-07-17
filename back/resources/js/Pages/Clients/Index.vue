@@ -10,7 +10,7 @@
                     <td-head>Dni</td-head>
                     <td-head>Nombre</td-head>
                     <td-head>Correo</td-head>
-                    <td-head>Eliminar</td-head>
+                    <td-head>Acciones</td-head>
                 </tr>
             </template>
             <tr v-for="data in clients.data" :key="data.id">
@@ -19,9 +19,9 @@
                 <td-body>{{ data.user.name + ' ' + data.lastname }}</td-body>
                 <td-body>{{ data.user.email }}</td-body>
                 <td-body>
-                    <jet-button @click="modalTrash(data)">
+                    <link-button @click="modalTrash(data)" variant="danger">
                         <i class="fas fa-trash"></i>
-                    </jet-button>
+                    </link-button>
                 </td-body>
             </tr>
         </c-table>

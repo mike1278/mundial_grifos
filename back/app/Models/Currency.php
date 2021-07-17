@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * App\Models\Currency
@@ -23,6 +25,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Currency whereUpdatedAt($value)
  * @property string $acronym
  * @method static \Illuminate\Database\Eloquent\Builder|Currency whereAcronym($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Rate[] $rates
+ * @property-read int|null $rates_count
  */
 class Currency extends Model
 {
@@ -30,7 +34,22 @@ class Currency extends Model
         'name', 'symbol','acronym'
     ];
 
-    public function rate(){
-        return $this->hasOne(Rate::class)->orderByDesc('id')->first();
+    public function rates(): HasMany
+    {
+        return $this->hasMany(Rate::class)
+            ->where('active',true)
+            ->orderByDesc('id');
+    }
+    public function oldRates(): HasMany
+    {
+        return $this->hasMany(Rate::class)
+            ->where('active',false)
+            ->orderByDesc('id');
+    }
+    public function rate(): HasOne
+    {
+        return $this->hasOne(Rate::class, 'to_currency_id')
+            ->where('active',true)
+            ->orderByDesc('id');
     }
 }

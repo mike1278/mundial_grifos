@@ -27,13 +27,18 @@
                 icon="tint"
             />
             <nav-item
+                text="Monedas"
+                to="currencies.index"
+                icon="coins"
+            />
+            <nav-item
                 text="Marcas"
                 to="brands.index"
                 icon="copyright"
             />
             <nav-item
                 text="Ordenes"
-                to="brands.index"
+                to="orders.index"
                 icon="list"
             />
             <nav-item
@@ -46,8 +51,14 @@
 <!--                to="models.index"-->
 <!--                icon="chart-bar"-->
 <!--            />-->
+            <nav-item
+                class="fixed bottom-0"
+                text="Configuración"
+                to="backups.index"
+                icon="cog"
+            />
         </c-sidebar>
-        <div class="min-h-screen bg-gray-100 flex-grow">
+        <div class="min-h-screen bg-gray-100 flex-1">
             <nav class="bg-white border-b border-gray-100 max-w-full">
                 <div class="mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">

@@ -123,6 +123,7 @@ return [
     ],
 
     'attributes'           => [
+        'acronym'               => 'acrónimo',
         'address'               => 'dirección',
         'age'                   => 'edad',
         'body'                  => 'contenido',
@@ -148,8 +149,10 @@ return [
         'password_confirmation' => 'confirmación de la contraseña',
         'phone'                 => 'teléfono',
         'price'                 => 'precio',
+        'rate'                  => 'tasa cambiaria',
         'role'                  => 'rol',
         'second'                => 'segundo',
+        'symbol'                => 'símbolo',
         'sex'                   => 'sexo',
         'subject'               => 'asunto',
         'terms'                 => 'términos',
@@ -158,7 +161,7 @@ return [
         'username'              => 'usuario',
         'year'                  => 'año',
 
-        'category_id'           => 'categoria',
+        'category_id'           => 'categoría',
         'model_id'              => 'modelo',
         'brand_id'              => 'marca',
         'colors'                => 'colores',

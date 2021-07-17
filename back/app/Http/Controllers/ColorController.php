@@ -51,6 +51,6 @@ class ColorController extends Controller
     public function destroy(Color $color): RedirectResponse
     {
         $color->delete();
-        return redirect()->back();
+        return redirect()->route('colors.index');
     }
 }

@@ -18,6 +18,16 @@ class OrderProductController extends Controller
             $order = Order::incomplete()->whereHas('client',function ($query)use($request){
                 return $query->where('user_id',$request->user()->id);
             })->firstOrFail();
+            if($product->quantity < $request->quantity){
+                return response()->json(['message' => 'La cantidad supera el stock disponible'],403);
+            }
+            $orderProduct = $order->orderProducts()
+                ->where('product_color_id', $request->product_color_id)
+                ->where('product_id',$product->id)
+                ->first();
+            if($orderProduct){
+                return response()->json(['message' => 'Ya posee este articulo'],403);
+            }
             $order->products()->attach($product, array_merge(
                 $request->only([
                     'quantity',
@@ -25,6 +35,7 @@ class OrderProductController extends Controller
                 ]),
                 [
                     'price' => $product->price,
+                    'discount' => $product->discount,
                 ]
             ));
         }catch (Throwable $e){
@@ -40,8 +51,19 @@ class OrderProductController extends Controller
             $order = Order::incomplete()->whereHas('client',function ($query)use($request){
                 return $query->where('user_id',$request->user()->id);
             })->firstOrFail();
-            $product = $order->orderProducts()->where('product_id',$product)->first();
-            $product->update($request->only([
+            $orderProduct = $order->orderProducts()
+                ->where('product_id', $product)
+                ->where('product_color_id', $request->color_id)
+                ->firstOrFail();
+            $product = Product::where('id', $product)->firstOrFail();
+            if($product->quantity < $request->quantity){
+                return response()->json(['message' => 'La cantidad supera el stock disponible'],403);
+            }
+            if(1 > $request->quantity){
+                $orderProduct->delete();
+                return response()->json(['message' => 'Se elimino el producto del carrito'],201);
+            }
+            $orderProduct->update($request->only([
                 'quantity',
             ]));
         }catch (Throwable $e){

@@ -2,6 +2,7 @@
 extend type Query {
     activeOrder: Order @whereAuth(guard: "api", relation: "client.user") @first(scopes: ["Incomplete"])
     order(id: ID @eq): Order @find @whereAuth(guard: "api", relation: "client.user")
+    testOrder(id: ID @eq): Order @find
     orders(
         where: _ @whereConditions(columns: ["viewed", "client_id", "state_id"])
         orderBy: _ @orderBy(columns: ["created_at", "viewed"])
@@ -21,6 +22,7 @@ type Order {
     address: Address! @belongsTo
     client: Client! @belongsTo
     state: OrderState @belongsTo
+    orderProducts: [OrderProduct!]! @hasMany
     products: [Product!]! @belongsToMany
     created_at: DateTime!
 }

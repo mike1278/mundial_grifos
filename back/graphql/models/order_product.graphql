@@ -6,9 +6,12 @@ type OrderProduct {
     id: ID!
     order_id: ID!
     product_id: ID!
-    price: Int!
+    price: Float!
     quantity: Int!
-    product_color_id: ID!
+    color: Color! @belongsTo
+    product: Product! @belongsTo
+    discount: Float!
+    product_color_id: Int!
     created_at: DateTime!
     updated_at: DateTime!
 }

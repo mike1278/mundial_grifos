@@ -2,7 +2,7 @@
     <div>
         <div class="flex justify-between mb-4 px-2">
             <h2 class="text-gray-700 text-xl">Categorías</h2>
-            <link-button is="link" :href="route('categories.create')">Crear</link-button>
+            <link-button is="link" :href="route('categories.create')" variant="primary">Crear</link-button>
         </div>
         <c-table>
             <template #header>
@@ -10,8 +10,7 @@
                     <td-head>Id</td-head>
                     <td-head>Nombre</td-head>
                     <td-head>Imagen</td-head>
-                    <td-head>Editar</td-head>
-                    <td-head>Eliminar</td-head>
+                    <td-head>Acciones</td-head>
                 </tr>
             </template>
             <tr v-for="data in categories.data" :key="data.id">
@@ -21,14 +20,12 @@
                     <img :src="imageUrl('square-small')+data.image.url" class="w-8 h-8" :alt="data.name">
                 </td-body>
                 <td-body>
-                    <link-button is="link" :href="route('categories.edit',data.id)">
+                    <link-button is="link" :href="route('categories.edit',data.id)" variant="primary" class="mr-2">
                         <i class="fas fa-edit"></i>
                     </link-button>
-                </td-body>
-                <td-body>
-                    <jet-button @click="modalTrash(data)">
+                    <link-button @click="modalTrash(data)" variant="danger">
                         <i class="fas fa-trash"></i>
-                    </jet-button>
+                    </link-button>
                 </td-body>
             </tr>
         </c-table>

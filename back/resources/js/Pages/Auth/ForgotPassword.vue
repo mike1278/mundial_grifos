@@ -36,8 +36,10 @@
     import JetInput from '@/Jetstream/Input'
     import JetLabel from '@/Jetstream/Label'
     import JetValidationErrors from '@/Jetstream/ValidationErrors'
+    import withOutSession from '@/Layouts/withOutSession';
 
     export default {
+        layout: withOutSession,
         components: {
             JetAuthenticationCard,
             JetAuthenticationCardLogo,

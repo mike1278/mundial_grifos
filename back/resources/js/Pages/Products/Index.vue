@@ -2,7 +2,7 @@
     <div>
         <div class="flex justify-between mb-4 px-2">
             <h2 class="text-gray-700 text-xl">Productos</h2>
-            <t-button :href="route('products.create')" is="link" variant="primary">Crear</t-button>
+            <vue-button :href="route('products.create')" is="link" variant="primary">Crear</vue-button>
         </div>
         <c-table>
             <template #header>
@@ -22,17 +22,17 @@
                     <img :src="imageUrl('square-small') + data.images[0].url" class="w-8 h-8" :alt="data.name">
                 </td-body>
                 <td-body>{{ data.name }}</td-body>
-                <td-body>{{ data.price }}</td-body>
+                <td-body>{{ $filters.numeral(data.price) }}</td-body>
                 <td-body>
-                    <t-button :href="route('products.show',data.id)" class="mr-2" is="link" variant="primary">
+                    <vue-button :href="route('products.show',data.id)" class="mr-2" is="link" variant="primary">
                         <i class="fas fa-eye"></i>
-                    </t-button>
-                    <t-button :href="route('products.edit',data.id)" class="mr-2" is="link" variant="primary">
+                    </vue-button>
+                    <vue-button :href="route('products.edit',data.id)" class="mr-2" is="link" variant="primary">
                         <i class="fas fa-edit"></i>
-                    </t-button>
-                    <t-button @click="modalTrash(data)" class="mr-2" variant="danger">
+                    </vue-button>
+                    <vue-button @click="modalTrash(data)" class="mr-2" variant="danger">
                         <i class="fas fa-trash"></i>
-                    </t-button>
+                    </vue-button>
                 </td-body>
             </tr>
         </c-table>
@@ -67,13 +67,13 @@ import cTable from '@/Components/Table'
 import tdBody from '@/Components/TdBody'
 import tdHead from '@/Components/TdHead'
 import toast from '@/Components/Toast'
-import TButton from '@/Components/Button'
+import vueButton from '@/Components/Button'
 import {Inertia} from '@inertiajs/inertia'
 
 export default {
     components: {
         Paginator,
-        TButton,
+        vueButton,
         toast,
         modal,
         cTable,

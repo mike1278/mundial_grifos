@@ -28,12 +28,17 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
  * @method static \Illuminate\Database\Eloquent\Builder|OrderProduct whereQuantity($value)
  * @method static \Illuminate\Database\Eloquent\Builder|OrderProduct whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property float $discount
+ * @property-read \App\Models\Color $color
+ * @property-read \App\Models\Product $product
+ * @method static \Illuminate\Database\Eloquent\Builder|OrderProduct whereDiscount($value)
  */
 class OrderProduct extends Pivot
 {
     protected $table = 'order_products';
     protected $fillable = [
         'quantity',
+        'product_id',
         'product_color_id',
         'price',
         'discount',
@@ -42,5 +47,9 @@ class OrderProduct extends Pivot
     public function color(): BelongsTo
     {
         return $this->belongsTo(Color::class,'product_color_id');
+    }
+    public function product(): BelongsTo
+    {
+        return $this->belongsTo(Product::class);
     }
 }

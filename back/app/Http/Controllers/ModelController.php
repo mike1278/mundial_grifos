@@ -28,7 +28,7 @@ class ModelController extends Controller
         Model::create([
             'name' => $request->name,
         ]);
-        return redirect()->back();
+        return redirect()->route('models.index');
     }
 
     public function show(Model $model)
@@ -36,14 +36,15 @@ class ModelController extends Controller
         //
     }
 
-    public function edit(Model $model)
+    public function edit(Model $model): Response
     {
-        //
+        return Inertia::render('Models/Edit', compact('model'));
     }
 
-    public function update(Request $request, Model $model)
+    public function update(Request $request, Model $model): RedirectResponse
     {
-        //
+        $model->update($request->all(['name']));
+        return redirect()->route('models.index');
     }
 
     public function destroy(Model $model): RedirectResponse

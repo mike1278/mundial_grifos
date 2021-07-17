@@ -29,8 +29,10 @@
         "mll-lab/graphql-php-scalars": "4",
         "nuwave/lighthouse": "^5.3",
         "santigarcor/laratrust": "^6.3",
+        "spatie/laravel-backup": "^7.6",
         "spatie/laravel-query-builder": "^3.4",
-        "tightenco/ziggy": "^1.0"
+        "tightenco/ziggy": "^1.0",
+        "ext-mcrypt": "*"
     },
     "require-dev": {
         "mll-lab/laravel-graphql-playground": "^2.5",

@@ -1,14 +1,16 @@
 
 extend type Query {
     currency(id: ID @eq): Currency @find
-    currencies: [Currency!]! @paginate
+    firstCurrency: Currency @first
+    currencies: [Currency!]! @all
 }
 
 type Currency {
     id: ID!
     name: String!
+    acronym: String!
     symbol: String!
-    rate: Rate @hasOne
+    rates: [Rate]! @hasMany
     created_at: DateTime!
     updated_at: DateTime!
 }
