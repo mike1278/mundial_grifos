@@ -23,6 +23,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|ProductColor whereColorId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ProductColor whereDefault($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ProductColor whereProductId($value)
+ * @property string|null $deleted_at
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductColor whereDeletedAt($value)
  */
 class ProductColor extends Model
 {

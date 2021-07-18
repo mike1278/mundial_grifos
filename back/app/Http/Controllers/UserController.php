@@ -33,6 +33,12 @@ class UserController extends Controller
     {
         $user = $request->user();
         $user->load(['client','roles','permissions']);
+        if($user->client){
+            $user->load([
+                'client.addresses',
+                'client.addresses.location',
+            ]);
+        }
         return response()->json(new MeResource($user));
     }
 

@@ -196,6 +196,11 @@
       <path value="$PROJECT_DIR$/back/vendor/lorisleiva/laravel-actions" />
       <path value="$PROJECT_DIR$/back/vendor/laravel/framework" />
       <path value="$PROJECT_DIR$/back/vendor/spatie/laravel-query-builder" />
+      <path value="$PROJECT_DIR$/back/vendor/spatie/db-dumper" />
+      <path value="$PROJECT_DIR$/back/vendor/spatie/laravel-signal-aware-command" />
+      <path value="$PROJECT_DIR$/back/vendor/spatie/temporary-directory" />
+      <path value="$PROJECT_DIR$/back/vendor/spatie/laravel-backup" />
+      <path value="$PROJECT_DIR$/back/vendor/spatie/laravel-package-tools" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0" />

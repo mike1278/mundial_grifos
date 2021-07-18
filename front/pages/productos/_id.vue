@@ -3,10 +3,28 @@
     <b-container>
       <b-row>
         <b-col cols="12" md="5">
-          <swiper :options="swiperOptions">
+          <swiper ref="swiperTop" :options="swiperOptions">
             <swiper-slide
               v-for="(image, i) in product.images"
               :key="i + 'image'"
+            >
+              <img
+                :src="imageUrl('square-large') + image.url"
+                :alt="product.name"
+                class="w-100 h-100"
+              />
+            </swiper-slide>
+          </swiper>
+          <swiper
+            v-if="product.images.length > 1"
+            ref="swiperThumbs"
+            :options="swiperOptionsThumbs"
+            @ready="setThumb"
+          >
+            <swiper-slide
+              v-for="(image, i) in product.images"
+              :key="i + 'imageThumb'"
+              style="height: 50px; width: 50px"
             >
               <img
                 :src="imageUrl('square-large') + image.url"
@@ -34,24 +52,37 @@
           </p>
           <p class="mb-0">
             <span class="text-gray-700 text-weight-lg">Precio:</span>
-            {{ product.price }}$
+            {{ price | numeral('0,0.00') }}{{ currency.symbol }}
           </p>
           <div>
             <p class="text-gray-700 text-weight-lg">Colores</p>
-            <swiper :options="swiperColorOptions">
-              <swiper-slide
+            <div class="d-flex justify-content-start">
+              <div
                 v-for="(color, i) in product.colors"
                 :key="i + 'color'"
-                class="mr-3"
+                class="mr-1"
                 style="width: 40px"
               >
-                <img
-                  :src="imageUrl('square-medium') + color.image.url"
-                  :alt="product.name"
-                  class="h-100 w-100"
-                />
-              </swiper-slide>
-            </swiper>
+                <color
+                  :id="color.id + 'color'"
+                  v-model="color_id"
+                  :data="color.id"
+                >
+                  <img
+                    :src="imageUrl('square-medium') + color.image.url"
+                    :alt="product.name"
+                    class="h-100 w-100"
+                  />
+                </color>
+                <b-popover
+                  :target="color.id + 'color'"
+                  triggers="hover focus"
+                  placement="top"
+                >
+                  {{ color.name }}
+                </b-popover>
+              </div>
+            </div>
           </div>
           <hr class="border-gray-400 border-t-2" />
           <p class="mb-0">
@@ -61,43 +92,78 @@
             </client-only>
           </p>
           <hr class="border-gray-400 border-t-2" />
-          <b-button variant="primary" squared @click="addToCart">
-            Agregar al carrito
-          </b-button>
+          <b-overlay :show="loading" class="d-inline-block">
+            <b-button
+              v-if="!hasColor"
+              variant="primary"
+              squared
+              @click="addToCart"
+            >
+              Agregar al carrito
+            </b-button>
+            <b-button
+              v-else
+              variant="primary"
+              squared
+              :disabled="hasColor.quantity === quantity"
+              @click="updateProductCart"
+            >
+              Actualizar cantidad carrito
+            </b-button>
+          </b-overlay>
         </b-col>
       </b-row>
-      <h2 class="text-secondary mt-4">Productos Similares</h2>
-      <swiper :options="swiperColorOptions" class="pb-5">
-        <swiper-slide
-          v-for="(similarProduct, i) in products.data"
-          :key="i + 'color'"
-          class="mr-3 w-17"
-        >
-          <product :data="similarProduct" />
-        </swiper-slide>
-        <div slot="pagination" class="swiper-pagination"></div>
-      </swiper>
+      <div v-if="products.data.length > 0">
+        <h2 class="text-secondary mt-4">Productos Similares</h2>
+        <swiper :options="swiperOtherOptions" class="pb-5">
+          <swiper-slide
+            v-for="(similarProduct, i) in products.data"
+            :key="i + 'color'"
+            class="mr-3 w-17"
+          >
+            <product :data="similarProduct" />
+          </swiper-slide>
+          <div slot="pagination" class="swiper-pagination"></div>
+        </swiper>
+      </div>
     </b-container>
   </div>
 </template>
 <script>
 import gql from 'graphql-tag'
 import inputStep from '@/components/form/step-input'
+import color from '@/components/color'
 import product from '@/components/Card/Product'
+import { mapGetters } from 'vuex'
 
 export default {
   components: {
     inputStep,
     product,
+    color,
   },
   data() {
     return {
-      swiperOptions: {},
-      swiperColorOptions: {
+      swiperOptions: {
+        thumbs: {
+          swiper: null,
+        },
+        slidesPerView: 1,
+      },
+      swiperOtherOptions: {
         pagination: {
           el: '.swiper-pagination',
           type: 'bullets',
         },
+        slidesPerView: 'auto',
+      },
+      swiperOptionsThumbs: {
+        touchRatio: 0.2,
+        slideToClickedSlide: true,
+        spaceBetween: 10,
+        freeMode: true,
+        watchSlidesVisibility: true,
+        watchSlidesProgress: true,
         slidesPerView: 'auto',
       },
       product: {
@@ -113,9 +179,34 @@ export default {
           name: '',
         },
       },
-      products: {},
+      loading: false,
+      color_id: null,
+      products: {
+        data: [],
+      },
       quantity: 1,
     }
+  },
+  computed: {
+    ...mapGetters({
+      currency: 'currency',
+    }),
+    price() {
+      return this.product.price * this.currency.rate
+    },
+    hasProduct() {
+      const cart = this.$store.getters['cart/cart']
+      if (!cart) return []
+      return cart.orderProducts.filter((el) => {
+        return el.product.id === this.product.id
+      })
+    },
+    hasColor() {
+      if (this.hasProduct.length < 1) return false
+      return this.hasProduct.find((el) => {
+        return el.product_color_id === parseInt(this.color_id)
+      })
+    },
   },
   mounted() {
     this.$apollo
@@ -203,11 +294,54 @@ export default {
       `,
       result(data) {
         this.products = data.data.products
+        this.color_id = data.data.product.colors[0].id
       },
     },
   },
   methods: {
-    addToCart() {},
+    addToCart() {
+      this.loading = true
+      this.$store
+        .dispatch('cart/setProduct', {
+          id: this.product.id,
+          quantity: this.quantity,
+          color_id: this.color_id,
+        })
+        .then((result) => {
+          this.$bvToast.toast(result.message, {
+            variant: 'success',
+          })
+        })
+        .catch((error) => {
+          this.processError(error)
+        })
+        .finally(() => {
+          this.loading = false
+        })
+    },
+    updateProductCart() {
+      this.loading = true
+      this.$store
+        .dispatch('cart/updateQuantity', {
+          id: this.product.id,
+          quantity: this.quantity,
+          color_id: this.color_id,
+        })
+        .then((result) => {
+          this.$bvToast.toast(result.message, {
+            variant: 'success',
+          })
+        })
+        .catch((error) => {
+          this.processError(error)
+        })
+        .finally(() => {
+          this.loading = false
+        })
+    },
+    setThumb(swiper) {
+      this.swiperOptions.thumbs.swiper = swiper
+    },
   },
 }
 </script>

@@ -13,7 +13,9 @@
             </b-col>
           </b-row>
         </b-container>
-        <b-button variant="primary" squared class="mt-4">VER MÁS</b-button>
+        <b-button variant="primary" squared class="mt-4" to="/productos"
+          >VER MÁS</b-button
+        >
       </div>
     </b-aspect>
     <div class="new-products pt-4 mb-3">

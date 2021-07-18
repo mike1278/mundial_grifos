@@ -113,6 +113,17 @@ return [
     'url'                  => 'El formato :attribute es inválido.',
     'uuid'                 => 'El campo :attribute debe ser un UUID válido.',
 
+    'password_letter_uppercase_lowercase'
+        => 'La :attribute debe contener al menos una letra mayúscula y una minúscula.',
+    'password_letter'
+        => 'La :attribute debe contener una letra.',
+    'password_symbol'
+        => 'La :attribute debe contener un símbolo.',
+    'password_number.'
+        => 'La :attribute debe contener un numero.',
+    'different_password.'
+        => 'Elija otra :attribute.',
+
     'custom'               => [
         'email'    => [
             'unique' => 'El :attribute ya ha sido registrado.',

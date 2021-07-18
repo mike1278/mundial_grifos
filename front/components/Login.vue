@@ -1,11 +1,6 @@
 <template>
-  <b-container
-    class="d-flex justify-content-center align-items-center min-vh-100"
-  >
-    <b-form
-      style="max-width: 350px; min-width: 300px; width: 350px"
-      @submit.prevent="login"
-    >
+  <b-modal id="login" size="md" hide-footer title="Iniciar Sesión">
+    <b-form @submit.prevent="login">
       <b-form-group label="Correo">
         <b-form-input
           id="email"
@@ -49,15 +44,23 @@
           Debe ser maximo 16 caracteres
         </b-form-invalid-feedback>
       </b-form-group>
-      <b-form-group class="flex justify-content-end">
+      <span v-show="error" class="text-danger my-2">
+        Las credenciales son incorrectas
+      </span>
+      <hr />
+      <div class="d-flex justify-content-between">
+        <b-button variant="transparent" class="underline"
+          >¿Olvidó su contraseña?</b-button
+        >
         <b-button variant="primary" type="submit">Iniciar Sesión</b-button>
-      </b-form-group>
+      </div>
     </b-form>
-  </b-container>
+  </b-modal>
 </template>
 <script>
 import { validationMixin } from 'vuelidate'
 import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
+
 export default {
   mixins: [validationMixin],
   middleware: 'guest',
@@ -65,14 +68,7 @@ export default {
     return {
       email: '',
       password: '',
-    }
-  },
-  head() {
-    return {
-      title: 'Inicio de Sesión | Red De Venta',
-      meta: [
-        { content: 'Inicio de sesión | Red De Venta', property: 'og:title' },
-      ],
+      error: false,
     }
   },
   validations: {
@@ -88,6 +84,11 @@ export default {
   },
   methods: {
     async login() {
+      this.error = false
+      this.$v.$touch()
+      if (this.$v.$invalid) {
+        return this.toast('Error', 'El formulario tiene errores', 'warning')
+      }
       await this.$auth
         .loginWith('laravelPassport', {
           data: {
@@ -95,8 +96,13 @@ export default {
             password: this.password,
           },
         })
-        .then(() => this.$router.push('/'))
-        .catch((e) => this.processError(e))
+        .then(() => {
+          this.$bvModal.hide('login')
+          this.$store.dispatch('cart/getActiveOrder')
+        })
+        .catch(() => {
+          this.error = true
+        })
     },
   },
 }

@@ -120,9 +120,33 @@
     }
   }
 }
-
+.bg-{
+  &gray-{
+    &100{
+      background-color: rgb(240,240,240);
+    }
+  }
+}
 .letter-spacing-{
   &2{
     letter-spacing: 2px;
   }
+}
+
+.onDiscount{
+  > span:nth-child(1) {
+    text-decoration: line-through;
+    color: #bd0000;
+  }
+}
+
+.scale-1\.5{
+  transition: .5s all;
+  &:hover{
+    transform: scale(1.5);
+  }
+}
+
+.underline{
+  text-decoration: underline;
 }

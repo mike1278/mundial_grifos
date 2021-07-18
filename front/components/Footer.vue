@@ -44,7 +44,7 @@
             </ul>
           </b-col>
         </div>
-        <div class="d-flex justify-content-center mt-4">
+        <div class="d-flex flex-column align-items-center mt-4">
           <div class="d-flex align-items-center">
             <img
               class="ml-1"
@@ -54,9 +54,12 @@
             />
             <h1 class="p-1 d-flex flex-column">
               <span class="text-weight-sm text-2xl">MUNDIAL</span>
-              <span class="text-weight-lg text-3xl letter-spacing-2">Grifos</span>
+              <span class="text-weight-lg text-3xl letter-spacing-2"
+                >Grifos</span
+              >
             </h1>
           </div>
+          <p class="text-white px-2 py-1 mt-1 mb-0">J-31056697-6</p>
 <!--        <b-col sm="10" md="10" class="contactanos">-->
 <!--          <h2>Registrate Ahora</h2>-->
 <!--          <h4>y descubre la cantidad de productos que tenemos para tí</h4>-->

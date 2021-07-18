@@ -32,6 +32,8 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
  * @property-read \App\Models\Color $color
  * @property-read \App\Models\Product $product
  * @method static \Illuminate\Database\Eloquent\Builder|OrderProduct whereDiscount($value)
+ * @property string|null $deleted_at
+ * @method static \Illuminate\Database\Eloquent\Builder|OrderProduct whereDeletedAt($value)
  */
 class OrderProduct extends Pivot
 {

@@ -70,20 +70,13 @@ type ColorPaginator {
 }
 
 type Currency {
+  acronym: String!
   created_at: DateTime!
   id: ID!
   name: String!
-  rate: Rate
+  rates: [Rate]!
   symbol: String!
   updated_at: DateTime!
-}
-
-"A paginated list of Currency items."
-type CurrencyPaginator {
-  "A list of Currency items."
-  data: [Currency!]!
-  "Pagination information about the list of items."
-  paginatorInfo: PaginatorInfo!
 }
 
 type File {
@@ -137,6 +130,7 @@ type Order {
   id: ID!
   note: String!
   note_shop: String
+  orderProducts: [OrderProduct!]!
   products: [Product!]!
   state: OrderState
   state_id: Int!
@@ -152,10 +146,13 @@ type OrderPaginator {
 }
 
 type OrderProduct {
+  color: Color!
   created_at: DateTime!
+  discount: Float!
   id: ID!
   order_id: ID!
-  price: Int!
+  price: Float!
+  product: Product!
   product_color_id: ID!
   product_id: ID!
   quantity: Int!
@@ -281,12 +278,7 @@ type Query {
     "The offset from which elements are returned."
     page: Int
   ): ColorPaginator
-  currencies(
-    "Limits number of fetched elements."
-    first: Int!,
-    "The offset from which elements are returned."
-    page: Int
-  ): CurrencyPaginator
+  currencies: [Currency!]!
   currency(id: ID): Currency
   file(id: ID): File
   files(
@@ -295,6 +287,7 @@ type Query {
     "The offset from which elements are returned."
     page: Int
   ): FilePaginator
+  firstCurrency: Currency
   model(id: ID): Model
   models(
     "Limits number of fetched elements."
@@ -342,12 +335,11 @@ type Query {
 type Rate {
   created_at: DateTime!
   currency: Currency
-  currency_id: String!
+  currency_id: Int!
   id: ID!
-  name: String!
   rate: Float!
   toCurrency: Currency
-  to_currency_id: String!
+  to_currency_id: Int!
   updated_at: DateTime!
 }
 
@@ -408,7 +400,7 @@ enum QueryAddressesOrderByColumn {
 "Allowed column names for the `orderBy` argument on field `orders` on type `Query`."
 enum QueryOrdersOrderByColumn {
   CREATED_AT
-  VIEWS
+  VIEWED
 }
 
 "Allowed column names for the `where` argument on field `orders` on type `Query`."

@@ -27,6 +27,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property-read int|null $views_count
  * @method static \Illuminate\Database\Eloquent\Builder|Brand visit()
  * @method static \Illuminate\Database\Eloquent\Builder|Brand addViews($x)
+ * @property string|null $deleted_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Brand whereDeletedAt($value)
  */
 class Brand extends Model
 {

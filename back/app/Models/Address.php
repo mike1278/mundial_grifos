@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * App\Models\Address
@@ -21,7 +22,19 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Address whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Address whereLocationId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Address whereUpdatedAt($value)
+ * @property string|null $deleted_at
+ * @property-read \App\Models\Location $location
+ * @method static \Illuminate\Database\Eloquent\Builder|Address whereDeletedAt($value)
  */
 class Address extends Model
 {
+    protected $fillable = [
+        'client_id',
+        'location_id'
+    ];
+
+    public function location(): BelongsTo
+    {
+        return $this->belongsTo(Location::class);
+    }
 }

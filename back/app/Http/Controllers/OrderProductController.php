@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\Product;
+use App\Models\Rate;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Log;
@@ -17,7 +18,24 @@ class OrderProductController extends Controller
         try {
             $order = Order::incomplete()->whereHas('client',function ($query)use($request){
                 return $query->where('user_id',$request->user()->id);
-            })->firstOrFail();
+            })->first();
+            if(!$order){
+                $client = $request->user()->client()->first();
+                $order = Order::create([
+                    'client_id' => $client->id,
+                    'address_id' => $client->addresses()->first()->id,
+                    'state_id' => 1,
+                    'rate_id' => Rate::whereHas('toCurrency', function ($query){
+                        $query->where('symbol','BS');
+                    })->where('active', true)->firstOrFail()->id,
+                    'note' => '',
+                    'delivery_type' => 'pick up',
+                    'note_shop' => '',
+                    'viewed' => false,
+                    'payment_details' => '{}',
+                    'complete' => false,
+                ]);
+            }
             if($product->quantity < $request->quantity){
                 return response()->json(['message' => 'La cantidad supera el stock disponible'],403);
             }
@@ -43,6 +61,29 @@ class OrderProductController extends Controller
             abort(500, 'Error agregado el producto al carrito');
         }
         return response()->json(['message' => 'El producto fue agregado']);
+    }
+
+    public function confirm(Request $request): JsonResponse
+    {
+        try {
+            $order = Order::incomplete()->whereHas('client',function ($query)use($request){
+                return $query->where('user_id', $request->user()->id);
+            })->firstOrFail();
+            $order->rate_id = Rate::whereHas('toCurrency', function ($query){
+                $query->where('symbol','BS');
+            })->where('active', true)->firstOrFail()->id;
+
+            $order->complete = true;
+            $order->note = $request->note;
+            $order->delivery_type = $request->delivery_type;
+            $order->address_id = $request->address_id;
+            $order->payment_details = $request->payment_details;
+            $order->save();
+        }catch (Throwable $e){
+            Log::error($e);
+            abort(500, 'Error procesando la orden');
+        }
+        return response()->json(['message' => 'La orden a sido procesada']);
     }
 
     public function update(Request $request, $product): JsonResponse

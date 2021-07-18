@@ -23,6 +23,8 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @method static \Illuminate\Database\Eloquent\Builder|View whereViewableId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|View whereViewableType($value)
  * @property-read Model|\Eloquent $viewable
+ * @property string|null $deleted_at
+ * @method static \Illuminate\Database\Eloquent\Builder|View whereDeletedAt($value)
  */
 class View extends Model
 {

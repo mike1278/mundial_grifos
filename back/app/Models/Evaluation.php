@@ -23,6 +23,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Evaluation whereProductId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Evaluation whereRating($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Evaluation whereUpdatedAt($value)
+ * @property string|null $deleted_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Evaluation whereDeletedAt($value)
  */
 class Evaluation extends Model
 {

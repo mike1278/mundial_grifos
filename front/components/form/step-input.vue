@@ -8,7 +8,7 @@
       />
     </button>
     <input
-      v-model="number"
+      v-model.lazy="number"
       type="text"
       class="border-0 text-gray-700"
       style="width: 30px"
@@ -25,8 +25,8 @@
 <script>
 export default {
   props: {
-    // eslint-disable-next-line vue/require-prop-types
     value: {
+      type: Number,
       default: 1,
     },
     min: {
@@ -46,6 +46,15 @@ export default {
         return this.value
       },
       set(val) {
+        if (parseInt(val) > parseInt(this.max)) {
+          return this.$emit('input', this.max)
+        }
+        if (parseInt(val) < parseInt(this.min)) {
+          return this.$emit('input', this.min)
+        }
+        if (!val) {
+          return this.$emit('input', this.min)
+        }
         this.$emit('input', val)
       },
     },

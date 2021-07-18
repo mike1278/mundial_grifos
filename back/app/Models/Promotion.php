@@ -35,6 +35,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Promotion whereSerialCode($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Promotion whereStartAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Promotion whereUpdatedAt($value)
+ * @property string|null $deleted_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Promotion whereDeletedAt($value)
  */
 class Promotion extends Model
 {

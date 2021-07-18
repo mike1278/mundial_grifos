@@ -39,7 +39,14 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
   css: ['@/assets/css/global.scss'],
-  plugins: ['~/mixins/global.js', '@/plugins/libraries.js'],
+  plugins: [
+    '~/mixins/global.js',
+    '@/plugins/libraries.js',
+    {
+      src: '@/plugins/clientLibraries.js',
+      ssr: false,
+    },
+  ],
   components: false,
   buildModules: ['@nuxtjs/apollo'],
   apollo: {
@@ -57,6 +64,14 @@ export default {
     '@nuxtjs/pwa',
     '@nuxtjs/auth-next',
     '@nuxtjs/fontawesome',
+    [
+      'nuxt-gmaps',
+      {
+        key: 'AIzaSyAB9xMk8l5j6PaTuioCpnuMjTuhMX4uOrE',
+        language: 'es',
+        libraries: ['visualization', 'places'],
+      },
+    ],
   ],
   fontawesome: {
     imports: [
@@ -109,6 +124,7 @@ export default {
   },
   publicRuntimeConfig: {
     backUrl: process.env.BACK_DOMAIN,
+    apiGoogleMaps: process.env.api_google_maps,
   },
   build: {
     extractCSS: true,

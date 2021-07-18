@@ -21,6 +21,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|OrderState whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|OrderState whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string|null $deleted_at
+ * @method static \Illuminate\Database\Eloquent\Builder|OrderState whereDeletedAt($value)
  */
 class OrderState extends Model
 {

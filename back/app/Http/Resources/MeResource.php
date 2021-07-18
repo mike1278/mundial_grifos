@@ -18,7 +18,7 @@ class MeResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'email_verified_at' => $this->email_verified_at,
-            'client' => $this->whenLoaded('client'),
+            'client' => new ClientResource($this->whenLoaded('client')),
             'roles' => RoleResource::collection($this->whenLoaded('roles')),
             'permissions' => PermissionResource::collection($this->whenLoaded('permissions')),
         ];

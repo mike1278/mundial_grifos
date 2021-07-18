@@ -44,6 +44,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder|Order wherePaymentDetails($value)
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\OrderProduct[] $orderProducts
  * @property-read int|null $order_products_count
+ * @property int|null $rate_id
+ * @property string|null $deleted_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereRateId($value)
  */
 class Order extends Model
 {
@@ -52,7 +56,9 @@ class Order extends Model
         'address_id',
         'note',
         'note_shop',
+        'rate_id',
         'delivery_type',
+        'payment_details',
         'client_id',
         'state_id',
     ];

@@ -27,6 +27,11 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @method static \Illuminate\Database\Eloquent\Builder|Currency whereAcronym($value)
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Rate[] $rates
  * @property-read int|null $rates_count
+ * @property string|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Rate[] $oldRates
+ * @property-read int|null $old_rates_count
+ * @property-read \App\Models\Rate|null $rate
+ * @method static \Illuminate\Database\Eloquent\Builder|Currency whereDeletedAt($value)
  */
 class Currency extends Model
 {

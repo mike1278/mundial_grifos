@@ -202,6 +202,11 @@
       <excludeFolder url="file://$MODULE_DIR$/back/vendor/lorisleiva/laravel-actions" />
       <excludeFolder url="file://$MODULE_DIR$/back/vendor/laravel/framework" />
       <excludeFolder url="file://$MODULE_DIR$/back/vendor/spatie/laravel-query-builder" />
+      <excludeFolder url="file://$MODULE_DIR$/back/vendor/spatie/db-dumper" />
+      <excludeFolder url="file://$MODULE_DIR$/back/vendor/spatie/laravel-signal-aware-command" />
+      <excludeFolder url="file://$MODULE_DIR$/back/vendor/spatie/temporary-directory" />
+      <excludeFolder url="file://$MODULE_DIR$/back/vendor/spatie/laravel-backup" />
+      <excludeFolder url="file://$MODULE_DIR$/back/vendor/spatie/laravel-package-tools" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

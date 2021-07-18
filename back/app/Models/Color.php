@@ -28,6 +28,8 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
  * @property-read int|null $products_count
  * @property-read \App\Models\File|null $image
+ * @property string|null $deleted_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Color whereDeletedAt($value)
  */
 class Color extends Model
 {

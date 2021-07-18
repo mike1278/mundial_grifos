@@ -26,6 +26,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|Rate whereRate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Rate whereToCurrencyId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Rate whereUpdatedAt($value)
+ * @property int $active
+ * @property string|null $deleted_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Rate whereActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Rate whereDeletedAt($value)
  */
 class Rate extends Model
 {

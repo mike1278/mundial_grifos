@@ -21,7 +21,7 @@
           <span class="text-weight-lg text-3xl letter-spacing-2">Grifos</span>
         </h1>
       </b-navbar-brand>
-      <b-navbar-nav class="mx-auto d-none d-lg-flex justify-content-center">
+      <b-navbar-nav class="d-none d-lg-flex justify-content-center">
         <b-nav-item class="nav-item nav-link text-xl text-weight-md" to="/"
           >Inicio</b-nav-item
         >
@@ -31,16 +31,11 @@
         >
           Productos
         </b-nav-item>
-        <b-nav-item
-          class="nav-item nav-link pl-4 text-xl text-weight-md"
-          to="/nosotros"
-        >
-          Nosotros
-        </b-nav-item>
       </b-navbar-nav>
 
-      <b-navbar-nav class="mr-4">
+      <b-navbar-nav class="ml-auto mr-4">
         <b-nav-item
+          v-if="$auth.loggedIn"
           class="nav-item nav-link text-xl text-weight-md"
           to="/carrito"
         >
@@ -67,9 +62,17 @@
             </b-dropdown-item>
           </span>
           <span v-if="!$auth.loggedIn">
-            <b-dropdown-item to="/login">Iniciar Sesión</b-dropdown-item>
+            <b-dropdown-item v-b-modal.login>Iniciar Sesión</b-dropdown-item>
             <b-dropdown-item to="/registro">Registrate</b-dropdown-item>
           </span>
+        </b-nav-item-dropdown>
+        <b-nav-item-dropdown :text="currency.symbol" class="border-0 d-flex align-items-center" right>
+          <b-dropdown-item
+            v-for="(Currency, i) in currencies"
+            :key="'currency' + i"
+            @click.prevent="setCurrency(Currency)"
+            >{{ Currency.name }}</b-dropdown-item
+          >
         </b-nav-item-dropdown>
       </b-navbar-nav>
     </b-navbar>
@@ -154,13 +157,28 @@
         </b-nav>
       </nav>
     </b-sidebar> -->
+    <login />
   </div>
 </template>
 <script>
+import login from '@/components/Login'
+import { mapGetters } from 'vuex'
 export default {
+  components: {
+    login,
+  },
+  computed: {
+    ...mapGetters({
+      currencies: 'currencies',
+      currency: 'currency',
+    }),
+  },
   methods: {
     active(link) {
       return this.$route.name.split('-')[0] === link
+    },
+    setCurrency(currency) {
+      this.$store.commit('currentCurrency', currency)
     },
     async logout() {
       await this.$auth

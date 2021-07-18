@@ -33,6 +33,8 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
  * @property-read int|null $views_count
  * @method static \Illuminate\Database\Eloquent\Builder|Category visit()
  * @method static \Illuminate\Database\Eloquent\Builder|Category addViews($x)
+ * @property string|null $deleted_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereDeletedAt($value)
  */
 class Category extends Model
 {

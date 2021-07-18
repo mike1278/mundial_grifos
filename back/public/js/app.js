@@ -25613,6 +25613,30 @@ var map = {
 		"./resources/js/Pages/Models/Index.vue",
 		"resources_js_Pages_Models_Index_vue"
 	],
+	"./Orders/Create": [
+		"./resources/js/Pages/Orders/Create.vue",
+		"resources_js_Pages_Orders_Create_vue"
+	],
+	"./Orders/Create.vue": [
+		"./resources/js/Pages/Orders/Create.vue",
+		"resources_js_Pages_Orders_Create_vue"
+	],
+	"./Orders/Index": [
+		"./resources/js/Pages/Orders/Index.vue",
+		"resources_js_Pages_Orders_Index_vue"
+	],
+	"./Orders/Index.vue": [
+		"./resources/js/Pages/Orders/Index.vue",
+		"resources_js_Pages_Orders_Index_vue"
+	],
+	"./Orders/Show": [
+		"./resources/js/Pages/Orders/Show.vue",
+		"resources_js_Pages_Orders_Show_vue"
+	],
+	"./Orders/Show.vue": [
+		"./resources/js/Pages/Orders/Show.vue",
+		"resources_js_Pages_Orders_Show_vue"
+	],
 	"./PrivacyPolicy": [
 		"./resources/js/Pages/PrivacyPolicy.vue",
 		"resources_js_Pages_PrivacyPolicy_vue"
@@ -25868,7 +25892,7 @@ module.exports = webpackAsyncContext;
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_Pages_API_ApiTokenManager_vue":1,"resources_js_Pages_API_Index_vue":1,"resources_js_Pages_Auth_ConfirmPassword_vue":1,"resources_js_Pages_Auth_ForgotPassword_vue":1,"resources_js_Pages_Auth_Login_vue":1,"resources_js_Pages_Auth_Register_vue":1,"resources_js_Pages_Auth_ResetPassword_vue":1,"resources_js_Pages_Auth_TwoFactorChallenge_vue":1,"resources_js_Pages_Auth_VerifyEmail_vue":1,"resources_js_Pages_Brands_Create_vue":1,"resources_js_Pages_Brands_Edit_vue":1,"resources_js_Pages_Brands_Index_vue":1,"resources_js_Pages_Categories_Create_vue":1,"resources_js_Pages_Categories_Edit_vue":1,"resources_js_Pages_Categories_Index_vue":1,"resources_js_Pages_Clients_Index_vue":1,"resources_js_Pages_Colors_Create_vue":1,"resources_js_Pages_Colors_Edit_vue":1,"resources_js_Pages_Colors_Index_vue":1,"resources_js_Pages_Config_backupsDatabase_vue":1,"resources_js_Pages_Currencies_Create_vue":1,"resources_js_Pages_Currencies_Edit_vue":1,"resources_js_Pages_Currencies_Index_vue":1,"resources_js_Pages_Dashboard_vue":1,"resources_js_Pages_Models_Create_vue":1,"resources_js_Pages_Models_Edit_vue":1,"resources_js_Pages_Models_Index_vue":1,"resources_js_Pages_PrivacyPolicy_vue":1,"resources_js_Pages_Products_Create_vue":1,"resources_js_Pages_Products_Index_vue":1,"resources_js_Pages_Products_Show_vue":1,"resources_js_Pages_Profile_DeleteUserForm_vue":1,"resources_js_Pages_Profile_LogoutOtherBrowserSessionsForm_vue":1,"resources_js_Pages_Profile_Show_vue":1,"resources_js_Pages_Profile_TwoFactorAuthenticationForm_vue":1,"resources_js_Pages_Profile_UpdatePasswordForm_vue":1,"resources_js_Pages_Profile_UpdateProfileInformationForm_vue":1,"resources_js_Pages_TermsOfService_vue":1,"node_modules_dompurify_dist_purify_js":1,"node_modules_canvg_lib_index_es_js":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_Pages_API_ApiTokenManager_vue":1,"resources_js_Pages_API_Index_vue":1,"resources_js_Pages_Auth_ConfirmPassword_vue":1,"resources_js_Pages_Auth_ForgotPassword_vue":1,"resources_js_Pages_Auth_Login_vue":1,"resources_js_Pages_Auth_Register_vue":1,"resources_js_Pages_Auth_ResetPassword_vue":1,"resources_js_Pages_Auth_TwoFactorChallenge_vue":1,"resources_js_Pages_Auth_VerifyEmail_vue":1,"resources_js_Pages_Brands_Create_vue":1,"resources_js_Pages_Brands_Edit_vue":1,"resources_js_Pages_Brands_Index_vue":1,"resources_js_Pages_Categories_Create_vue":1,"resources_js_Pages_Categories_Edit_vue":1,"resources_js_Pages_Categories_Index_vue":1,"resources_js_Pages_Clients_Index_vue":1,"resources_js_Pages_Colors_Create_vue":1,"resources_js_Pages_Colors_Edit_vue":1,"resources_js_Pages_Colors_Index_vue":1,"resources_js_Pages_Config_backupsDatabase_vue":1,"resources_js_Pages_Currencies_Create_vue":1,"resources_js_Pages_Currencies_Edit_vue":1,"resources_js_Pages_Currencies_Index_vue":1,"resources_js_Pages_Dashboard_vue":1,"resources_js_Pages_Models_Create_vue":1,"resources_js_Pages_Models_Edit_vue":1,"resources_js_Pages_Models_Index_vue":1,"resources_js_Pages_Orders_Create_vue":1,"resources_js_Pages_Orders_Index_vue":1,"resources_js_Pages_Orders_Show_vue":1,"resources_js_Pages_PrivacyPolicy_vue":1,"resources_js_Pages_Products_Create_vue":1,"resources_js_Pages_Products_Index_vue":1,"resources_js_Pages_Products_Show_vue":1,"resources_js_Pages_Profile_DeleteUserForm_vue":1,"resources_js_Pages_Profile_LogoutOtherBrowserSessionsForm_vue":1,"resources_js_Pages_Profile_Show_vue":1,"resources_js_Pages_Profile_TwoFactorAuthenticationForm_vue":1,"resources_js_Pages_Profile_UpdatePasswordForm_vue":1,"resources_js_Pages_Profile_UpdateProfileInformationForm_vue":1,"resources_js_Pages_TermsOfService_vue":1,"node_modules_dompurify_dist_purify_js":1,"node_modules_canvg_lib_index_es_js":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

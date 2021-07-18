@@ -19,15 +19,22 @@
           </div>
         </b-col>
         <b-col>
-          <b-row
-            v-if="!$apollo.loading"
-            class="justify-content-center"
-          >
+          <b-row v-if="!$apollo.loading" class="justify-content-center">
             <product
               v-for="(product, i) in products.data"
               :key="i + 'product'"
               :data="product"
             />
+            <b-col cols="12">
+              <b-pagination
+                v-model="currentPage"
+                class="mt-3"
+                align="center"
+                :total-rows="products.paginatorInfo.total"
+                :per-page="products.paginatorInfo.perPage"
+                aria-controls="my-table"
+              />
+            </b-col>
           </b-row>
           <b-row v-else class="mb-2">
             <b-col
@@ -66,7 +73,7 @@ export default {
       categories: {},
       models: {},
       brands: {},
-      currentPage: 0,
+      currentPage: 1,
       filters: {
         category: null,
         model: null,
@@ -85,6 +92,9 @@ export default {
         this.$apollo.queries.allCategories.refresh()
       },
     },
+    currentPage() {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    },
   },
   methods: {
     updateCategory(id) {
@@ -93,15 +103,21 @@ export default {
   },
   apollo: {
     categories: {
+      variables() {
+        return {
+          page: this.currentPage,
+        }
+      },
       query() {
         const wheres = filters(
           ['category', 'model', 'brand'],
           this.$route.query
         )
         return gql`
-          query {
+          query products($page: Int!) {
             products (
-              first: 9,
+              first: 8,
+              page: $page,
               orderBy: [{ column: CREATED_AT, order: DESC }],
               ${wheres}
             ) {
@@ -126,6 +142,9 @@ export default {
               paginatorInfo {
                 currentPage
                 lastPage
+                count
+                perPage
+                total
               }
             }
             categories {

@@ -7,6 +7,7 @@
     "require": {
         "php": "^8.0.3",
         "ext-json": "*",
+        "ext-mcrypt": "*",
         "beyondcode/laravel-websockets": "^1.12",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
@@ -31,8 +32,7 @@
         "santigarcor/laratrust": "^6.3",
         "spatie/laravel-backup": "^7.6",
         "spatie/laravel-query-builder": "^3.4",
-        "tightenco/ziggy": "^1.0",
-        "ext-mcrypt": "*"
+        "tightenco/ziggy": "^1.0"
     },
     "require-dev": {
         "mll-lab/laravel-graphql-playground": "^2.5",

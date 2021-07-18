@@ -21,6 +21,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Favorite whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Favorite whereProductId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Favorite whereUpdatedAt($value)
+ * @property string|null $deleted_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Favorite whereDeletedAt($value)
  */
 class Favorite extends Model
 {
