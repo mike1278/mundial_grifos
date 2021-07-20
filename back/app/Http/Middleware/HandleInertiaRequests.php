@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Http\Resources\PermissionResource;
 use App\Http\Resources\RoleResource;
+use App\Models\Currency;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -58,6 +59,10 @@ class HandleInertiaRequests extends Middleware
                 return $request->user()
                     ? RoleResource::collection($request->user()->roles()->get())
                     : [];
+            },
+            'bs' => function() use ($request) {
+                $currency = Currency::where('symbol','BS')->with('rate')->first();
+                return $currency->rate->rate;
             },
         ]);
     }

@@ -7,35 +7,50 @@
             <template #header>
                 <tr>
                     <td-head>Id</td-head>
-                    <td-head>Imagen</td-head>
-                    <td-head>Nombre</td-head>
-                    <td-head>Precio</td-head>
+                    <td-head>Cliente</td-head>
+                    <td-head>Estado</td-head>
+                    <td-head>Tipo de entrega</td-head>
+                    <td-head>Total</td-head>
+                    <td-head>Total referencial</td-head>
+                    <td-head>Fecha</td-head>
                     <td-head>Acciones</td-head>
                 </tr>
             </template>
-            <tr v-for="data in products.data" :key="data.id">
+            <tr v-for="data in orders.data" :key="data.id">
                 <td-body>
                     {{ data.id }}
                 </td-body>
-                <td-body class="flex justify-center">
-                    <img :src="imageUrl('square-small') + data.images[0].url" class="w-8 h-8" :alt="data.name">
-                </td-body>
-                <td-body>{{ data.name }}</td-body>
-                <td-body>{{ $filters.numeral(data.price) }}</td-body>
                 <td-body>
-                    <vue-button :href="route('products.show',data.id)" class="mr-2" is="link" variant="primary">
+                    {{ data.client.user.name + ' ' + data.client.lastname }}
+                </td-body>
+                <td-body>
+                    {{ data.state.name }}
+                </td-body>
+                <td-body>
+                    {{ data.delivery_type === 'delivery' ? 'Delivery' : 'Retiro de negocio' }}
+                </td-body>
+                <td-body>
+                    {{ $filters.numeral($page.props.bs * total(data.order_products)) }}$
+                </td-body>
+                <td-body>
+                    {{ $filters.numeral(total(data.order_products)) }}$
+                </td-body>
+                <td-body>
+                    {{ this.$moment(data.updated_at).format('DD-MM-YYYY') }}
+                </td-body>
+                <td-body>
+                    <vue-button
+                        :href="route('orders.show',data.id)"
+                        class="mr-2"
+                        is="link"
+                        variant="primary"
+                    >
                         <i class="fas fa-eye"></i>
-                    </vue-button>
-                    <vue-button :href="route('products.edit',data.id)" class="mr-2" is="link" variant="primary">
-                        <i class="fas fa-edit"></i>
-                    </vue-button>
-                    <vue-button @click="modalTrash(data)" class="mr-2" variant="danger">
-                        <i class="fas fa-trash"></i>
                     </vue-button>
                 </td-body>
             </tr>
         </c-table>
-        <paginator :paginator="products"></paginator>
+        <paginator :paginator="orders"></paginator>
         <modal :show="modals.trash" v-if="rowTrash" @close="modals.trash = false">
             <div class="flex justify-between border-b border-gray-200 border-solid">
                 <h3 class="text-gray-700 text-lg py-2 px-2">
@@ -79,7 +94,7 @@ export default {
         tdBody,
         tdHead,
     },
-    props: ['products'],
+    props: ['orders'],
     data() {
         return {
             rowTrash: null,
@@ -90,16 +105,23 @@ export default {
         }
     },
     methods: {
-        modalTrash(category) {
-            this.rowTrash = category;
+        modalTrash(date) {
+            this.rowTrash = date;
             this.modals.trash = true;
         },
         closeModal(modal) {
             this.modals[modal] = false;
             this.rowTrash = null;
         },
+        total(products){
+            let total = 0
+            products.forEach(el=>{
+                total += (el.price - (el.price / 100 * el.discount)) * el.quantity
+            })
+            return total
+        },
         trash() {
-            Inertia.delete(this.route('products.destroy', this.rowTrash.id), {
+            Inertia.delete(this.route('orders.destroy', this.rowTrash.id), {
                 preserveScroll: true,
                 onSuccess: () => {
                     this.closeModal('trash');

@@ -1819,7 +1819,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("input", {
-    "class": "border-gray-400 w-full hover:border-green-blue placeholder-gray-400 focus:border-green-blue outline-none border-b-2 px-1 pb-1 shadow-sm",
+    "class": "border-gray-400 border-r-0 border-l-0 border-t-0 w-full hover:border-green-blue placeholder-gray-400 focus:border-green-blue outline-none border-b-2 px-1 pb-1 shadow-sm",
     value: $props.modelValue,
     onInput: _cache[1] || (_cache[1] = function ($event) {
       return _ctx.$emit('update:modelValue', $event.target.value);
@@ -1921,9 +1921,7 @@ var _hoisted_4 = {
   "class": "flex items-end"
 };
 
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Categoria Padre");
-
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Guardar");
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Guardar");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_form_label = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("form-label");
@@ -1934,14 +1932,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_input_file = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("input-file");
 
-  var _component_vue_select = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("vue-select");
-
   var _component_form_button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("form-button");
 
   var _component_form_section = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("form-section");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_form_section, {
-    onSubmitted: _cache[4] || (_cache[4] = function ($event) {
+    onSubmitted: _cache[3] || (_cache[3] = function ($event) {
       return $options.submit();
     }),
     title: "Crear Categoria",
@@ -2013,41 +2009,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         _: 1
         /* STABLE */
 
-      })) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_form_label, {
-        "for": "category",
-        "class": "h-6"
-      }, {
-        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_5];
-        }),
-        _: 1
-        /* STABLE */
-
-      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_vue_select, {
-        options: $props.categories,
-        label: "name",
-        modelValue: $setup.form.category_id,
-        "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
-          return $setup.form.category_id = $event;
-        }),
-        reduce: function reduce(data) {
-          return data.id;
-        },
-        placeholder: "Seleccionar Categoria"
-      }, null, 8
-      /* PROPS */
-      , ["options", "modelValue", "reduce"]), $setup.form.errors.category_id ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_form_field_error, {
-        key: 0
-      }, {
-        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.form.errors.category_id), 1
-          /* TEXT */
-          )];
-        }),
-        _: 1
-        /* STABLE */
-
-      })) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])];
+      })) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                <div>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                    <form-label for=\"category\" class=\"h-6\">Categoria Padre</form-label>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                    <vue-select"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                        :options=\"categories\""), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                        label=\"name\""), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                        v-model=\"form.category_id\""), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                        :reduce=\"(data) => data.id\""), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                        placeholder=\"Seleccionar Categoria\""), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                    />"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                    <form-field-error v-if=\"form.errors.category_id\">{{ form.errors.category_id }}</form-field-error>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                </div>")])];
     }),
     actions: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_form_button, {
@@ -2055,7 +2017,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         disabled: $setup.form.processing
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_6];
+          return [_hoisted_5];
         }),
         _: 1
         /* STABLE */

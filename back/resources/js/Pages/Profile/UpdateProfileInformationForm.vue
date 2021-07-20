@@ -1,7 +1,7 @@
 <template>
     <jet-form-section @submitted="updateProfileInformation">
         <template #title>
-            Profile Information
+            Información de perfil
         </template>
 
         <template #description>
@@ -40,29 +40,28 @@
 
                 <jet-input-error :message="form.errors.photo" class="mt-2" />
             </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <div>
+                    <jet-label for="name" value="Nombre" />
+                    <jet-input id="name" type="text" class="mt-1 block w-full" v-model="form.name" autocomplete="name" />
+                    <jet-input-error :message="form.errors.name" class="mt-2" />
+                </div>
 
-            <!-- Name -->
-            <div class="col-span-6 sm:col-span-4">
-                <jet-label for="name" value="Name" />
-                <jet-input id="name" type="text" class="mt-1 block w-full" v-model="form.name" autocomplete="name" />
-                <jet-input-error :message="form.errors.name" class="mt-2" />
-            </div>
-
-            <!-- Email -->
-            <div class="col-span-6 sm:col-span-4">
-                <jet-label for="email" value="Email" />
-                <jet-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" />
-                <jet-input-error :message="form.errors.email" class="mt-2" />
+                <div>
+                    <jet-label for="email" value="Correo" />
+                    <jet-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" />
+                    <jet-input-error :message="form.errors.email" class="mt-2" />
+                </div>
             </div>
         </template>
 
         <template #actions>
             <jet-action-message :on="form.recentlySuccessful" class="mr-3">
-                Saved.
+                Salvado.
             </jet-action-message>
 
             <jet-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                Save
+                Salvar
             </jet-button>
         </template>
     </jet-form-section>

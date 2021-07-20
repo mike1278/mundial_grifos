@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Models\OrderProduct
@@ -37,6 +38,8 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
  */
 class OrderProduct extends Pivot
 {
+    use SoftDeletes;
+
     protected $table = 'order_products';
     protected $fillable = [
         'quantity',

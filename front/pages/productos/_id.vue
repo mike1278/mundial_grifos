@@ -300,6 +300,15 @@ export default {
   },
   methods: {
     addToCart() {
+      if (!this.$auth.loggedIn) {
+        return this.$bvToast.toast(
+          'Debe iniciar sesión para poder realizar ordenes',
+          {
+            title: 'Acción necesaria',
+            variant: 'warning',
+          }
+        )
+      }
       this.loading = true
       this.$store
         .dispatch('cart/setProduct', {

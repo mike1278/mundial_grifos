@@ -15,17 +15,17 @@
                     </div>
                     <form-field-error v-if="form.errors.image">{{ form.errors.image }}</form-field-error>
                 </div>
-                <div>
-                    <form-label for="category" class="h-6">Categoria Padre</form-label>
-                    <vue-select
-                        :options="categories"
-                        label="name"
-                        v-model="form.category_id"
-                        :reduce="(data) => data.id"
-                        placeholder="Seleccionar Categoria"
-                    />
-                    <form-field-error v-if="form.errors.category_id">{{ form.errors.category_id }}</form-field-error>
-                </div>
+<!--                <div>-->
+<!--                    <form-label for="category" class="h-6">Categoria Padre</form-label>-->
+<!--                    <vue-select-->
+<!--                        :options="categories"-->
+<!--                        label="name"-->
+<!--                        v-model="form.category_id"-->
+<!--                        :reduce="(data) => data.id"-->
+<!--                        placeholder="Seleccionar Categoria"-->
+<!--                    />-->
+<!--                    <form-field-error v-if="form.errors.category_id">{{ form.errors.category_id }}</form-field-error>-->
+<!--                </div>-->
             </div>
         </template>
         <template #actions>

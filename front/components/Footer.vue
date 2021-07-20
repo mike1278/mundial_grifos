@@ -3,22 +3,45 @@
     <div class="bg-gray-dark pt-5" style="background: rgba(40, 40, 40, 0.51)">
       <div class="container mb-4 mt-3">
         <div class="row justify-content-center">
-          <b-col sm="4" md="4" class="item">
+          <b-col cols="12" sm="6" md="3" class="item mt-3">
             <h3>Contactanos</h3>
             <ul>
               <li>
                 <a href="mailto:info@reddeventa.com"
-                  ><i class="far fa-envelope" />&nbsp;info@mundialgrifo.com</a
+                  ><font-awesome-icon
+                    :icon="['fas', 'envelope']"
+                  />&nbsp;info@mundialgrifo.com</a
                 >
               </li>
               <li>
                 <a href="tel:04123589229"
-                  ><i class="fas fa-phone-alt" />&nbsp;04123589229</a
+                  ><font-awesome-icon
+                    :icon="['fas', 'phone-alt']"
+                  />&nbsp;04123589229</a
                 >
               </li>
             </ul>
           </b-col>
-          <b-col sm="4" md="4" class="item">
+          <b-col cols="12" sm="6" md="3" class="item mt-3">
+            <h3>Redes Sociales</h3>
+            <ul>
+              <li>
+                <a href="#"
+                  ><font-awesome-icon
+                    :icon="['fab', 'facebook']"
+                  />&nbsp;Facebook</a
+                >
+              </li>
+              <li>
+                <a href="#"
+                  ><font-awesome-icon
+                    :icon="['fab', 'instagram']"
+                  />&nbsp;Instagram</a
+                >
+              </li>
+            </ul>
+          </b-col>
+          <b-col cols="12" sm="6" md="3" class="item mt-3">
             <h3>Nosotros</h3>
             <ul>
               <li>
@@ -34,7 +57,7 @@
               <!-- <li><a href="#">Preguntas frecuentes</a></li> -->
             </ul>
           </b-col>
-          <b-col sm="4" md="4" class="item">
+          <b-col cols="12" sm="6" md="3" class="item mt-3">
             <h3>Descubre</h3>
             <ul>
               <li>
@@ -60,20 +83,23 @@
             </h1>
           </div>
           <p class="text-white px-2 py-1 mt-1 mb-0">J-31056697-6</p>
-<!--        <b-col sm="10" md="10" class="contactanos">-->
-<!--          <h2>Registrate Ahora</h2>-->
-<!--          <h4>y descubre la cantidad de productos que tenemos para tí</h4>-->
-<!--          <div>-->
-<!--            <b-form-input placeholder="Ingrese su correo"></b-form-input>-->
-<!--          </div>-->
-<!--        </b-col>-->
+          <!--        <b-col sm="10" md="10" class="contactanos">-->
+          <!--          <h2>Registrate Ahora</h2>-->
+          <!--          <h4>y descubre la cantidad de productos que tenemos para tí</h4>-->
+          <!--          <div>-->
+          <!--            <b-form-input placeholder="Ingrese su correo"></b-form-input>-->
+          <!--          </div>-->
+          <!--        </b-col>-->
         </div>
       </div>
       <div
         class="copyright d-flex justify-content-center py-2"
         style="background: rgba(40, 40, 40, 0.71)"
       >
-        <p class="mb-0">© 2021, Mundial Grifos. All Rights Reserved</p>
+        <p class="mb-0">
+          © 2021, Mundial Grifos. Todos los derechos reservados a Unimar &
+          Roberto Micheletti
+        </p>
       </div>
     </div>
   </footer>

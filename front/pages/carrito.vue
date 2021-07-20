@@ -22,7 +22,7 @@
                 >
                   <th class="pt-3 d-flex">
                     <div
-                      class="position-relative mr-2"
+                      class="position-relative mr-4"
                       style="width: 80px; height: 80px"
                     >
                       <img

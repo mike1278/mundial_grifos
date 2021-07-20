@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Models\Rate
@@ -33,6 +34,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Rate extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'rate','currency_id','to_currency_id','active'
     ];

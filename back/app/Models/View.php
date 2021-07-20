@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Models\View
@@ -28,6 +29,8 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  */
 class View extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'viewable_id','viewable_type'
     ];

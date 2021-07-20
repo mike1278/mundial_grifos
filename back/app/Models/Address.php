@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Models\Address
@@ -28,6 +29,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Address extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'client_id',
         'location_id'

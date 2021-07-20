@@ -15,7 +15,7 @@
           Debe ingresar el correo electrónico
         </b-form-invalid-feedback>
         <b-form-invalid-feedback v-show="!$v.email.email && $v.email.$dirty">
-          Debe ser valido
+          Debe ser un correo valido
         </b-form-invalid-feedback>
       </b-form-group>
       <b-form-group label="Clave">
@@ -36,7 +36,7 @@
         <b-form-invalid-feedback
           v-show="!$v.password.min && $v.password.$dirty"
         >
-          Debe ser mínimo 6 caracteres
+          Debe ser mínimo 8 caracteres
         </b-form-invalid-feedback>
         <b-form-invalid-feedback
           v-show="!$v.password.max && $v.password.$dirty"
@@ -78,7 +78,7 @@ export default {
     },
     password: {
       required,
-      min: minLength(6),
+      min: minLength(8),
       max: maxLength(16),
     },
   },

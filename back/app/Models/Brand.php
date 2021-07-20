@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\Visitable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Models\Brand
@@ -32,6 +33,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Brand extends Model
 {
+    use SoftDeletes;
     use Visitable;
 
     protected $fillable = ['name'];

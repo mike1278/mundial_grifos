@@ -11,6 +11,7 @@
                     <td-head>Imagen</td-head>
                     <td-head>Nombre</td-head>
                     <td-head>Precio</td-head>
+                    <td-head>Precio referencial</td-head>
                     <td-head>Acciones</td-head>
                 </tr>
             </template>
@@ -22,7 +23,8 @@
                     <img :src="imageUrl('square-small') + data.images[0].url" class="w-8 h-8" :alt="data.name">
                 </td-body>
                 <td-body>{{ data.name }}</td-body>
-                <td-body>{{ $filters.numeral(data.price) }}</td-body>
+                <td-body>{{ $filters.numeral($page.props.bs * data.price) }}Bs</td-body>
+                <td-body>{{ $filters.numeral(data.price) }}$</td-body>
                 <td-body>
                     <vue-button :href="route('products.show',data.id)" class="mr-2" is="link" variant="primary">
                         <i class="fas fa-eye"></i>

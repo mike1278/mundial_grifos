@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Models\OrderState
@@ -26,4 +27,6 @@ use Illuminate\Database\Eloquent\Model;
  */
 class OrderState extends Model
 {
+    use SoftDeletes;
+
 }

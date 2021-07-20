@@ -4,7 +4,7 @@
       <b-row>
         <b-col cols="12" lg="6" class="border-right">
           <div class="bg-white px-3 py-2 rounded">
-            <h2 class="text-3xl text-weight-lg">Sumario de los artículos</h2>
+            <h2 class="text-3xl text-weight-lg">Datos de usuario</h2>
             <hr />
             <b-form @submit.prevent="register">
               <b-row>
@@ -65,13 +65,13 @@
                       >
                         {{ location.location.address }}
                       </b-form-select-option>
-                      <b-form-select-option
-                        v-b-modal.newAddress
-                        :value="null"
-                        class="border-right-0 border-left-0 border-top-0 rounded-0"
-                      >
-                        Agregar una nueva dirección
-                      </b-form-select-option>
+<!--                      <b-form-select-option-->
+<!--                        v-b-modal.newAddress-->
+<!--                        :value="null"-->
+<!--                        class="border-right-0 border-left-0 border-top-0 rounded-0"-->
+<!--                      >-->
+<!--                        Agregar una nueva dirección-->
+<!--                      </b-form-select-option>-->
                     </b-form-select>
                   </b-form-group>
                 </b-col>
@@ -84,17 +84,11 @@
                       <b-form-select-option :value="null" disabled>
                         Seleccione la forma de pago
                       </b-form-select-option>
-                      <b-form-select-option value="pay_on_shop">
-                        Punto de venta
-                      </b-form-select-option>
                       <b-form-select-option value="national_transfer">
                         Transferencia nacional
                       </b-form-select-option>
                       <b-form-select-option value="international_transfer">
                         Transferencia internacional
-                      </b-form-select-option>
-                      <b-form-select-option value="cash">
-                        Efectivo
                       </b-form-select-option>
                     </b-form-select>
                   </b-form-group>

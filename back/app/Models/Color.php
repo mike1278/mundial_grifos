@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Models\Option
@@ -33,6 +34,8 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
  */
 class Color extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'name'
     ];

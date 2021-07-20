@@ -22,11 +22,18 @@ export default {
             type: String,
             required: true,
         },
+        colors: {
+            type: Array,
+            default: [
+                '#F44336',
+            ],
+        },
     },
     data() {
         return {
             instance: null,
             internalOptions: {
+                colors: this.colors,
                 series: [{
                     name: 'Clientes',
                     data: []

@@ -52,7 +52,7 @@ class ProductController extends Controller
                 'category_id' => $request->category_id,
                 'model_id' => $request->model_id,
                 'brand_id' => $request->brand_id,
-                'currency_id' => Currency::where('acronym','$')->first()->id,
+                'currency_id' => Currency::where('acronym','USD')->first()->id,
             ]);
             $product->colors()->attach($request->colors);
             foreach ($request->images as $image){

@@ -19,7 +19,7 @@ class AddDumpsTable extends Migration
             $table->string('file_name')->unique();
             $table->string('prefix')->nullable();
             $table->boolean('encrypted')->default(false);
-            $table->integer('created_at');
+            $table->timestamp('created_at');
         });
     }
 

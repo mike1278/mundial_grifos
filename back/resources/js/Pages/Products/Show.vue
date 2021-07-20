@@ -31,7 +31,7 @@
                 {{ product.brand.name }}
             </p>
             <p class="mb-0">
-                <span class="text-gray-700 text-weight-lg">Categoria:</span>
+                <span class="text-gray-700 text-weight-lg">Categoría:</span>
                 {{ product.category.name }}
             </p>
             <p class="mb-0">
@@ -40,7 +40,11 @@
             </p>
             <p class="mb-0">
                 <span class="text-gray-700 text-weight-lg">Precio:</span>
-                {{ product.price }}$
+                {{ $filters.numeral($page.props.bs * product.price) }}Bs
+            </p>
+            <p class="mb-0">
+                <span class="text-gray-700 text-weight-lg">Precio referencial:</span>
+                {{ $filters.numeral(product.price) }}$
             </p>
             <p class="mb-0">
                 <span class="text-gray-700 text-weight-lg">Descuento:</span>

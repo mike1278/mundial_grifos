@@ -9,6 +9,7 @@ use DB;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response as InertiaResponse;
+use Storage;
 use Throwable;
 
 class CategoryController extends Controller
@@ -38,9 +39,9 @@ class CategoryController extends Controller
             DB::commit();
         }catch(Throwable $e){
             DB::rollBack();
-            return response(['message'=>'Error al crear la categoria','error'=>$e->getMessage()],500);
+            return response(['message'=>'Error al crear la categoría','error'=>$e->getMessage()],500);
         }
-        return redirect()->back();
+        return redirect()->route('categories.index');
     }
 
     public function show(Category $category)
@@ -57,7 +58,23 @@ class CategoryController extends Controller
 
     public function update(Request $request, Category $category)
     {
-        //
+        try{
+            DB::beginTransaction();
+            $category->update($request->only(['name','category_id']));
+            if($request->image){
+                $image = $category->image()->first();
+                Storage::delete($image->url);
+                $image->delete();
+                $category->image()->create([
+                    'url' => $request->file('image')->store('/','public'),
+                ]);
+            }
+            DB::commit();
+        }catch(Throwable $e){
+            DB::rollBack();
+            return response(['message'=>'Error al crear la categoría','error'=>$e->getMessage()],500);
+        }
+        return redirect()->route('categories.index');
     }
 
     public function destroy(Category $category)

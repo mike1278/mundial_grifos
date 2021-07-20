@@ -5,6 +5,9 @@ import { InertiaProgress } from '@inertiajs/progress';
 import Layout from '@/Layouts/default'
 import buttonLink from '@/Components/Button'
 import numeralFilter from '@/Filters/numeral'
+import moment from 'moment'
+
+moment.locale('es')
 
 const el = document.getElementById('app');
 
@@ -27,7 +30,7 @@ app.mixin({
     methods: {
         route,
         imageUrl(size='square-medium'){
-            return '/image/'+size+'/'
+            return '/image/' + size + '/'
         },
         hasRole(role) {
             let has = this.$page.props.roles.data.filter((el)=>{
@@ -40,6 +43,9 @@ app.mixin({
                 return el === permission
             })[0]
             return !!has
+        },
+        $moment(date) {
+            return moment(date)
         },
     },
 })

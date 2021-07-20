@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Grimzy\LaravelMysqlSpatial\Eloquent\SpatialTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Models\Location
@@ -45,6 +46,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Location extends Model
 {
+    use SoftDeletes;
     use SpatialTrait;
 
     protected $fillable = [

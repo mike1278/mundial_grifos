@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Models\Order
@@ -40,6 +41,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
  * @property-read int|null $products_count
  * @method static \Illuminate\Database\Eloquent\Builder|Order incomplete()
+ * @method static \Illuminate\Database\Eloquent\Builder|Order complete()
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereComplete($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order wherePaymentDetails($value)
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\OrderProduct[] $orderProducts
@@ -48,9 +50,14 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string|null $deleted_at
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereRateId($value)
+ * @property-read \App\Models\Address|null $address
+ * @property-read \App\Models\Rate|null $rate
+ * @property-read \App\Models\OrderState $state
  */
 class Order extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'viewed',
         'address_id',
@@ -66,10 +73,25 @@ class Order extends Model
     public function scopeIncomplete($query){
         return $query->where('complete', false);
     }
+    public function scopeComplete($query){
+        return $query->where('complete', true);
+    }
 
     public function client(): BelongsTo
     {
         return $this->belongsTo(Client::class);
+    }
+    public function state(): BelongsTo
+    {
+        return $this->belongsTo(OrderState::class,'state_id');
+    }
+    public function address(): BelongsTo
+    {
+        return $this->belongsTo(Address::class);
+    }
+    public function rate(): BelongsTo
+    {
+        return $this->belongsTo(Rate::class);
     }
     public function products(): BelongsToMany
     {

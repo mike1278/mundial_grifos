@@ -119,7 +119,7 @@ return [
         => 'La :attribute debe contener una letra.',
     'password_symbol'
         => 'La :attribute debe contener un símbolo.',
-    'password_number.'
+    'password_number'
         => 'La :attribute debe contener un numero.',
     'different_password.'
         => 'Elija otra :attribute.',

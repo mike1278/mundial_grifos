@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Models\File
@@ -30,6 +31,8 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  */
 class File extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'url','fileable_id','fileable_type'
     ];
