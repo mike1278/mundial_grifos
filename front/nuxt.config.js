@@ -67,7 +67,7 @@ export default {
     [
       'nuxt-gmaps',
       {
-        key: 'AIzaSyAB9xMk8l5j6PaTuioCpnuMjTuhMX4uOrE',
+        key: '',
         language: 'es',
         libraries: ['visualization', 'places'],
       },
