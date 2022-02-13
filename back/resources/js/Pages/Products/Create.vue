@@ -159,7 +159,7 @@ export default {
                     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
                 },
                 paramName: "file",
-                withCredentials: true,
+                withCredentgials: true,
                 transformFile: (file, done) => {
                     new Compressor(file, {
                         maxWidth: 1900,

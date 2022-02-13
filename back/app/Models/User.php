@@ -115,7 +115,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function setPasswordAttribute($value): string
     {
-        return $this->attributes['password'] = Hash::make($value);
+        return $this->attributes['password'] = Hash::needsRehash($value) ? Hash::make($value) : $value;
     }
 
     public function client(): HasOne
